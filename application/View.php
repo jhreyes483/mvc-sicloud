@@ -7,38 +7,60 @@
 
 class View{
    private $_controlador;
+   private $_params;
    private $_js;
    private $_css;
    private $_img;
    private $_ico;
 
    public function __construct(Request $peticion){
-      $this->_controlador = $peticion->getControlador();
+      $this->_controlador  = $peticion->getControlador();
+      $this->_params = $peticion->getParam();
       $this->_js  = [];
       $this->_css = [];
       $this->_img = [];
       $this->_ico = [];
    }
 
-   public function renderizar_vista($vista, $item = false){
+   public function renderizar_index($vista, $nav = 0 ){
       $rutaView = ROOT. 'views/' . $this->_controlador . '/' . $vista.'.phtml';
 
       if(is_readable($rutaView)){
+
          include_once $rutaView;
+         echo 'fffff';
+         
+         
+
       }else{
          throw new Exception('Error en la Vista: '. $rutaView);
       }
    }
 
-   public function renderizar($vista, $item = false, $finaliza=0){
-      
-      $menu = [['id'=>'inicio', 'titulo'=>'INICIO', 'enlace'=>BASE_URL]];
-      
-      if(Session::get('autenticado') == 0){
-         $menu[] =  array('id'=>'login',     'titulo'=>'INICIAR SESI�N',   'enlace'=>BASE_URL.'login');
+   public function renderizar($vista, $nav = null, $finaliza=0){   
+      //require_once APP_LIBS. 'notificacion.phtml';
+
+      // por defect carga con nav construido por perfil
+      // 0 = no hay nav, 
+      // 1 = nav video index con js de url
+      // 2 = nav video sin js 
+      if(!isset($nav)){
+            echo $_SESSION['s_menu'];
       }else{
-         $menu[] = array('id'=>'bitacora',      'titulo'=>'BITACORA',         'enlace'=>BASE_URL.'bitacora');
-         
+         switch ($nav) {
+            case 0:
+            break;
+            case 1:
+               require_once APP_LIBS.'navgeneralvideo.phtml';
+               menuIndex();
+            break;
+            case 2:
+               require_once APP_LIBS.'navgeneralvideo.phtml';
+               menuIndex(0);
+            break;
+            
+         }
+
       }
 
    	$js  = count($this->_js)? $this->_js:[];
@@ -52,16 +74,19 @@ class View{
          'ruta_js'   => 	BASE_URL .'public/'.DEFAULT_LAYOUT.'/js/',
          'ruta_img'  => 	BASE_URL .'public/'.DEFAULT_LAYOUT.'/img/',
          'ruta_ico'  =>  BASE_URL .'public/'.DEFAULT_LAYOUT.'/ico/',
-         'menu'      => $menu,
+ //        'menu'      => $menu,
          'js'        => $js,
          'img'       => $img,
          'ico'       => $ico,
          'css'       => $css
       );
+
       
       $rutaView ='_views/'. $this->_controlador . '/' .$vista.'.phtml';
-      echo '<br>ruta -> '.$rutaView.'<br>';
-      echo 'vista ->'. $vista.'<br>';
+      //echo '<br>ruta -> '.$rutaView.'<br>';
+      //echo 'vista ->'. $vista.'<br>';
+
+
       if(is_readable($rutaView)){
          include_once ROOT.'_views/index/header.php';
  
@@ -71,6 +96,7 @@ class View{
       	throw new Exception('Error de Vista - ');
       }
       if($finaliza!=0) die();
+      require_once APP_LIBS. 'notificacion.phtml';
   	}
 
 	public function setCss(array $css){
@@ -111,6 +137,45 @@ class View{
       }else{
          throw new Exception('Error de icono');
       }
+   }
+
+   public function setTable( $idTabla , $ordenPorDefecto = null , $filaSinOrden = null){
+
+      echo "
+      <script>
+    $(document).ready(function() {
+         $('table th i').addClass( 'fas fa-arrows-alt-v')
+        $('table').addClass('tablesorte table-hover bg-white table-sm table-bordered table-striped')
+        $('table thead').addClass('shadow-sm')
+        $('#$idTabla').tablesorter({
+            widgets: ['zebra']";
+           // echo 'ordenDefect ->'. $ordenPorDefecto;
+            if( isset($ordenPorDefecto)) {echo"
+            ,
+            sortList: [
+                [$ordenPorDefecto , 1]
+            ]";
+            }
+            if( isset($filaSinOrden) ){
+            echo "
+            ,
+            headers: {
+               $filaSinOrden: {
+                    sorter: false
+                }
+            }
+            ";
+         }
+
+
+
+         echo "
+        });
+    });
+</script>
+      ";
+
+
    }
 }
 

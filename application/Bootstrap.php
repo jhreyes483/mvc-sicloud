@@ -6,6 +6,7 @@
  *		*********************************************************************/
 
 class c_navegacion {
+
    public static
    function run( Request $peticion ) {
       $controller = $peticion->getControlador() . 'Controller';
@@ -13,7 +14,8 @@ class c_navegacion {
       $rutaControlador = ROOT . '_controllers/' . $controller . '.php';
       //die($rutaControlador);
       $metodo = $peticion->getMetodo();
-      $args = $peticion->getArgs();
+      $params = $peticion->getParam();
+      $args   = $peticion->getArgs();
       if(is_readable( $rutaControlador)) {
          //die("$controller $metodo");
          require_once $rutaControlador;

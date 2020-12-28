@@ -1,6 +1,7 @@
 <?php
 /*  ******************************************************************
- *  Configuraciï¿½n Model, se observa el objeto y la conexion a la BD
+ *  Desarrollado: JCPI                        Fecha: 2015-10-20
+ *  Configuración Model, se observa el objeto y la conexion a la BD
  *  ****************************************************************/
 
 

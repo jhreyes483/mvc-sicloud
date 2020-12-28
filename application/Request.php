@@ -10,22 +10,25 @@ class Request{
     private $_argumentos;
 
     public function __construct() {
-        $url   = $_SERVER['REQUEST_URI'];
-     //   echo $_SERVER['REQUEST_URI'].' url<br>';
-     //   echo $enlace_actual;
-        if(isset ( $url )){
-         // $url = filter_input(INPUT_GET, $enlace_actual , FILTER_SANITIZE_URL);
+    
+       // $url   = $_SERVER['REQUEST_URI'];
+        if(isset ( $_GET['url'])){
+            $url =  $_GET['url'];
+
+
+            //  $url = filter_input(INPUT_GET, $url , FILTER_SANITIZE_URL);
             $url = explode('/', $url);
-           // die();
-           unset($url[1]);
-           $url = array_filter($url);
+            //  unset($url[1]);
+            // $url = array_filter($url);
             $this->_controlador = array_shift($url);
-          //  echo $this->_controlador.'  controlador desde requiest <br>';
-//            $this->_controlador = strtolower(array_shift($url));
-            $this->_metodo    = array_shift($url);
-           // echo $this->_metodo.'  metotodo desde requiest <br>';
-           // die();
-//            $this->_metodo = strtolower(array_shift($url));
+            // echo $this->_controlador.'  controlador desde requiest <br>';
+            // $this->_controlador = strtolower(array_shift($url));
+            $this->_metodo     = array_shift($url);
+            $this->_parametros = array_shift($url);
+            // echo 'controlador ->'.$this->controlador.'<br>';
+            // echo 'metodo ->'.$this->metodo.'<br>';
+            // echo $this->_metodo.'  metotodo desde requiest <br>';
+            // $this->_metodo = strtolower(array_shift($url));
             $this->_argumentos = $url;
         }
 
@@ -40,6 +43,12 @@ class Request{
         if(!isset($this->_argumentos)){
             $this->_argumentos = array();
         }
+
+        if(!isset($this->_parametros)){
+            $this->_parametros=[];
+        }
+
+
     }
     //retorna el controlador
     public function getControlador(){   // echo $this->_controlador;
@@ -48,6 +57,10 @@ class Request{
     //retorna el metodo
     public function getMetodo(){
         return $this->_metodo;
+    }
+
+    public function getParam(){
+        return $this->_parametros;
     }
     //aqui nos hace un arreglo de argumentos
     public function getArgs(){
