@@ -8,7 +8,7 @@ define("imgProducto", "ProductoSinImagen.png");
 
 
 //controlador por defecto de nuestra aplicacion
-define('BASE_URL', 'http://localhost/mvc/');  
+define('BASE_URL', 'https://mvc-sicloud.herokuapp.com/');  
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'layout1');
 
@@ -31,9 +31,5 @@ define('RUTAS_APP', [
 ])
 //RUTAS_APP['ruta_img'] lider2.png
 
-/*define('DB_HOST', 'itt.kom');
-define('DB_USER', 'juan');
-define('DB_PASS', 'jcpi');
-define('DB_NAME', 'ittpruebas');
-define('DB_CHAR', 'utf8');*/
+
 ?>
