@@ -72,40 +72,43 @@ class View{
 
       if(is_readable($rutaView)){
          include_once ROOT.'_views/index/header.php';
+
+
+         if(!isset($nav)){
+            echo $_SESSION['s_menu'];
+         }else{
+         switch ($nav) {
+            case 0:
+            break;
+            case 1:
+               require_once APP_LIBS.'navgeneralvideo.phtml';
+               menuIndex();
+            break;
+            case 2:
+               require_once APP_LIBS.'navgeneralvideo.phtml';
+               menuIndex(0);
+            break;
+            
+         }
+      }
+
+
+
  
          include_once  $rutaView;
+
+
+
+
+
+
+
          include_once ROOT.'_views/index/footer.php';
     	}else{
       	throw new Exception('Error de Vista - ');
       }
       if($finaliza!=0) die();
       require_once APP_LIBS. 'notificacion.phtml';
-
-
-      if(!isset($nav)){
-         echo $_SESSION['s_menu'];
-      }else{
-      switch ($nav) {
-         case 0:
-         break;
-         case 1:
-            require_once APP_LIBS.'navgeneralvideo.phtml';
-            menuIndex();
-         break;
-         case 2:
-            require_once APP_LIBS.'navgeneralvideo.phtml';
-            menuIndex(0);
-         break;
-         
-      }
-
-   }
-
-
-
-
-
-
       
      }
      
