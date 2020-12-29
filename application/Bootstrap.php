@@ -1,6 +1,5 @@
 <?php
 /*  *********************************************************************
- *   Desarrollado: JCPI                      fecha: 2015-10-20
  *   Descripci�n: Esta clase llama los controladores, metodos
  * 	y abre la plantilla en el editor.
  *		*********************************************************************/
@@ -31,7 +30,7 @@ class c_navegacion {
             call_user_func( array( $controller, $metodo ) );
          }
       } else {
-         throw new Exception( 'No encontrada la ruta que resuelve' );
+           throw new Exception( 'No encontrada la ruta que resuelve' );
       }
    }
 }

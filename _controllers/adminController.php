@@ -4,7 +4,6 @@ class adminController extends Controller{
     private $param;
 
     public function __construct(){
-
         $this->db = $this->loadModel('consultas.sql', 'sql');
         parent::__construct();
         $this->_view->setCss(array('font-Montserrat', 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
@@ -128,10 +127,10 @@ class adminController extends Controller{
     }
 
     public function controlUsuarios(){
+        $this->datosFijos();
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
-        //  $this->_view->setJs(array('jquery-3.2.1.min','popper.min','bootstrap.min', 'fontawesome', 'cUsuariosJquery'));
         $this->_view->renderizar('controlUsuarios');
         $this->_view->setTable('lis', 3, 0);
     }

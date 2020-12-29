@@ -2,17 +2,22 @@
 /*  *********************************************************************
 *   Desarrollado: Javier Reyes Neira           fecha: 2021-01-20
 *   Descripci�n: Controlador principal de nuestro framework
-*
+*   $tipo 0 = controlador que requere validacion de session activa para renderizar 
+*   $tipo 1 = controlador de vista publica
 +   **********************************************************************/
 
 abstract class Controller
 {
 protected $_view;
 protected $_request;
-public function __construct(){
+protected $_tipo;
+public function __construct($public =null){
     date_default_timezone_set("America/Bogota");
     $this->_view          = new View(new Request);
     $this->_request       = new Request;
+    if(!isset($public)){
+      $this->issetSession();
+    }
     $this->_view->setCss(array('jav', 'animate', 'ind'));
     // $this->_view->setJs(array( 'ind'));
     $this->_view->titulo = APP_COMPANY . ':: Sistema inteligente de Gestion Empresarial';
@@ -113,35 +118,35 @@ public function __construct(){
   }
 
   protected function verificarAcceso(){
+
     $aV['usuario']['ID_rol_n'] =  openssl_decrypt($_SESSION['usuario']['ID_rol_n'], COD, KEY);
-    $aV['usuario']['estado']   =  openssl_decrypt($_SESSION['usuario']['ID_rol_n'], COD, KEY);
+    $aV['usuario']['estado']   =  openssl_decrypt($_SESSION['usuario']['estado'], COD, KEY);
+
     if ($aV['usuario']['estado'] == 1) {
       $_SESSION['message'] = "Bienvenido";
+      $_SESSION['color']   = 'success';
       switch ($aV['usuario']['ID_rol_n']) {
         case 1:
-          header('location:' . BASE_URL . 'admin');
+          $this->redireccionar('admin');
           $_SESSION['color']   = 'success';
-
           break;
         case 2:
-          header('location:' . BASE_URL . 'bodega');
-          $_SESSION['color']   = 'success';
+          $this->redireccionar('logistica');     
           break;
         case 3:
-          echo '<h1> Esta en el caso 3 de session </h1>';
-          header('location:' . BASE_URL . 'supervisor');
-          $_SESSION['color']   = 'success';
+          $this->redireccionar('supervisor');
           break;
         case 4:
-          header('location:' . BASE_URL . 'comercial');
-          $_SESSION['color']   = 'success';
+          $this->redireccionar('comercial');
           break;
         case 5:
-          header('location:' . BASE_URL . 'proveedor');
-          $_SESSION['color']   = 'success';
+          $this->redireccionar('proveedor');
           break;
         case 6:
+          die('definir en verifica accceso controller case clienta');
       }
+    }else{
+      $this->redireccionar('error/cuenta');
     }
   }
 
@@ -278,13 +283,13 @@ public function __construct(){
 
   protected function issetSession(){
     if( !isset($_SESSION['usuario']) ){
-      $this->redireccionar('index');
+      $this->redireccionar('error/iniciesesion');
     }
   }
 
   public function getSeguridad($token){
     if (!in_array($token, $_SESSION['t'])) {
-      die('No tiene permiso para ingrezar a este modulo');
+      $this->redireccionar('error/permiso');
     }
   }
 

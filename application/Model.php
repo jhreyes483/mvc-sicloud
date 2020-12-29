@@ -1,6 +1,5 @@
 <?php
 /*  ******************************************************************
- *  Desarrollado: Javier Reyes
  *  Configuraci�n Model, se observa el objeto y la conexion a la BD
  *  ****************************************************************/
 

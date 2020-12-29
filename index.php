@@ -11,6 +11,7 @@ define('APP_CLASS',ROOT.'_controllers/class/');
 
 
 
+
 try{
 
     require_once APP_LIBS. 'funciones.php';

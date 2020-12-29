@@ -11,7 +11,9 @@ class productoController extends Controller{
    }
 
    public function index(){
+      $this->getSeguridad('S1SDF');
       if( isset($_POST['accion']) ){
+         $this->getSeguridad('S1PLE');
          switch ($_POST['accion']) {
             case 'EliminarProducto':
                $this->m_destroy();

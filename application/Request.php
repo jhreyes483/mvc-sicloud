@@ -1,6 +1,5 @@
 <?php
 /*  *********************************************************************
-*   Desarrollado: Javier Reyes                     fecha: 2020-12-17
 *   _Descripci�n: Esta clase separa el controlador, el metodo y los argumentos
 *   *********************************************************************/
 

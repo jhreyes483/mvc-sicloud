@@ -4,11 +4,11 @@ class indexController extends Controller {
 // Guarda notificaicones en varible $this->_view->notificacion 
 
 	public function __construct(){
-      parent::__construct();
+      parent::__construct(1);
       $this->db            = $this->loadModel('consultas.sql', 'sql');
       $this->objSession    = new Session();
-      $this->_view->setCss(array('jav','bootstrap.min', 'fontawesome-all.css'));
-      $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'));
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
+      $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'] );
    }
    
 	public function index(){
@@ -102,6 +102,11 @@ class indexController extends Controller {
    public function entidad(){
       $this->_view->setJs( ['login']  );
       $this->_view->renderizar('entidad', 1);
+   }
+
+   public function inicieSesion(){
+      $this->_view->setJs( ['login']  );
+      $this->_view->renderizar('inicieSesion', 1); 
    }
 
 
