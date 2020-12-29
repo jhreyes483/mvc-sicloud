@@ -30,7 +30,7 @@ class c_navegacion {
             call_user_func( array( $controller, $metodo ) );
          }
       } else {
-           throw new Exception( 'No encontrada la ruta que resuelve' );
+           throw new Exception( '<center><h1>404 No encontrada la ruta que resuelve<h1>' );
       }
    }
 }
