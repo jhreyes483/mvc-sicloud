@@ -13,7 +13,6 @@ class facturaController extends Controller{
     }
     //
     public function index(){
-        Controller::ver($_POST);
            if( isset($_POST)){
         if( isset($_REQUEST['accion'])){
             switch ($_REQUEST['accion']) {
