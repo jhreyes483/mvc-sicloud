@@ -44,24 +44,7 @@ class View{
       // 0 = no hay nav, 
       // 1 = nav video index con js de url
       // 2 = nav video sin js 
-      if(!isset($nav)){
-            echo $_SESSION['s_menu'];
-      }else{
-         switch ($nav) {
-            case 0:
-            break;
-            case 1:
-               require_once APP_LIBS.'navgeneralvideo.phtml';
-               menuIndex();
-            break;
-            case 2:
-               require_once APP_LIBS.'navgeneralvideo.phtml';
-               menuIndex(0);
-            break;
-            
-         }
 
-      }
 
    	$js  = count($this->_js)? $this->_js:[];
       $css = count($this->_css)? $this->_css:[];
@@ -97,7 +80,39 @@ class View{
       }
       if($finaliza!=0) die();
       require_once APP_LIBS. 'notificacion.phtml';
-  	}
+
+
+      if(!isset($nav)){
+         echo $_SESSION['s_menu'];
+      }else{
+      switch ($nav) {
+         case 0:
+         break;
+         case 1:
+            require_once APP_LIBS.'navgeneralvideo.phtml';
+            menuIndex();
+         break;
+         case 2:
+            require_once APP_LIBS.'navgeneralvideo.phtml';
+            menuIndex(0);
+         break;
+         
+      }
+
+   }
+
+
+
+
+
+
+      
+     }
+     
+
+
+
+
 
 	public function setCss(array $css){
 		if(is_array($css) && count($css)){
