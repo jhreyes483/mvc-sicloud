@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 
 define('ROOT', realpath(dirname(__FILE__)). '/');
 
