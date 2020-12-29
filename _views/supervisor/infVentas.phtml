@@ -43,11 +43,9 @@ cardtitulo("Informe de Facturcion");
 if (isset($_POST['consulta'])) {
     extract($_POST);
     $facturas    = $objModFact->verIntervaloFecha($f1, $f2);
-    $total       = array_sum( array_column($facturas , 11));
-    //$v            = new CifrasEnLetras();
-    //Convertimos el total en letras
-    $letra = ($v->convertirEurosEnLetras($total));
+
   */
+
 
 if (isset($this->facturas)) {
 ?>
@@ -56,7 +54,7 @@ if (isset($this->facturas)) {
     <div class="container">
         <div class="my-4">
             <div class="row">
-                <table id="facturas" class="col-md-10 col-sm-10 col-xs-10 mx-auto">
+                <table id="facturas" class="bg-white col-md-10 col-sm-10 col-xs-10 mx-auto">
                     <thead class="bg-dark text-white text-center">
                         <tr>
                             <th><i></i> fecha</th>
@@ -100,7 +98,11 @@ if (isset($this->facturas)) {
                     </td>
 
                     <td colspan="2" class="mt-2 lead" align="right">
-
+                    <?php
+$total       =  
+$v = new c_numerosLetras;
+$letra = ($v->convertirEurosEnLetras( $this->facturas['response_msg'][1] ));
+                    ?>
                         <?= '$' . number_format($this->facturas['response_msg'][1], 0, ',', '.');  ?>
                     <td></td>
                     </td>

@@ -106,7 +106,7 @@ foreach ($this->datos  as $row) {
                                                                 } ?>
                             </p>
                             <!-- Formulario de envio e incriptacion ------------------------------------>
-                            <form action="" method="POST">
+                            <form action="<?= BASE_URL.'factura/generaPreVenta' ?> " method="POST">
                                 <label class="card-text lead" for="">Cantidad</label> <input value="1" class=" form-control-sm col-3 col-lg-2 col-md-2 " name="cantidad1" type='number'>
                                 <input type="hidden" name="img" id="id" value="<?= openssl_encrypt($row['img'], COD, KEY);  ?>">
                                 <input type="hidden" name="id" id="id" value="<?= openssl_encrypt($row['ID_prod'], COD, KEY);  ?>">

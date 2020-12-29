@@ -11,9 +11,20 @@ if (!isset($_SESSION['usuario'])) {
    $_SESSION['message'] = 'Favor registrarse o iniciar sesion para realizar compra';
    $_SESSION['color'] = 'danger';
 }
-if (isset($_POST['venta'])) {
-   echo 'existe venta';
+
+
+if (isset($_SESSION['message'])) {
+?>
+    <!-- alerta boostrap -->
+    <div class=" col-md-4 text-center mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?php echo  $_SESSION['message']  ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php setMessage();
 }
+
 
 
 ?>
@@ -61,7 +72,7 @@ if (isset($_POST['venta'])) {
                      <td class="text-center"><?= " $" . number_format(($producto['CANTIDAD'] * $producto['PRECIO']), 0, ',', '.'); ?></td>
                      <td>
                         <!-- elimiar producto del carrito de compras -->
-                        <form method="POST">
+                        <form action="<?= BASE_URL.'factura/generaPreVenta' ?>" method="POST">
                            <input type="hidden" name="id" id="id" value="<?= openssl_encrypt($producto['ID'], COD, KEY);  ?>">
                            <button class="btn btn-danger" type="submit" name="btnCatalogo" value="Eliminar">Eliminar</button>
                         </form>
@@ -79,8 +90,8 @@ if (isset($_POST['venta'])) {
                      <h3>$<?php echo number_format($total, 0, ',', '.'); ?></h3>
                   </td>
                   <td>
-                     <form action="../controlador/api.php" method="post">
-                        <input type="hidden" name="apicalp" value="venta">
+                     <form action="<?= BASE_URL.'factura'?>" method="post">
+                        <input type="hidden" name="accion" value="facturarWeb">
                         <button class="btn btn-success" href="">Facturar</button>
                      </form>
                   </td>

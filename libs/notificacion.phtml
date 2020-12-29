@@ -1,6 +1,6 @@
 <?php
 
-//if (isset($_SESSION['usuario'])) {
+if (isset($_SESSION['usuario'])) {
 $obj = new c_notificacion;
 $notificaciones = $obj->verNotificaciones();
 
@@ -108,3 +108,7 @@ Vantana derecha de iconos
     })
   });
 </script>
+
+<?php
+}
+?>

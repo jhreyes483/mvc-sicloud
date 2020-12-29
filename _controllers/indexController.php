@@ -98,6 +98,31 @@ class indexController extends Controller {
       //
 		$this->_view->renderizar('index', 2); // 1 con js de ur - 2 sin js url 
    }	
+
+   public function entidad(){
+      $this->_view->setJs( ['login']  );
+      $this->_view->renderizar('entidad', 1);
+   }
+
+
+   
+   public function datos(){
+      $this->_view->setJs( ['login']  );
+      $this->_view->renderizar('datos', 1);
+   }
+
+   public function mision(){
+      $this->_view->setJs( ['login']  );
+      $this->_view->renderizar('mision', 1);
+   }
+
+   public function promocion(){
+      $this->_view->setJs( ['login']  );
+      $this->_view->datos  =  $this->db->verPromociones();
+      $this->_view->renderizar('promocion', 1);
+   }
+
+
    
    public function login(){
       $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon.js','reset.min','login'));
@@ -180,6 +205,11 @@ class indexController extends Controller {
       }
      // return $this->validaUser([$r->row[0], $usuario, $clave]);
    }
+
+
+
+
+
 /*
       //egc. Determino si el usuario es empleado o cliente
       if($r->row[0]==='N'){

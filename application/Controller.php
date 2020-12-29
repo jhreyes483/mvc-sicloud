@@ -52,7 +52,7 @@ public function __construct(){
     if(!$avaible){       
        die('Parametros:'.substr($missingparams, 1, strlen($missingparams)).'vacion');
     }
- }
+  }
 
   //limpia los string de codigo sql sanitizar la contrasena por post
   protected function getSqlSinEspacios($clave){
@@ -181,6 +181,7 @@ public function __construct(){
   /******************************************************************************
    *	Visualizacion de datos modo local
    *******************************************************************************/
+  
   public static function ver($dato, $sale = 0, $bg = 0, $tit = '', $float = false, $email = ''){
     switch ($bg) {
       case 1:
@@ -275,6 +276,11 @@ public function __construct(){
     return $this->pintaMenu($aP);
   }
 
+  protected function issetSession(){
+    if( !isset($_SESSION['usuario']) ){
+      $this->redireccionar('index');
+    }
+  }
 
   public function getSeguridad($token){
     if (!in_array($token, $_SESSION['t'])) {
