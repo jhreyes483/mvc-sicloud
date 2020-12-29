@@ -12,7 +12,7 @@
     $aMenu['A'][2]         = ['PRODUCTOS'];
     $aMenu['A'][2][1]      = ['Catalogo',''.BASE_URL.'cliente/catalogo','S1C'] ;
     $aMenu['A'][2][2]      = ['Crear producto', ''.BASE_URL.'producto/create','S1PCL'];
-    $aMenu['A'][2][3]      = ['Ingresar producto', ''.BASE_URL.'logistica/ingreso','S1PL'];
+    $aMenu['A'][2][3]      = ['Ingresar producto', ''.BASE_URL.'producto/ingreso','S1PL'];
     $aMenu['A'][2][4]      = ['Editar producto', ''.BASE_URL.'producto?edit=1','S1PLE'];  // logistica/productos/?edit=1
     $aMenu['A'][2][5]      = ['Solicitar producto', ''.BASE_URL.'logistica/solicitud','S1CS'];
     $aMenu['A'][2][6]      = ['Sistema de alertas', 'CU0014-alertas.php','S1A'];
@@ -46,7 +46,7 @@
     $aMenu['B'][3][6]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
     $aMenu['B'][4]         = [ 'PROCESOS', 'tablaRegistro.php'];
     $aMenu['B'][4][1]      = [ 'CREAR PRODUCTO', ''.BASE_URL.'producto/create','S1PCL'];
-    $aMenu['B'][4][2]      = [ 'INGRESO PRODUCTO', ''.BASE_URL.'logistica/ingreso','S1PL'];
+    $aMenu['B'][4][2]      = [ 'INGRESO PRODUCTO', ''.BASE_URL.'producto/ingreso','S1PL'];
     $aMenu['B'][4][3]      = [ 'EDITAR PRODUCTOS', ''.BASE_URL.'producto?edit=1','S1PLE'];
     $aMenu['B'][4][4]      = [ 'SOLICITAR PEDIDO', 'CU0018-registropedido.php'];
     $aMenu['B'][5]         = [ 'INICIO',''.BASE_URL.'logistica', 'S1AADFR'];

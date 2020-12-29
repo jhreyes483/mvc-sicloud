@@ -46,8 +46,6 @@ class adminController extends Controller{
                         if (count($r) != 0) {
 
                             $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
-                            if ($this->param[0] == 'api') {
-                            }
                             $_SESSION['color'] = 'info';
                             $_SESSION['message'] = 'Filtro por documento';
                         } else {

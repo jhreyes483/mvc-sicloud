@@ -42,15 +42,12 @@ if ($in == false) {
 cardtitulo("Ingreso de producto-Bodega");
 //=======================================================================
 // Resepcion de datos
-if (isset($_GET['p']))  $_SESSION['id_p'] = $id = $_GET['p'];
-else $id   = 2041172460;
 $formulario = true;
 //  echo $id;
 //========================================================================
 // Captura de datos
 
 //$id1    = 2041172460;
-
 if ($this->datos['response_status'] == 'ok') {
 
     foreach ($this->datos['response_msg'] as $row) {
@@ -75,9 +72,8 @@ if ($this->datos['response_status'] == 'ok') {
 if (isset($_SESSION['message'])) {
 ?>
     <!-- alerta boostrap -->
-    <div class="col-md-4 mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
-        <?php
-        echo  $_SESSION['message']  ?>
+    <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <?=  $_SESSION['message']  ?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -95,7 +91,8 @@ if (isset($_SESSION['message'])) {
                 <?php
                 foreach ($this->datosF[0] as $row) {
                 ?>
-                    <option value="<?= $row['ID_prod']   ?>"><?= $row['nom_prod'] ?></option>
+                    <option    <?php if (isset($_POST['p']) && (trim($_POST['p']) === trim($row['ID_prod']))  )   echo 'selected' ?>             
+                    value="<?= $row['ID_prod'] ?> "><?= $row['nom_prod'] ?></option>
                 <?php }
 
                 ?>
@@ -104,7 +101,7 @@ if (isset($_SESSION['message'])) {
             <br> <input class="btn btn-primary btn-block my-2" type="submit" name="consulta" value="Validar exitencia">
 
         </form>
-        <a class="btn btn-primary btn-block" href="CU004-crearproductos.php">Crear producto</a>
+        <a class="btn btn-primary btn-block" href="producto/create">Crear producto</a>
         <a class="btn btn-primary btn-block" href="CU0014-alertas.php">Sistema de alertas</a>
         <!-- fin producto-------------------------------------------------------------------------------- -->
 

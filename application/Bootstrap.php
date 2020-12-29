@@ -15,11 +15,11 @@ class c_navegacion {
       $metodo = $peticion->getMetodo();
       $params = $peticion->getParam();
       $args   = $peticion->getArgs();
-      if(is_readable( $rutaControlador)) {
+      if(is_readable( $rutaControlador)) { // si el fichero es leguible
          //die("$controller $metodo");
          require_once $rutaControlador;
          $controller = new $controller;
-         if ( is_callable( array( $controller, $metodo ) ) ) {
+         if ( is_callable( array( $controller, $metodo ) ) ) { // si es leguible
             $metodo = $peticion->getMetodo();
          } else {
             $metodo = 'index';

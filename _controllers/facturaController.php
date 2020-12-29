@@ -13,6 +13,7 @@ class facturaController extends Controller{
     }
     //
     public function index(){
+        Controller::ver($_POST);
            if( isset($_POST)){
         if( isset($_REQUEST['accion'])){
             switch ($_REQUEST['accion']) {
@@ -42,22 +43,23 @@ class facturaController extends Controller{
            }
         }
        //
-       $this->issetSession();
-       $this->getSeguridad('S1F');
-       $this->_view->setCss(array('datatables.min'));
-       $this->_view->setJs(array('popper.min','datatables.min'));
-
-       if(!isset($_SESSION['s_cliente'])){
-       $_SESSION['s_cliente'] = (  isset( $_POST['ID'] )  ) ? $_POST['ID'] :  null;
-       }
-
-
-        $datosU = $this->db->selectUsuarios( $_SESSION['s_cliente'] );
+        $this->issetSession();
+        $this->getSeguridad('S1F');
+        $this->_view->setCss(array('datatables.min'));
+        $this->_view->setJs(array('popper.min','datatables.min'));
+         //
+        if( isset($_POST['ID'] ) ){
+            $_SESSION['s_cliente'] =  $_POST['ID'] ;
+        }
+        //
+        if(isset($_SESSION['s_cliente'])){
+            $datosU = $this->db->selectUsuarios( $_SESSION['s_cliente'] );
+        }
         $aProd  = $this->db->verProductos();
         $aPago  = $this->db->verPago();
         $TipoV  = $this->db->verTipoV();
             $this->_view->datos  = [ 'response_status' =>'ok', 'response_msg' => [
-                        $datosU,
+                        $datosU??[],
                         $aProd,
                         $aPago,
                         $TipoV
