@@ -8,7 +8,8 @@ define("imgProducto", "ProductoSinImagen.png");
 
 
 //controlador por defecto de nuestra aplicacion
-define('BASE_URL', 'https://mvc-sicloud.herokuapp.com/');  
+define('BASE_URL','http://localhost/mvc-sicloud');
+//define('BASE_URL', 'https://mvc-sicloud.herokuapp.com/');  
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'layout1');
 
