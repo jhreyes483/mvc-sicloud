@@ -1192,10 +1192,6 @@ public function delteNotificacion($id){
    return $stm->execute();
 }
 
-
-
-
-
 //------------------------------------------
 //ver join de modificaciones
    public function verJoinModificacionesDB(){
@@ -1229,8 +1225,28 @@ public function delteNotificacion($id){
          return true;
       }// fin de insrtar datos
    }
-//===========================================
-//===========================================
+   //===========================================
+   //CMENSAJE
+      //Insertar mensaje--------------------------------------------------------------
+      public function insertMensaje(array $d){
+         $sql = 'INSERT into mensaje( estado, descript, FK_rol , FK_ms ) 
+         VALUES (?, ?, ?, ?)';
+         $insert = $this->db->prepare($sql);
+         $insert->bindValue(1, $d[0] );
+         $insert->bindValue(2, $d[1] );
+         $insert->bindValue(3, $d[2] );
+         $insert->bindValue(4, $d[3] );
+         return $insert->execute();
+      }
+
+      public function verMensaje1(){
+         $sql = 'SELECT * FROM mensaje';
+         $c   = $this->db->prepare($sql);
+         $c->execute();
+         $r   = $c->fetchAll();
+         return $r;
+      }
+   //===========================================
 //CPAGO
    public function verPago(){
       $sql = "SELECT *  FROM tipo_pago";

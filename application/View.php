@@ -20,20 +20,7 @@ class View{
       $this->_ico = [];
    }
 
-   public function renderizar_index($vista, $nav = 0 ){
-      $rutaView = ROOT. 'views/' . $this->_controlador . '/' . $vista.'.phtml';
 
-      if(is_readable($rutaView)){
-
-         include_once $rutaView;
-         echo 'fffff';
-         
-         
-
-      }else{
-         throw new Exception('Error en la Vista: '. $rutaView);
-      }
-   }
 
    public function renderizar($vista, $nav = null, $finaliza=0){   
       //require_once APP_LIBS. 'notificacion.phtml';

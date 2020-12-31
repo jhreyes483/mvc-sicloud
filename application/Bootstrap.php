@@ -6,8 +6,20 @@
 
 class c_navegacion {
 
-   public static
-   function run( Request $peticion ) {
+   public static function run( Request $peticion ) {
+
+      if(!isset($_GET['exp'])){
+
+
+
+
+
+
+
+
+
+
+
       $controller = $peticion->getControlador() . 'Controller';
      // echo $controller.'   bootstrap <br>';
       $rutaControlador = ROOT . '_controllers/' . $controller . '.php';
@@ -37,7 +49,8 @@ class c_navegacion {
                <div class="col-md-12 ">
                <div class="col-lg-4 col-md-6 col-12 col-sm-6 shadow-lg mx-auto text-center my-4 card-body  fade show alert-danger alert-dismissible" role="alert">
                <h1 class="alert-100" >404</h1> 
-               <p>No encuntra la ruta que resulve</p>
+               <p>No encuentra la ruta que resulve</p>
+               '.$controller.'/'.$metodo.'<br>
             </div>
             <div class="col-md-3"></div>
          </div>
@@ -48,5 +61,7 @@ class c_navegacion {
           // throw new Exception( '<center><h1>404 No encontrada la ruta que resuelve<h1>' );
       }
    }
+
+}
 }
 ?>
