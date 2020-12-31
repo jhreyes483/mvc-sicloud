@@ -104,7 +104,7 @@ include_once '../../application/Config.php';
 
 
     <div class="row">
-        <div class="card card-body col-lg-3 col-md-3 ">
+        <div class=" card-body col-lg-3 col-md-3 ">
             <form class="form-group" action="controllers/mensajeController.php" method="GET">
 
 
