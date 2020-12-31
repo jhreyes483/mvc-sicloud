@@ -110,11 +110,11 @@ include_once '../../application/Config.php';
 
                 </ol>
                 
-                <input class="textarea" type="text" placeholder="Enviar" name="mensaje" id="enviarchat" />
+                <input class="textarea" type="text" placeholder="__Enviar" name="mensaje" id="enviarchat" />
                
                 <div class="emojis">
 
-                <button class="btn btn-success btn-sm" type="submit" ><i class="fas fa-greater-than"></i></button>
+                <button class="btn btn-success btn-lg" type="submit" ><i class="fas fa-greater-than"></i></button>
                 </div>
             </form>
         </div>
