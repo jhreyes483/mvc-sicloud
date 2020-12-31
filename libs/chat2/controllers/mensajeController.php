@@ -23,8 +23,7 @@ $descrip = $_GET['mensaje'];
 $a = [ $estado, $descrip, $nom_us , $FK_ms ];
 
 
-echo '<pre>';
-print_r($a);
+
 //die();
  $notificacion->insertMensaje($a);
 
