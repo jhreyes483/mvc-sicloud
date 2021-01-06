@@ -106,14 +106,9 @@ include_once '../../application/Config.php';
     <div class="row">
         <div class=" card-body col-lg-3 col-md-3 ">
             <form class="form-group" action="controllers/mensajeController.php" method="GET">
-
-
-                </ol>
-                
+                </ol>                
                 <input class="textarea" type="text" placeholder="__Enviar" name="mensaje" id="enviarchat" />
-               
                 <div class="emojis">
-
                 <button class="btn btn-success btn-lg" type="submit" ><i class="fas fa-greater-than"></i></button>
                 </div>
             </form>

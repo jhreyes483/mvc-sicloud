@@ -11,15 +11,6 @@ class c_navegacion {
       if(!isset($_GET['exp'])){
 
 
-
-
-
-
-
-
-
-
-
       $controller = $peticion->getControlador() . 'Controller';
      // echo $controller.'   bootstrap <br>';
       $rutaControlador = ROOT . '_controllers/' . $controller . '.php';

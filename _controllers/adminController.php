@@ -136,14 +136,19 @@ class adminController extends Controller{
     public function datosFijos(){
         $this->db               = $this->loadModel('consultas.sql', 'sql');
         $rols                    = $this->db->verRol();
+        foreach( $rols as $d ) $rl[$d[0]] = $d[1] ; 
+        $est                     = [ 'Pendiente', 'Aprobados' ];
+
+
         $c1                      = $this->db->conteoUsuariosActivos();
         $c2                      = $this->db->conteoUsuariosInactivos();
         $t                       = ($c1 + $c2);
         $this->_view->datosFijos        = [
-            $rols, // Rol de usuario para el select
+            $rl, // Rol de usuario para el select
             $c1 ?? 0,
             $c2 ?? 0,
-            $t ?? 0
+            $t ?? 0,
+            $est??0
         ];
     }
 
