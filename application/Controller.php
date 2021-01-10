@@ -11,19 +11,19 @@ abstract class Controller
 protected $_view;
 protected $_request;
 protected $_tipo;
-public function __construct($public =null){
-    date_default_timezone_set("America/Bogota");
-    $this->_view          = new View(new Request);
-    $this->_request       = new Request;
-    if(!isset($public)){
-      $this->issetSession();
-    }
-    $this->_view->setCss(array('jav', 'animate', 'ind'));
-    // $this->_view->setJs(array( 'ind'));
-    $this->_view->titulo = APP_COMPANY . ':: Sistema inteligente de Gestion Empresarial';
-    if (isset($_SESSION['usuario']) && count($_SESSION['usuario'])  != 0) {
-    }
-}
+  public function __construct($public =null){
+      date_default_timezone_set("America/Bogota");
+      $this->_view          = new View(new Request);
+      $this->_request       = new Request;
+      if(!isset($public)){
+        $this->issetSession();
+      }
+      $this->_view->setCss(array('ind'));
+      // $this->_view->setJs(array( 'ind'));
+      $this->_view->titulo = APP_COMPANY . ':: Sistema inteligente de Gestion Empresarial';
+      if (isset($_SESSION['usuario']) && count($_SESSION['usuario'])  != 0) {
+      }
+  }
 
 
   abstract public function index();
@@ -272,6 +272,7 @@ public function __construct($public =null){
     }
 
     $_SESSION['t'] = $token;
+    
     //  Controller::ver($_SESSION['t'],1);
 
 

@@ -7,15 +7,18 @@ class indexController extends Controller {
       parent::__construct(1);
       $this->db            = $this->loadModel('consultas.sql', 'sql');
       $this->objSession    = new Session();
-      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'] );
+   
+      $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter', 'login'] );
    }
    
 	public function index(){
       if(isset($_SESSION['usuario'])){
          session_destroy();
       }
-      $this->_view->setJs(array( 'jquery-1.9.0'  ,'login'  ));
+      $this->_view->setCSS([ 'stylesindex' ]);
+     // $this->_view->setJs(array( 'jquery-1.9.0'  ,'login'  ));
+     $this->_view->setJs(['scriptsindex']);
+
       //
       if(isset( $_POST['accion'] )){
          switch ($_POST['accion']) {
@@ -96,15 +99,17 @@ class indexController extends Controller {
          }
       }
       //
-		$this->_view->renderizar('index', 2); // 1 con js de ur - 2 sin js url 
+		$this->_view->renderizar('index', 3,0,1); // 1 con js de ur - 2 sin js url 
    }	
 
    public function entidad(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->renderizar('entidad', 1);
    }
 
    public function inicieSesion(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->renderizar('inicieSesion', 1); 
    }
@@ -112,16 +117,19 @@ class indexController extends Controller {
 
    
    public function datos(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->renderizar('datos', 1);
    }
 
    public function mision(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->renderizar('mision', 1);
    }
 
    public function promocion(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->datos  =  $this->db->verPromociones();
       $this->_view->renderizar('promocion', 1);
@@ -130,18 +138,29 @@ class indexController extends Controller {
 
    
    public function login(){
-      $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon.js','reset.min','login'));
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
+      $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon','reset.min','login'));
       $this->_view->setJs(array('registrar' ));
 		$this->_view->renderizar('login', 0);
    }	
+
+
+   public function informes(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
+      $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon'));
+     // $this->_view->setJs(array('registrar' ));
+		$this->_view->renderizar('contact', 1);
+   }	
    
    public function logOut(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $s = new Session;
       $s->destroy();
       $this->redireccionar('index');
    }
    
    public function ingreso(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs(['fontawesome-all']);
       $b = $this->validaCredenciales();
       if(!$b){
@@ -152,6 +171,7 @@ class indexController extends Controller {
    }
    
    public function registro(){
+      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs(array( 'jquery-1.9.0','login' ));
       $d =  $this->db->verDocumeto();
       $r =  $this->db->verRol();

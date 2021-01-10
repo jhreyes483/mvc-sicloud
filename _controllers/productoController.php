@@ -76,7 +76,7 @@ class productoController extends Controller{
 
 
    public function create(){
-      $this->getSeguridad('S1PCL');
+     $this->getSeguridad('S1PCL');
       $c =  $this->db->verCategorias();
       $m =  $this->db->verMedida();
       $e =  $this->db->verProveedor();

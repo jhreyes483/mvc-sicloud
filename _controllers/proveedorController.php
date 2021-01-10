@@ -11,5 +11,9 @@ class proveedorController extends Controller{
         $this->_view->renderizar('index');
     }
 
+    public function pedido(){
+        $this->_view->renderizar('');
+    }
+
 }
 ?>

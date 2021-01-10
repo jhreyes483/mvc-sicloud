@@ -22,13 +22,27 @@ class View{
 
 
 
-   public function renderizar($vista, $nav = null, $finaliza=0){   
+   public function renderizar($vista, $nav = null, $finaliza=0, $fondo= 0){   
       //require_once APP_LIBS. 'notificacion.phtml';
 
       // por defect carga con nav construido por perfil
       // 0 = no hay nav, 
       // 1 = nav video index con js de url
       // 2 = nav video sin js 
+
+
+      switch ($fondo) {
+         case 0:
+            $this->setCss(['jav']);
+            break;
+         case 1:
+            break;
+         
+
+      }
+      if($fondo == 0){
+         
+      }
 
 
    	$js  = count($this->_js)? $this->_js:[];
@@ -72,6 +86,11 @@ class View{
                require_once APP_LIBS.'navgeneralvideo.phtml';
                menuIndex(0);
             break;
+            case 3:
+               require_once APP_LIBS.'navgeneralvideo.phtml';
+               menuIndex(0 , 0);
+            break;
+
             
          }
       }

@@ -13,9 +13,10 @@ define('APP_CLASS',ROOT.'_controllers/class/');
 
 
 try{
-
+   
     require_once APP_LIBS. 'funciones.php';
     require_once APP_PATH. 'Config.php';
+    require_once APP_LIBS. 'modal-login.phtml';
     require_once APP_PATH. 'Request.php';
     require_once APP_PATH. 'Bootstrap.php';
     require_once APP_PATH. 'Controller.php';

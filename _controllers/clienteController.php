@@ -3,7 +3,7 @@ class clienteController extends Controller{
  
 
     public function __construct(){
-        parent::__construct();
+        parent::__construct(1);
         $this->db       = $this->loadModel('consultas.sql', 'sql');
         $this->_view->c = $this->db->verCategorias();
         $this->generaMenu();
@@ -38,7 +38,8 @@ class clienteController extends Controller{
         if( !isset($_POST['accion']) ){
 
             $this->_view->datos = $this->db->verProductos();
-            $this->_view->renderizar('catalogo');
+            $this->_view->setJs([ 'login'  ]);
+            $this->_view->renderizar('catalogo', 1);
         }else{
             $this->busqueda();
         }
