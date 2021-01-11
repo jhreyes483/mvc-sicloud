@@ -226,10 +226,16 @@ class adminController extends Controller{
                     case 12:
   
                             $tmp = explode( '@@@', $d[2]  );
-                            Controller::ver($tmp,0,1);
-                            $descipt = 'Nombre de usuario: '.$tmp[0].'<br>'.'Correo: '.$tmp[1].'<br>'.'Cel: '.$tmp[2].'<br>'. (($tmp[4]  )?'Fecha: '.$tmp[4] : '') .'@@@'.(($tmp[5] )?' Hora: '.$tmp[5]:'').'<br>'.'Solicilicitud: <br>'.$tmp[3];
+                            $descipt = '<strong>Nombre de usuario :</strong>'.($tmp[0]??'')
+                            .'<br>'.'<strong>Correo: </strong>'
+                            .($tmp[1]??'').'<br>'.'<strong>Cel: </strong>'.
+                            ($tmp[2]??'').'<br>'. 
+                            (( isset($tmp[4]))?'<strong>Fecha:</strong> '.$tmp[4] : '') .'<br>'.
+                            (( isset($tmp[5]))?'<strong>Hora:</strong> '.$tmp[5]:'').'<br>'.
+                            '<hr><strong>Solicilicitud: </strong><br>'.
+                            ($tmp[3]??'');
                              $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
-                             Controller::ver($a,0,1);
+
                         break;
                      
                     default:
