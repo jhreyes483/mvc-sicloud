@@ -14,18 +14,15 @@ class supervisorController extends Controller{
     //
     public function consFactura(){
         $this->getSeguridad('S1CF');
+        $this->_view->setJs(['all']);
         $this->_view->renderizar('consFactura');
     }
     //
     public function consulta(){
         $this->getSeguridad('S1FF');
-        if( isset( $_POST['accion']) ){
-            switch ($_POST['accion']){
-                case 'consFactura':
-                    $this->verFactura($_POST['f']);
-                break;
+        if( isset( $_REQUEST['f']) ){
+                    $this->verFactura($_REQUEST['f']);
             }
-        }
     }
     //
     public function verFactura($id){
@@ -40,12 +37,14 @@ class supervisorController extends Controller{
                 ]
             ];
         }
-        $this->_view->renderizar('factura');
+        $this->_view->renderizar('factura',0);
     }
 
     // PENDINTE CIFRAS A LETRAS
     public function facturas(){
+
         $this->getSeguridad('S1FF');
+        $this->_view->setJs(['all']);
         if (isset($_POST['consulta'])) {
             extract($_POST);
             $r           = $this->db->verIntervaloFecha($f1, $f2);

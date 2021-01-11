@@ -118,10 +118,10 @@ protected $_tipo;
   }
 
   protected function verificarAcceso(){
-
+    //
     $aV['usuario']['ID_rol_n'] =  openssl_decrypt($_SESSION['usuario']['ID_rol_n'], COD, KEY);
     $aV['usuario']['estado']   =  openssl_decrypt($_SESSION['usuario']['estado'], COD, KEY);
-
+    //
     if ($aV['usuario']['estado'] == 1) {
       $_SESSION['message'] = "Bienvenido";
       $_SESSION['color']   = 'success';

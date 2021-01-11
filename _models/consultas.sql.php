@@ -1180,7 +1180,7 @@ public function insertModificacion($a){
 //------------------------------------------
 //Muestra todas las notificaciones
 public function consNotificacionesT(){
-   $sql = 'SELECT N.ID_not , N.estado , N.descript , R.nom_rol, T.nom_tipo
+   $sql = 'SELECT N.ID_not , N.estado , N.descript , R.nom_rol, T.nom_tipo, N.FK_not
    FROM notificacion N 
    JOIN rol R ON N.FK_rol = R.ID_rol_n
    JOIN tipo_not T ON T.ID_tipo_noT = N.FK_not ';
@@ -1850,6 +1850,19 @@ public function verTelefonosEmpresa(){
          return false;
       }
    } // Fin de leer notificacion----------------------------------------------------
+   public function verNotificacionId($ID_not){
+      $sql = 'SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
+      T.nom_tipo
+         FROM notificacion N 
+         JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
+         JOIN rol R ON N.FK_rol = ID_rol_n
+      WHERE N.ID_not = ? ';
+      $stm = $this->db->prepare($sql);
+      $stm->bindValue( 1, $ID_not, PDO::PARAM_INT );
+      $stm->execute();
+      return $stm->fetchAll();
+   }
+
 
     // Ver notificacion------------------------------------------------------------------
    public function verNotificacion($id_rol){
@@ -1865,23 +1878,51 @@ public function verTelefonosEmpresa(){
    } // fin de ver notificaiones por rol------------------------------------------------
 
     // Conteo de mensajes------------------------------------------------------------------
-   public function verNotificaciones($id_rol) {
-      //$this->ver($id_rol, 1);
-      $sql = "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
+   public function verNotificaciones($id_rol, $Fk_not = null) {
+      if (!isset($Fk_not)){ 
+      $sql = 
+      "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
       T.nom_tipo
          FROM notificacion N 
          JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
          JOIN rol R ON N.FK_rol = ID_rol_n
-      WHERE R.ID_rol_n = ? and  N.estado = '0'";
+      WHERE R.ID_rol_n = ? and  N.estado = '0'"; 
+      }else{
+         $sql = 
+         "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
+         T.nom_tipo
+            FROM notificacion N 
+            JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
+            JOIN rol R ON N.FK_rol = ID_rol_n
+         WHERE R.ID_rol_n = ? 
+         AND  N.estado = '0'
+         AND  N.FK_not = ?"; 
+      } 
       $stm = $this->db->prepare($sql);
       $stm->bindValue( 1, $id_rol, PDO::PARAM_INT );
+      if(isset($Fk_not)){
+         $stm->bindValue( 2, $Fk_not, PDO::PARAM_INT );
+      }
       $stm->execute();
       $r = $stm->fetchAll();
       return $r;
-   } // fin de conteo de notificaciones------------------------------------------------
+   } // ------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 
     // Notificacion de nueva cuenta a admin--------------------------------------------
-   public function notInsertUsuarioAdmin($a){
+    // se lamaba notInsertUsuarioAdmin
+   public function notInsertUsuario($a){
     //  $this->ver($a, 1);
       $sql =  "INSERT INTO notificacion( estado, descript, FK_rol , FK_not ) 
       VALUES ( ?, ?, ?, ?)";
@@ -1890,9 +1931,18 @@ public function verTelefonosEmpresa(){
       $stm->bindValue( 2, $a[1], PDO::PARAM_STR );
       $stm->bindValue( 3, $a[2], PDO::PARAM_INT );
       $stm->bindValue( 4, $a[3], PDO::PARAM_INT );
-      $result = $stm->execute();
-      return $result;
+      return $stm->execute();
    } // fin de notificacion admin------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
    // Eliminar notificaciones de usuario ----------------------------------------------
    public function deleteNotificacionAdmin($ID_not){

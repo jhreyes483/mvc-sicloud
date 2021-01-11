@@ -16,14 +16,14 @@
         if (count($aU) != 0) {
             foreach ($aU as $row) {
         ?>
-                <div class=" card mx-auto container-fluid my-4 col-lg-10">
+                <div class=" card mx-auto container-fluid my-4 col-lg-11">
                     <div class="row">
                         <div class="col-lg-6">
                             <img src="<?= RUTAS_APP['ruta_img']?>capsulelogo.PNG" alt="" style="width: 430px; height: 165px;">
                         </div>
                         <div class="col-lg-6 mt-4">
-                            <div class="card p-2">Factura <br><?php echo $row['ID_factura'] ?></div>
-                            <div class="card p-3">Fecha: <?php echo $row['fecha'] ?></div>
+                            <div class="card p-2">Factura <br><?= $row['ID_factura'] ?></div>
+                            <div class="card p-3">Fecha: <?= $row['fecha'] ?></div>
                         </div>
                     </div>
 
@@ -107,4 +107,6 @@
                     </div>
                 </div>
             </div>
+
 <?php }
+die();

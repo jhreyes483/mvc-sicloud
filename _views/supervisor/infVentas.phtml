@@ -80,11 +80,14 @@ if (isset($this->facturas)) {
 
                                 <td><?= '$' . number_format($d[11], 0, ',', '.');  ?></td>
                                 <td class= "text-center mx-auto" >
-                                    <form action="<?= BASE_URL ?>supervisor/consulta" method="post">
-                                        <button href="#" class="btn btn-circle btn-success btn" data-bs-toggle="tooltip" data-bs-placement="right" title="Consultar factura" type="submit" name="f" value="<?= $d[7] ?>"><?= $d[7] ?> </i>
+                                        <button href="" class="btn btn-circle btn-success btn" 
+                                        data-bs-toggle="tooltip" data-bs-placement="right" title="Consultar factura" 
+                                        type="submit" name="f" 
+                                        href="javascript:void(0)" 
+                                        onclick="PopupCenter('<?= BASE_URL . 'supervisor/consulta?f='.$d[7] ?>','Sicloud-detalle','1000','1000');">
+                                        <?= $d[7] ?> </i>
                                         </button>
                                         <input type="hidden" name="accion" value="consFactura">
-                                    </form>
                                 </td>
                             </tr>
             

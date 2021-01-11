@@ -216,13 +216,30 @@ class adminController extends Controller{
                    }
                 break;
             }
-            
         }
         $r = $this->db->consNotificacionesT();
         if (count($r) == 0) {
             $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay notificaciones'];
         } else {
-            $this->_view->datos = ['response_status' => 'ok', 'response_msg' => $r];
+            foreach($r as $d ){
+                switch ($d[5]) {// evalua la llave foranea de notificacion
+                    case 12:
+  
+                            $tmp = explode( '@@@', $d[2]  );
+                            Controller::ver($tmp,0,1);
+                            $descipt = 'Nombre de usuario: '.$tmp[0].'<br>'.'Correo: '.$tmp[1].'<br>'.'Cel: '.$tmp[2].'<br>'. (($tmp[4]  )?'Fecha: '.$tmp[4] : '') .'@@@'.(($tmp[5] )?' Hora: '.$tmp[5]:'').'<br>'.'Solicilicitud: <br>'.$tmp[3];
+                             $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
+                             Controller::ver($a,0,1);
+                        break;
+                     
+                    default:
+                        $a[] = [$d[0], $d[1], $d[2], $d[3], $d[4] ]; 
+                        break;
+                }
+            }
+
+
+            $this->_view->datos = ['response_status' => 'ok', 'response_msg' => $a];
         }
         $this->_view->renderizar('logNotificacion');
         $this->_view->setTable('notificacion', 4, 5);

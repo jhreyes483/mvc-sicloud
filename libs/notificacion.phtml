@@ -4,6 +4,10 @@ if (isset($_SESSION['usuario'])) {
   $obj = new c_notificacion;
   $notificaciones = $obj->verNotificaciones();
 
+  //die();
+
+
+
 ?>
 
 
@@ -38,23 +42,52 @@ Modal notificacion
             <thead>
             </thead>
             <tbody>
-              <?php
-              if (isset($_SESSION['usuario'])) {
-                foreach ($notificaciones as $row) {
-              ?>
+<?php
+if (isset($_SESSION['usuario'])) {
+  foreach ($notificaciones as $row) {
+    switch ($row['FK_not']) {
+      case 1: // Activar cuenta admin
+        $ruta = 'admin/consulta';
+        $m    =  $row['nom_tipo'].' Id usuario: '. $row['descript'];
+        $id   =  $row['descript'];
+        break;
+      case 5: // Reporte de venta pendiente dar permisos en menu usuario 
+        $ruta = '';
+        $m   = $row['nom_tipo'];
+      
+        break;
+      case 8:
+        $ruta = 'admin/logActividad';
+        $m    =  $row['nom_tipo'];
+        $id   = '';
+        break; 
+      case 12:
+        $ruta = 'comercial/solicitud';
+        $m    = $row['nom_tipo'];
+        break;
+
+
+    }
+
+
+
+
+?>
                   <tr>
                     <td>
-                      <?php $m = ($row['FK_not'] == 1 && $row['descript'] != 0) ? ' Id usuario: ' : '';
-                      ?>
-                      <form action="<?= BASE_URL . 'admin/consulta' ?> " method="post">
+<form action="<?= BASE_URL.$ruta ?> " method="post">
                         <input type="hidden" name="accion" value="bId">
-                        <input type="hidden" name="documento" value="<?= $row['descript'] ?>">
+                        <input type="hidden" name="documento" value="<?= $id ?>">
 
                         <button class="btn btn-circle btn-primary col-lg-12" type="submit">
                           <i class="fas fa-download"></i>
-                        </button>
-                        <?= "  " . $row['nom_tipo'] . $m . $row['descript'] ?>
-                      </form>
+                        </button> <?= $m ?>
+                        
+
+<?php
+//if ($row['FK_not'] != 12) echo $row['nom_tipo'] . $m . $row['descript']; else echo $row['nom_tipo'];
+?>
+</form>
 
                     </td>
                   </tr>

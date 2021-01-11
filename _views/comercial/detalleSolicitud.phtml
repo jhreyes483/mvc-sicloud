@@ -1,0 +1,63 @@
+<?php
+cardtitulo("Solicitud de cliente");
+?>
+
+
+<?php
+if (isset($this->datos) && $this->datos['response_status'] == 'ok') {
+   $u = explode('@@@',  $this->datos['response_msg'][0][2]);
+?>
+
+   <div class="page-section col-lg-8 mx-auto" id="contact">
+      <div class="card bg-dark card-body">
+         <form id="contactForm" name="sentMessage" action="" method="POST" novalidate="novalidate">
+            <div class="row align-items-stretch mb-5">
+               <div class="col-md-6">
+                  <?php
+                  if (isset($u[5])) {
+                  ?>
+                     <div class="form-group">
+                        <input class="form-control" id="name" name="name" type="text" disabled value="<?= $u[5] ?>" placeholder="Your Name *" required="required" data-validation-required-message="Por favor digita tu nombre">
+                        <p class="help-block text-danger"></p>
+                     </div>
+                  <?php
+                  }
+                  ?>
+
+
+                  <?php
+                  if (isset($u[4])) {
+                  ?>
+                     <div class="form-group">
+                        <input class="form-control" id="name" name="name" type="text" disabled value="<?= $u[4] ?>" placeholder="Your Name *" required="required" data-validation-required-message="Por favor digita tu nombre">
+                        <p class="help-block text-danger"></p>
+                     </div>
+                  <?php
+                  }
+                  ?>
+                  <div class="form-group">
+                     <input class="form-control" id="name" name="name" type="text" disabled value="<?= $u[0] ?>" placeholder="Your Name *" required="required" data-validation-required-message="Por favor digita tu nombre">
+                     <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                     <input class="form-control" id="email" name="email" type="email" disabled value="<?= $u[1] ?>" placeholder="Your Email *" required="required" data-validation-required-message="Por favor digita tu correo">
+                     <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group mb-md-0">
+                     <input class="form-control" id="phone" name="phone" type="tel" disabled value="<?= $u[2] ?>" placeholder="Your Phone *" required="required" data-validation-required-message="Por favor digita tu numero">
+                     <p class="help-block text-danger"></p>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <div class="form-group form-group-textarea mb-md-0">
+                     <textarea class="form-control" rows="6" cols="50" id="message" disabled name="message"><?= $u[3] ?></textarea>
+                     <p class="help-block text-danger"></p>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+<?php
+}
+?>

@@ -81,10 +81,10 @@ class indexController extends Controller {
                   $aN=[
                      0, // estado
                      $this->getSql('ID_us'), // descripcion
-                     1, // llave foranea de usuario notificacion "llega"
+                     1, // llave foranea de usuario notificacion "al que llega notificacion"
                      1, // tipo de notificacion
                   ];
-                  $bT = $this->db->notInsertUsuarioAdmin($aN);
+                  $bT = $this->db->notInsertUsuario($aN);
                }else{ 'error al insertar telefono de usario'; }
                //
                if($bT){
@@ -95,6 +95,20 @@ class indexController extends Controller {
                   $_SESSION['color']    = "danger";
                }
                $this->redireccionar('index');
+            break;
+            case 'mensajeUsuario':
+               $aN=[
+                  0, // estado
+                  $this->getSql('name').'@@@'.$this->getSql('email').'@@@'.$this->getSql('phone').'@@@'.$this->getSql('message').'@@@'.date('Y-m-s').'@@@'.date('h:i'),
+                  4, // llave foranea de usuario notificacion "rol de usario al que llega"
+                  12, // tipo de notificacion
+               ];
+               $b = $this->db->notInsertUsuario($aN);
+               if($b){
+                  $this->_view->datos = ['color'=> 'success', 'response_msg' =>  'Su mensaje se envio con exito'];
+               }else{
+                  $this->_view->datos = ['color' => 'danger', 'response_msg' => 'Error al emviar el mensaje' ];
+               }
             break;
          }
       }
@@ -160,13 +174,12 @@ class indexController extends Controller {
    }
    
    public function ingreso(){
-      $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs(['fontawesome-all']);
       $b = $this->validaCredenciales();
       if(!$b){
-         $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon.js','reset.min','login'));
-         $this->_view->setJs(array('registrar' ));
-         $this->_view->renderizar('login', 0);
+         $this->_view->login = ['response_status' => 'error', 'response_msg' => 'Credenciales no validas'];
+         $this->_view->setCSS([ 'stylesindex','animate' ]);
+         $this->_view->setJs(['scriptsindex']);
+         $this->_view->renderizar('index', 3,0,1); // 1 con js de ur - 2 sin js url 
       }
    }
    
@@ -205,8 +218,8 @@ class indexController extends Controller {
             $_SESSION['s_menu']    = $this->generaMenu();
                                      $this->verificarAcceso();
          }else{
-            $response['menssage']  = $_SESSION['message'] = 'Credenciales no validas';
-            $_SESSION['color']     = "danger";
+            //$response['menssage']  = $_SESSION['message'] = 'Credenciales no validas';
+            //$_SESSION['color']     = "danger";
             return false;
          }
       }

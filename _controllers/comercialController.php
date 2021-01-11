@@ -29,6 +29,37 @@ class comercialController extends Controller{
             $this->_view->setTable('puntos', 2, 0);
     }
 
+
+    public function solicitud(){
+        $this->_view->setJs(['all']);
+        if(isset($_SESSION['usuario'])){
+            $id_rol  = openssl_decrypt( $_SESSION['usuario']['ID_rol_n'], COD, KEY);
+            $r  =    $this->notificacion  = $this->db->verNotificaciones($id_rol, 12); 
+            if( count($r) != 0 ){
+                $this->_view->datos = ['response_status'=> 'ok', 'response_msg'=> $r];
+            }else{
+                $this->_view->datos = ['response_status'=> 'error', 'response_msg'=> 'no hay solicitudes'];
+
+            }
+         }
+        $this->_view->renderizar('solicitud');
+        $this->_view->setTable('tabla');
+    }
+
+    public function detalle(){
+        if(isset($_GET['id'])){
+            $r = $this->db->verNotificacionId($_GET['id'] );
+            if(count($r) != 0 ){
+                $this->_view->datos = ['response_status' => 'ok', 'response_msg' => $r ];
+            }else{
+                $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay datos' ];
+            }
+        }else{
+            $this->datos->_view = ['response_status'=> 'No ingreso id de notificaion'];
+        }
+        $this->_view->renderizar('detalleSolicitud',0);
+    }
+
     //*********************************************************/
     // Facturacion - interna
     //*********************************************************/
