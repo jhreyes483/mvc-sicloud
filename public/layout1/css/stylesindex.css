@@ -69,6 +69,20 @@ body {
   background-color: #fff;
 }
 
+.bk-rgb-video {
+  background: #0c5e9480;
+  /* margin: 1em auto; */
+  opacity: 0.90;
+}
+
+.texto-video {
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 40px;
+  line-height: 56px;
+  font-weight: 700;
+}
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }

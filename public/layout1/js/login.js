@@ -8,7 +8,9 @@ $(document).ready(function () {
   var textoVideo = $(".texto-video");
   //--------------------------------------------------------------
   // Añade clase de animacion a texto antes de cargar el DOM
+  textoVideo.addClass("animate__animated");
   textoVideo.addClass("animate__backInUp", 20000);
+ 
 
   //--------------------------------------------------------------------- 
   // reformar css nav apenas carga el DOM
@@ -18,16 +20,16 @@ $(document).ready(function () {
   //-------------------------------------------------------------------
 
   //-----------------------------------------------
-  // texto imagen animacion
-  $(".container-text-img").hover(function () {
-    ti = $(".text-img");
-    ti.addClass("animate__pulse");
-  })
-
-  ti = document.querySelector('.text-img');
-  ti.addEventListener('mouseout', function () {
-  ti.removeClass("animate__pulse");
-  })
+  // texto imagen animacion fondo de css
+  //   $(".container-text-img").hover(function () {
+  //     ti = $(".text-img");
+  //     ti.addClass("animate__pulse");
+  //   })
+//   
+  //   ti = document.querySelector('.text-img');
+  //   ti.addEventListener('mouseout', function () {
+  //   ti.removeClass("animate__pulse");
+  //   })
 
 
   // captura el evento hover sobre el video

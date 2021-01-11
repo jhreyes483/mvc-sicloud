@@ -12,7 +12,8 @@ class proveedorController extends Controller{
     }
 
     public function pedido(){
-        $this->_view->renderizar('');
+        $this->getSeguridad('DFERA');
+        $this->_view->renderizar('pedidoproducto');
     }
 
 }

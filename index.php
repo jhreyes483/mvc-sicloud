@@ -16,11 +16,14 @@ try{
    
     require_once APP_LIBS. 'funciones.php';
     require_once APP_PATH. 'Config.php';
-    require_once APP_LIBS. 'modal-login.phtml';
+    @session_start();
+    if(!isset($_SESSION['usuario'])){
+        require_once APP_LIBS. 'modal-login.phtml';
+    }   
     require_once APP_PATH. 'Request.php';
     require_once APP_PATH. 'Bootstrap.php';
     require_once APP_PATH. 'Controller.php';
-    @session_start();
+  
   // Controller::ver($_SESSION['usuario'],1);
     if(isset($_SESSION['usuario'])){
      require_once APP_CLASS.'c_notificacion.php';

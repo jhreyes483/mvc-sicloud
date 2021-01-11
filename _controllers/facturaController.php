@@ -42,7 +42,6 @@ class facturaController extends Controller{
            }
         }
        //
-        $this->issetSession();
         $this->getSeguridad('S1F');
         $this->_view->setCss(array('datatables.min'));
         $this->_view->setJs(array('popper.min','datatables.min'));

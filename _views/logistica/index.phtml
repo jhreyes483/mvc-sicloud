@@ -2,6 +2,9 @@
     <div class="row">
         <div class="col-md-10 mx-auto">
 
+
+
+
             <div class="card card-body border">
                 <div class="card card-body border my-3 shadow p-3 mb-5 bg-white ">
 
@@ -60,10 +63,10 @@
                             <!-- sesion de prodcutos -->
                             <div class="row">
                                 <div class="col-md-4 ">
-                                    <a class="btn btn-primary mx-auto btn-block" href="../../tablaCategoria.php"> <i class="fas fa-fw fa-folder"></i>Productos por categoria</a>
+                                    <a class="btn btn-primary mx-auto btn-block" href="<?= BASE_URL.'logistica/categoria' ?>"> <i class="fas fa-fw fa-folder"></i>Productos por categoria</a>
                                 </div><!-- fin de col de 4 1 -->
                                 <div class="col-md-4 ">
-                                    <a class="btn btn-primary mx-auto btn-block" href="../../tablaRegistro.php"> <i class="fas fa-fw fa-chart-area"></i>Cantidad de productos</a>
+                                    <a class="btn btn-primary mx-auto btn-block" href="<?= BASE_URL.'logistica/cantidad' ?>"> <i class="fas fa-fw fa-chart-area"></i>Cantidad de productos</a>
 
                                 </div><!-- fin de col de 4 2 -->
                                 <div class="col-md-4 ">
@@ -82,15 +85,15 @@
                             <!-- sesion de prodcutos -->
                             <div class="row">
                                 <div class="col-md-4 ">
-                                    <a class="btn btn-primary mx-auto btn-block" href="../../CU004-crearProductos.php"> <i class="fas fa-fw fa-wrench"></i>Crear producto</a>
+                                    <a class="btn btn-primary mx-auto btn-block" href="<?= BASE_URL.'producto/create'?>"> <i class="fas fa-fw fa-wrench"></i>Crear producto</a>
                                 </div><!-- fin de col de 4 1 -->
                                 <div class="col-md-4 ">
-                                    <a class="btn btn-info mx-auto btn-block" href="../../CU003-ingresoProducto.php "> <i class="fas fa-check"></i>Ingreso de producto pedido</a>
-                                    <a class="btn btn-primary mx-auto btn-block" href="../../edicionProductoTabla.php"> <i class="fas fa-fw fa-wrench"></i>Editar productos</a>
+                                    <a class="btn btn-info mx-auto btn-block" href="<?= BASE_URL.'producto/ingreso'?>"><i�class="fas fa-check"></i>Ingreso de producto pedido</a>
+                                    <a class="btn btn-primary mx-auto btn-block" href="<?= BASE_URL.'producto?edit=1'?>"> <i class="fas fa-fw fa-wrench"></i>Editar productos</a>
 
                                 </div><!-- fin de col de 4 2 -->
                                 <div class="col-md-4 ">
-                                    <a class="btn btn-primary mx-auto btn-block" href="../../CU0018-registropedido.php"><i class="fas fa-arrow-right"></i>Solicitar pedido</a>
+                                    <a class="btn btn-primary mx-auto btn-block" href="<?= BASE_URL.'logistica/solicitud'?>"><i class="fas fa-arrow-right"></i>Solicitar pedido</a>
 
                                 </div><!-- fin de col de 4 3 -->
                             </div><!-- fin de row -->

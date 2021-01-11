@@ -55,7 +55,7 @@ class logisticaController extends Controller
 
    // vista
    public function solicitud(){
-      $this->getSeguridad('S1CS');
+      $this->getSeguridad('DFERA');
       $this->_view->renderizar('logistica-solicitud');
    }   
 

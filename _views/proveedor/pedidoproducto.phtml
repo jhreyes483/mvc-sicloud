@@ -1,102 +1,98 @@
-<div class="container-fluid">
 
-    <?php cardtituloS("Registro de pedido") ?>
+<?php cardtituloS("SOLICITUDES")?>
 
-
-    <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="card mx-auto text-center bk-rgb">
-                            <div class="card-card-header">
-                                <h6>Facturacion</h6>
+<!-- 2 check -->
+<div class="solicitud1">
+    <div class ="col-md-12">
+        <div class="container">
+            <div class ="row">
+                <!-- Medidas de servicios y productos -->
+                    <div class="col-md-6 card card-body bg-dark text-white ">
+                        <form action="" method="post">
+                            <div class="form-check form-check-inline" >
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                             </div>
-                            <div class="container-fluid">
-
-
-
-                                <!-- desplegables -->
-
-                                <div class="form-group">
-                                    <select name="factura" class="form-control mx-auto ">
-                                        <option value="Excel">Excel</option>
-                                        <option value="PDF">PDF</option>
-                                    </select>
-                                </div>
-                                <div class="form-group  mx-auto"><input type="number" name="NumeroImresion" class="form-control" placeholder="Numero impresion"></div>
-
-
-
-
-                                <!-- Botones -->
-                                <div class="">
-                                    <div class="form-group "><a class="btn btn-primary form-control" href="">Imprimir</a></div>
-                                    <div class="form-group"><a class="btn btn-primary form-control" href="">Exprotar</a></div>
-                                </div>
-
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                                <label class="form-check-label" for="exampleRadios2">Productos</label>
                             </div>
+                        </form>
+
+                    </div>
+
+                    <div class="container col-md-6" >
+                        <div class="card card-body bg-dark text-white text-center">
+                            <h3>CONSULTAS</h3>
                         </div>
                     </div>
-                </div>
             </div>
-            <div class="col-md-6">
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6 "><br>
-                            <select name="op2" class="form-control mx-auto col-md col-lg-4 ">
-                                <option value="pendientes">Pendientes</option>
-                                <option value="Aprobados">Entrgados</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6"><br>
-                            <input type="text" class="form-control col-md col-lg-4 " placeholder="ID pedido " name="documento">
-                        </div>
-                    </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 card card-body bg-dark text-white">
+                <form action="" method="post">
+
+                    <h5>Numero de identificacion:</h5>
+                    <input class="form-control" type="number" placeholder="Digite su numero de documento" name="" required autofocus maxlength="11"><br>
+
+                    <h5>Nombre:</h5>
+                    <input class="form-control" type="text" placeholder="Digite su nombre" name="" required autofocus maxlength="20"><br>
+
+                    <h5>Apellido:</h5>
+                    <input class="form-control" type="text" placeholder="Digite su apellido" name="" required autofocus maxlength="20"><br>
+
+                    <h5>Telefono:</h5>
+                    <input class="form-control" type="number" placeholder="Digite su numero" name="" required autofocus maxlength="11"><br>
+
+                    <h5>Correo:</h5>
+                    <input class="form-control" type="email" placeholder="Digite su correo electronico" name="" required autofocus maxlength="50"><br>
+
+                    <h5>Nombre del producto:</h5>
+                    <select class="custom-select" name="" >
+                        <option selected disabled>Seleccione el producto</option>
+                        <option value="DESTORNILLADOR">DESTORNILLADOR</option>
+                        <option value="TRONZADORA">TRONZADORA</option>
+                        <option value="PULIDORA">PULIDORA</option>
+                        <option value="Toolrich">Toolrich</option>
+                        <option value="Alicates">Alicates</option>
+                        <option value="Destornilladores">Destornilladores</option>
+                        <option value="Taladro">Taladro</option>
+                        <option value="Pegadit">Pegadit</option>
+                        <option value="Compresor">Compresor</option>
+                        <option value="Linterna">Linterna</option>
+                    </select>
+
+                    <h5>Cantidad:</h5>
+                    <select class="custom-select" name="" >
+                        <option selected disabled>Especifique la cantidad del producto</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="container col-md-6" >
+                <div class="card card-body bg-dark text-white">
+                    <form action="" method="post">
+                        <h3>Detalles: </h3><br>
+                        <textarea class="form-control" name=""  cols="30" rows="10"></textarea><br><br>
+                        <input class="form-control btn btn-primary" type="button" value="Enviar"><br><br><br>
                 </div>
             </div>
         </div>
-    </div><br><br>
-
-
-    <table class=" table table-bordered table-striped bg-white table-sm">
-        <thead>
-            <tr>
-                <td>ID pedido</td>
-                <td>Fecha de solicitud</td>
-                <td>Fecha entrega</td>
-                <td>Estado</td>
-                <td>Prorducto</td>
-                <td>Cantidad</td>
-                <td>Tipo medida</td>
-                <td>Valor unitario</td>
-                <td>Valor total</td>
-            </tr>
-        </thead>
-        <?php
-        $objModFact = new ControllerDoc();
-        
-        ?>
-        <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-
-            <td>
-                <a href="" class="btn btn-secondary">Posponer</a>
-                <a href="" class="btn btn-success">Entregar</a>
-            </td>
-        </tbody>
-    </table>
+    </div>
 </div>
-<?php
-rutFinFooterFrom();
-rutFromFin();
-}
-?>

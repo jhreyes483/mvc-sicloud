@@ -62,5 +62,91 @@ class supervisorController extends Controller{
         $this->_view->renderizar('infVentas');
         $this->_view->setTable('facturas', 0);
     }
+    // INFORMES
+    public function infvrango(){
+        $dia           = $this->db->verDia();
+        //Controller::ver($dia);
+        $totalD         = array_sum(array_column($dia, 1 ));
+        $cD             = count($dia);
+        $pD             =  floor ( ($totalD/$cD) ); 
+        $promedioDia   = number_format($pD, 2, ',', '.');
+        //
+        $semana           = $this->db->verSemana();
+        $totalS          = array_sum(array_column($semana, 1 ));
+        $cS              = count($semana);
+        $pS              = floor ( ($totalS/$cS) ); 
+        $promedioSemana  = number_format($pS, 2, ',', '.');
+        //
+        $mes             = $this->db->verMes();
+        $totalM          = array_sum(array_column($mes, 1 ));
+        $cM              = count($mes);
+        $pM              = floor ( ($totalM/$cM) ); 
+        $promedioMensual = number_format($pM, 2, ',', '.');
+        //
+        $this->_view->promedio = [
+            'dia'     => $promedioDia ,
+            'semana'  => $promedioSemana,
+            'mes'     => $promedioMensual
+        ];
+
+
+        if(isset($_POST['ventas'])){
+            // Encabezado de tabla
+
+                $t3 = 'Total';
+                if ($_POST['ventas'] == 'busDia')  $t1 = 'Cantidad ventas';               $t2 = 'Dia';
+                if ($_POST['ventas'] == 'dia')     $t1 = 'Cantidad';                      $t2 = 'Dia';
+                if ($_POST['ventas'] == 'semana')  $t1 = 'Cantidad de ventas por semana'; $t2 = 'Dia cierre ventas';
+                if ($_POST['ventas'] == 'mes')     $t1 = 'Cantidad de ventas por Mes';    $t2 = 'Dia cierre ventas';
+                $this->_view->title = [ $t1, $t2 , $t3 ];
+
+       
+            switch ($_POST['ventas']) {
+                case 'dia':
+                    if( count($dia) != 0 ){
+                        $this->_view->datos = ['response_status'=>'ok', 'response_msg' => $dia ];
+                    }else{
+                        $this->datos = ['response_status'=>'error', 'response_msg' => 'No hay ventas por dia' ]; 
+                    }
+                    break;
+                case 'semana':
+                    if( count( $semana ) != 0 ){
+                        $this->_view->datos = ['response_status'=>'ok', 'response_msg' => $semana ];
+                    }else{
+                        $this->_view->datos = ['response_status'=>'error', 'response_msg' => 'No hay venatas por semana' ]; 
+                    }
+                    break;
+                
+                case 'mes':
+                    if( count($dia) != 0 ){
+                        $this->_view->datos = ['response_status'=>'ok', 'response_msg' => $mes ];
+                    }else{
+                        $this->_view->datos = ['response_status'=>'error', 'response_msg' => 'No hay venatas por mes' ]; 
+                    }
+                    break;
+                case 'busDia':
+                    $r = $this->db->verFecha($_POST['fecha']);
+                    if( count($r) != 0 ){
+                        $this->_view->datos = ['response_status'=>'ok', 'response_msg' => $r ];
+                    }else{
+                        $this->_view->datos = ['response_status'=>'error', 'response_msg' => 'No hay ventas en la fecha:  '.$_POST['fecha'] ]; 
+                    }
+                    break;
+            }
+        }
+        $t =   ( isset($this->_view->datos) &&  $this->_view->datos['response_status'] == 'ok' ) ?  array_sum( array_column( $this->_view->datos['response_msg'],1 ) ) : null;
+        if( isset ($t) ){
+            $l = new c_numerosLetras  ;
+            $this->_view->total[0] =  '$'.number_format(   $t , 0, ',', '.');
+            $this->_view->total[1] =   $l->convertirEurosEnLetras($t);
+        }
+
+        $this->_view->renderizar('infVrango');
+    }
+
+
+    
+
+
 }
 ?>

@@ -15,7 +15,7 @@ class indexController extends Controller {
       if(isset($_SESSION['usuario'])){
          session_destroy();
       }
-      $this->_view->setCSS([ 'stylesindex' ]);
+      $this->_view->setCSS([ 'stylesindex','animate' ]);
      // $this->_view->setJs(array( 'jquery-1.9.0'  ,'login'  ));
      $this->_view->setJs(['scriptsindex']);
 

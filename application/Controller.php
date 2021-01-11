@@ -270,8 +270,8 @@ protected $_tipo;
           break;
       }
     }
-
-    $_SESSION['t'] = $token;
+    if(isset($token))$_SESSION['t'] = $token;
+    
     
     //  Controller::ver($_SESSION['t'],1);
 

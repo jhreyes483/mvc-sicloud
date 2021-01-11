@@ -31,18 +31,6 @@ class View{
       // 2 = nav video sin js 
 
 
-      switch ($fondo) {
-         case 0:
-            $this->setCss(['jav']);
-            break;
-         case 1:
-            break;
-         
-
-      }
-      if($fondo == 0){
-         
-      }
 
 
    	$js  = count($this->_js)? $this->_js:[];
@@ -93,6 +81,16 @@ class View{
 
             
          }
+
+         switch ($fondo) {
+            case 0:
+               $this->setCss(['jav']);
+               //$this->set
+               break;
+            case 1:
+               break;
+         }
+   
       }
  
       include_once  $rutaView;
@@ -146,7 +144,7 @@ class View{
    }
 
    public function setTable( $idTabla , $ordenPorDefecto = null , $filaSinOrden = null){
-
+    
       echo "
       <script>
     $(document).ready(function() {

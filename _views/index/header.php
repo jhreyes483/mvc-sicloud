@@ -6,15 +6,23 @@
    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
      <title><?= $this->titulo?></title>
 <?php
+
 if(isset($_layoutParams['css']) && count($_layoutParams['css'])){
-   for($i=0; $i< count($_layoutParams['css']); $i++)
-      echo "\t".'<link href="'. $_layoutParams['ruta_css'].$_layoutParams['css'][$i]. '" rel="stylesheet" type="text/css" />'.PHP_EOL;
+   foreach($_layoutParams['css'] as $css){
+      echo "\t".'<link href="'. $_layoutParams['ruta_css'].$css. '" rel="stylesheet" type="text/css" />'.PHP_EOL;
+   }
 }
 
+
 if(isset($_layoutParams['js']) && count($_layoutParams['js'])){
-   for($i=0; $i< count($_layoutParams['js']); $i++)
-      echo "\t".'<script src="'. $_layoutParams['ruta_js'].$_layoutParams['js'][$i]. '"></script>'.PHP_EOL;
+   foreach($_layoutParams['js'] as $js){
+      echo "\t".'<script src="'. $_layoutParams['ruta_js'].$js. '"></script>'.PHP_EOL;
+   }
 }
+
+
+
+
 ?>
    </head>
    

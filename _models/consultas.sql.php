@@ -451,8 +451,8 @@ public function loginUsuarioModel($d){
            
     //  $c->bindParam(":id",$id);
       if ($bool) {
-         $_SESSION['message'] = "Desactivo cuenta de usuario";
-         $_SESSION['color'] = "danger";
+         $_SESSION['message'] = "Activo cuenta de usuario";
+         $_SESSION['color'] = "success";
          return true;
       } else {
          $_SESSION['message'] = "Error al descativar cuenta";
