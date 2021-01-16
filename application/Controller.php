@@ -143,7 +143,7 @@ protected $_tipo;
           $this->redireccionar('proveedor');
           break;
         case 6:
-          die('definir en verifica accceso controller case clienta');
+          $this->redireccionar('cliente');
       }
     }else{
       $this->redireccionar('error/cuenta');

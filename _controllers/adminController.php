@@ -223,6 +223,10 @@ class adminController extends Controller{
         } else {
             foreach($r as $d ){
                 switch ($d[5]) {// evalua la llave foranea de notificacion
+                    case 1:
+                        $a[] = [$d[0], $d[1], '<strong>Id de usuario: </strong>'.$d[2], $d[3], $d[4] ]; 
+                        break;
+
                     case 11: // pedido de producto
                         $tmp = explode('@@@', $d[2]  );
                      
@@ -249,9 +253,10 @@ class adminController extends Controller{
                         //
                          $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
                         break;
-                        //
+                     
                     default:
-                        $a[] = [$d[0], $d[1], $d[2], $d[3], $d[4] ]; 
+                    $descript = ( $d[2] == '' )?'No aplica': $d[2];
+                        $a[] = [$d[0], $d[1], $descript, $d[3], $d[4] ]; 
                         break;
                 }
             }

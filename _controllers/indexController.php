@@ -119,7 +119,12 @@ class indexController extends Controller {
    public function entidad(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
-      $this->_view->renderizar('entidad', 1);
+
+      if( isset($_SESSION['usuario'])){
+         $this->_view->renderizar('entidad');
+     }else{
+         $this->_view->renderizar('entidad', 1);
+     }
    }
 
    public function inicieSesion(){
@@ -128,8 +133,6 @@ class indexController extends Controller {
       $this->_view->renderizar('inicieSesion', 1); 
    }
 
-
-   
    public function datos(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
@@ -139,18 +142,24 @@ class indexController extends Controller {
    public function mision(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
-      $this->_view->renderizar('mision', 1);
+      if( isset($_SESSION['usuario'])){
+         $this->_view->renderizar('mision');
+     }else{
+         $this->_view->renderizar('mision', 1);
+     }
    }
 
    public function promocion(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
       $this->_view->datos  =  $this->db->verPromociones();
-      $this->_view->renderizar('promocion', 1);
+      if( isset($_SESSION['usuario'])){
+         $this->_view->renderizar('promocion');
+     }else{
+         $this->_view->renderizar('promocion', 1);
+     }
    }
 
-
-   
    public function login(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon','reset.min','login'));
@@ -158,12 +167,14 @@ class indexController extends Controller {
 		$this->_view->renderizar('login', 0);
    }	
 
-
    public function informes(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon'));
-     // $this->_view->setJs(array('registrar' ));
-		$this->_view->renderizar('contact', 1);
+      if( isset($_SESSION['usuario'])){
+      $this->_view->renderizar('contact');
+      }else{
+          $this->_view->renderizar('contact', 1);
+      }
    }	
    
    public function logOut(){
@@ -234,10 +245,6 @@ class indexController extends Controller {
             if($r[4]!=$partes[0]) 
                return ['response_status'=>'error','response_msg'=>'El acceso de esta Empresa no puede ser por esta URL'];
          }
-         //Validaci�n del estatus del cliente
-         if($r->row[6]!=0){ 
-            return ['response_status'=>'error','response_msg'=>'Servicio Suspendido'];
-         }
          */ 
          //OOOOJJJJOOOO registrar intentos de ingreso fallidos
       }
@@ -246,30 +253,4 @@ class indexController extends Controller {
 
 
 
-
-
-/*
-      //egc. Determino si el usuario es empleado o cliente
-      if($r->row[0]==='N'){
-         $innerTipoUser = "INNER JOIN dt_clientes E ON S.identificacion = E.cli_nit";
-         //$_SESSION['s_sexo']='o';
-      }else{
-         $innerTipoUser = "INNER JOIN dt_empleado E ON S.identificacion = E.emp_cedula";
-      }
-      //Valido Clave
-      $r    = $con->m_consulta(3, [$innerTipoUser, $par[1], $par[2]]);
-      if($r->num_rows==0){
-         return ['response_status'=>'error','response_msg'=>'Credenciales inv�lidas'];
-      }
-      session_regenerate_id(); 
-      $empced 	      = $r->row[0];
-      $modulo			= $r->row[1];
-      $centroprod		= $r->row[2];
-      $centroprodnom	= $r->row[3]; 
-      if($modulo==='N') {//Si es Cliente VIP tomo datos	
-      }else{  
-      }
-      return ['response_status'=>'ok','response_msg'=>''];
-   }
-      */
 ?>
