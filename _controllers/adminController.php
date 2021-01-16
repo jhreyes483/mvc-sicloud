@@ -218,24 +218,37 @@ class adminController extends Controller{
             }
         }
         $r = $this->db->consNotificacionesT();
+        Controller::ver($r);
         if (count($r) == 0) {
             $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay notificaciones'];
         } else {
             foreach($r as $d ){
                 switch ($d[5]) {// evalua la llave foranea de notificacion
-                    case 12:
-  
-                            $tmp = explode( '@@@', $d[2]  );
-                            $descipt = '<strong>Nombre de usuario :</strong>'.($tmp[0]??'')
-                            .'<br>'.'<strong>Correo: </strong>'
-                            .($tmp[1]??'').'<br>'.'<strong>Cel: </strong>'.
-                            ($tmp[2]??'').'<br>'. 
-                            (( isset($tmp[4]))?'<strong>Fecha:</strong> '.$tmp[4] : '') .'<br>'.
-                            (( isset($tmp[5]))?'<strong>Hora:</strong> '.$tmp[5]:'').'<br>'.
-                            '<hr><strong>Solicilicitud: </strong><br>'.
-                            ($tmp[3]??'');
-                             $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
-
+                    case 11: // pedido de producto
+                        $tmp = explode('@@@', $d[2]  );
+                     
+                        $descipt = 'Datos de usuario que solicta producto<br>'
+                        .'<strong>Nombre de usuario: </strong>'. ($tmp[1]??'')
+                        .'<br><strong>Apellido: </strong>'.($tmp[2]??'')
+                        .'<br><strong>Documento: </strong>'.($tmp[0]??'')
+                        .'<hr>'
+                        .'<strong>Id producto: </strong>'.($tmp[3]??'').' <strong>Producto:</strong> '
+                        .'<br><strong>Fecha: </strong>'.($tmp[13]??'').'<strong> Hora: </strong>'.($tmp[14]??'' );
+                        //
+                        $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]   ]; 
+                        break;
+                    case 12: 
+                        $tmp = explode( '@@@', $d[2]  );
+                        $descipt = '<strong>Nombre de usuario :</strong>'.($tmp[0]??'')
+                        .'<br>'.'<strong>Correo: </strong>'
+                        .($tmp[1]??'').'<br>'.'<strong>Cel: </strong>'
+                        .($tmp[2]??'').'<br>'
+                        .(( isset($tmp[4]))?'<strong>Fecha:</strong> '.$tmp[4] : '') .'<br>'
+                        .(( isset($tmp[5]))?'<strong>Hora:</strong> '.$tmp[5]:'').'<br>'
+                        .'<hr><strong>Solicilicitud: </strong><br>'
+                        .($tmp[3]??'');
+                        //
+                         $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
                         break;
                      
                     default:

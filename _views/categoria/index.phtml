@@ -15,9 +15,9 @@ cardtitulo("Categoria");
 <div class="container-fluid col-md col-xl-7">
     <div class="row">
         <div class="p-2 col-8 col-sm-6 col-md-4 col-lg-3 col-xl-4  mx-auto">
-            <?php
-            if (isset($_SESSION['message'])) {
-            ?>
+<?php
+if (isset($_SESSION['message'])) {
+?>
                 <!-- alerta boostrap -->
                 <div class="alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
                     <?php echo  $_SESSION['message']  ?>
@@ -25,8 +25,10 @@ cardtitulo("Categoria");
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <?php setMessage();
-            } ?>
+<?php 
+setMessage();
+} 
+?>
 
             <div class="card">
                 <div class="card-header shadow">Registro Categoria</div>
@@ -40,12 +42,11 @@ cardtitulo("Categoria");
             </div><!-- fin de card -->
         </div><!-- fin de formulario respocibe -->
 
-
 <?php
 if($this->datos['response_status']  == 'ok' ){
 ?>
         <div class="col-md-auto p-2">
-            <table id="categorias" class="mx-auto text-center">
+            <table id="categorias" class="mx-auto bg-white text-center">
                 <thead>
                     <tr>
                          <th><i></i>ID categoria</th>

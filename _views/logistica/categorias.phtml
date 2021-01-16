@@ -24,18 +24,33 @@ if (isset($_SESSION['message'])) {
          <h5 class="card-title text-center ">Seleccione Categoria</h5>
          <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
          <form action="<?= BASE_URL . 'logistica/categoria' ?>" method="POST">
-            <select name="p" class="form-control">
+            <select name="p" class="form-control" onchange="submit(this)">
                <?php
-               foreach ($this->datosF  as $i => $row) {
+               foreach ($this->datosF  as $i => $d) {
                ?>
-                  <option value="<?= $row['ID_categoria'] ?>"><?= $row['nom_categoria'] ?></option>
+                  <option  <?= ((isset($_POST['p'])) && ($_POST['p'] == $i) ? 'selected': '') ?>  value="<?= $i ?>"><?= $d ?></option>
                <?php } ?>
             </select>
             <br>
             <input type="hidden" name="accion" value="filtroCategoria">
-            <input class="btn btn-primary btn-block my-2" type="submit" value="consulta">
-
          </form>
+
+<?php
+if (isset( $this->datos['response_alert'])) {
+?>
+   <!-- alerta boostrap -->
+   <div class=" mx-auto alert alert-info  alert-dismissible fade show" role="alert">
+      <?= $this->datos['response_alert']  ?>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+   </div>
+<?php
+   setMessage();
+}
+?>
+
+
       </div> <!-- fin de div card -->
    </div>
 
@@ -55,7 +70,7 @@ if (isset($_SESSION['message'])) {
       } else {
       ?>
          <div class="col-md-6 mx-auto my-4 ">
-            <table id="productos" class="col-md-12 mx-auto text-center">
+            <table id="productos" class="col-md-12 mx-auto text-center bg-white">
                <thead>
                   <tr>
                      <th><i></i> Producto</th>

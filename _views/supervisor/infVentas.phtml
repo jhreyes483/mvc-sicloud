@@ -1,11 +1,11 @@
 <?php
 cardtitulo("Informe de Facturcion");
 ?>
-<div class="card card-body text-center col-md-6 mx-auto">
+<div class="card card-body text-center col-md-10 col-lg-6 col-12 mx-auto">
     <!--<div class="container">-->
     <div class=" container-fluid ">
-        <div class="card card-body ">
-        </div><br>
+        <div class="card card-body shadow-lg ">
+        
         <form method="POST">
             <div class="row">
                 <div class="col-md-6">
@@ -21,18 +21,20 @@ cardtitulo("Informe de Facturcion");
                 <div class="col-md-6">
                     <!-- Izquierda -->
                     Formato de descarga <br>
-                    <select class="form-control">
-                        Periodo promedio
-                        <option>CSV</option>
-                        <option>EXCEL</option>
-                        <option>PDF</option>
-                        <option>XML</option>
+                    <select name="formato" class="form-control">
+                    
+<?php
+foreach( [ 'CSV', 'EXCEL', 'PDF', 'XML'  ]  as $i => $d){
+    echo   '<option '.((isset($_POST['formato'])) && ($_POST['formato'] == $i) ? 'selected': '').'  value="'. $i .'">'.$d.'</option>';
+}
+?>
                     </select><br>
 
                     <div class="form-group"> <input class="btn btn-primary form-control" type="submit" value="Ver informe" name="consulta"> </div>
         </form>
         <a class="btn btn-block btn-primary my-2" href="">Imprimir informe</a>
     </div><!-- fin de segunda columna de 6 -->
+    </div>
 
 </div><!-- fin de row -->
 </div><!-- fin de container fluid -->
@@ -54,7 +56,7 @@ if (isset($this->facturas)) {
     <div class="container">
         <div class="my-4">
             <div class="row">
-                <table id="facturas" class="bg-white col-md-10 col-sm-10 col-xs-10 mx-auto">
+                <table id="facturas" class="bg-white col-md-10 col-sm-12 col-xs-12 mx-auto">
                     <thead class="bg-dark text-white text-center">
                         <tr>
                             <th><i></i> fecha</th>

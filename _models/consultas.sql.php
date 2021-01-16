@@ -1860,7 +1860,7 @@ public function verTelefonosEmpresa(){
       $stm = $this->db->prepare($sql);
       $stm->bindValue( 1, $ID_not, PDO::PARAM_INT );
       $stm->execute();
-      return $stm->fetchAll();
+      return  $stm->fetchAll();
    }
 
 

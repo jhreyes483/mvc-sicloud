@@ -1,19 +1,17 @@
 <div class="container-fluid ">
-   <?php
-   cardtitulo("Log Notificacion");
-
-   if (isset($_SESSION['message'])) {
-   ?>
+<?php
+cardtitulo("Log Notificacion");
+if (isset($_SESSION['message'])) {
+?>
       <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color'] ?> alert-dismissible fade show" role="alert">
          <?= $_SESSION['message'] ?>
          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
          </button>
       </div>
-   <?php setMessage();
-   }
-   ?>
-
+<?php setMessage();
+}
+?>
    <script>
       $(document).ready(function() {
          $("table").addClass("table-hover bg-white table-sm table-bordered")
@@ -51,7 +49,6 @@
             </thead>
             <tbody>
                <?php
-
                foreach ($this->datos['response_msg'] as $d) {
                ?>
                   </tr>
@@ -82,11 +79,8 @@
                ?>
             </tbody>
          </table>
-
-
       </div><!-- fin de response table -->
 </div><!-- Fin container -->
-
 <?php
    }
 ?>

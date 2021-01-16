@@ -9,13 +9,15 @@
     $aMenu['A'][1][4]      = ['Consulta factura', ''.BASE_URL.'supervisor/consFactura', 'S1CF'];
     $aMenu['A'][1][5]      = ['Inf Ventas Facturacion', ''.BASE_URL.'supervisor/facturas', 'S1FF'];
     $aMenu['A'][1][6]      = ['Inf Ventas general', ''.BASE_URL.'supervisor/infvrango', 'INVF'];
+    $aMenu['A'][1][7]      = ['Solicitudes "comercial"',''.BASE_URL.'comercial/solicitud', 'FGRJIO'];
+    $aMenu['A'][1][8]      = [ 'Solicitudes "proveedor"',''.BASE_URL.'proveedor/pedidos','WSGOS1C'];
 
     $aMenu['A'][2]         = ['PRODUCTOS'];
     $aMenu['A'][2][1]      = ['Catalogo',''.BASE_URL.'cliente/catalogo','S1C'] ;
     $aMenu['A'][2][2]      = ['Crear producto', ''.BASE_URL.'producto/create','S1PCL'];
     $aMenu['A'][2][3]      = ['Ingresar producto', ''.BASE_URL.'producto/ingreso','S1PL'];
     $aMenu['A'][2][4]      = ['Editar producto', ''.BASE_URL.'producto?edit=1','SwebS1PLE'];  // logistica/productos/?edit=1
-    $aMenu['A'][2][5]      = ['Solicitar producto', ''.BASE_URL.'logistica/solicitud','S1CS'];
+    $aMenu['A'][2][5]      = ['Solicitar producto', ''.BASE_URL.'proveedor/pedido','DFERA' ];
     $aMenu['A'][2][6]      = ['Sistema de alertas', 'CU0014-alertas.php','S1A'];
     $aMenu['A'][2][7]      = ['Stock', ''.BASE_URL.'producto','S1SDF']; 
     $aMenu['A'][2][8]      = ['Cantidad',''.BASE_URL.'logistica/cantidad', 'S1CT'];
@@ -57,9 +59,10 @@
     $aMenu['S'][1][2]      = [ 'MISION Y VISION', ''.BASE_URL.'mision'];
     $aMenu['S'][2]         = [ 'PROMOCIONES',''.BASE_URL.'promocion'];
     $aMenu['S'][4]         = [ 'INF. VENTAS',''.BASE_URL.'supervisor/facturas', 'S1FF'  ];
-   $aMenu['S'][4][1]       = [ 'Inf Ventas general', ''.BASE_URL.'supervisor/infvrango', 'INVF'];
-   $aMenu['S'][4][2]       = [ 'Inf Ventas Facturacion', ''.BASE_URL.'supervisor/facturas', 'S1FF'];
-   $aMenu['S'][4][3]       = [ 'Consulta Facturas',''.BASE_URL.'supervisor/consFactura', 'S1CF'];
+    $aMenu['S'][4][1]      = [ 'Inf Ventas general', ''.BASE_URL.'supervisor/infvrango', 'INVF'];
+    $aMenu['S'][4][2]      = [ 'Inf Ventas Facturacion', ''.BASE_URL.'supervisor/facturas', 'S1FF'];
+    $aMenu['S'][4][3]      = [ 'Consulta Facturas',''.BASE_URL.'supervisor/consFactura', 'S1CF'];
+    $aMenu['S'][4][4]      = [ 'Solicitudes "comercial"',''.BASE_URL.'comercial/solicitud', 'FGRJIO'];
     $aMenu['S'][5]         = [ 'PRODUCTOS'];
     $aMenu['S'][5][1]      = [ 'CATALOGO',''.BASE_URL.'cliente/catalogo','S1C'];
     $aMenu['S'][5][2]      = [ 'ALERTAS','CU0014-alertas.php'];
@@ -80,6 +83,7 @@
     $aMenu['V'][4][2]      = [ 'PUNTOS',''.BASE_URL.'comercial/puntos', 'S1P'];
     $aMenu['V'][4][3]      = [ 'FACTURACION',''.BASE_URL.'factura', 'S1F'];
     $aMenu['V'][4][4]      = ['CONSULTA FACTURA',''.BASE_URL.'supervisor/consFactura', 'S1CF'];
+    $aMenu['V'][4][5]      = ['SOLICITUD USARIO',''.BASE_URL.'comercial/solicitud', 'FGRJIO'];
     $aMenu['V'][5]         = [ 'INICIO',''.BASE_URL.'comercial/index', 'DFEGAAG'];
 
     $aMenu['P'][1]         = [ 'CONSTITUCION'];
@@ -87,7 +91,7 @@
     $aMenu['P'][1][2]      = [ 'MISION Y VISION', ''.BASE_URL.'mision'];
     $aMenu['P'][2]         = [ 'PROMOCIONES',''.BASE_URL.'promocion'];
     $aMenu['P'][3]         = [ 'CATALOGO',''.BASE_URL.'cliente/catalogo','S1C'];
-    $aMenu['P'][4]         = [ 'SOLICITUDES','CU0018-registropedido.php'];
+    $aMenu['P'][4]         = [ 'PEDIDOS',''.BASE_URL.'proveedor/pedidos','WSGOS1C'];
     $aMenu['P'][5]         = [ 'INICIO',''.BASE_URL.'proveedor/index', 'PFPGAAG'];
 
     $aMenu['C'][1]         = [ 'FERRETERIA'];

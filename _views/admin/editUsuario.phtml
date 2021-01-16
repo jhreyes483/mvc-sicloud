@@ -26,8 +26,17 @@ cardtitulo("Actualizar datos de Usuarios");
 <div class="container">
     <div class="row">
         <div class="col-md-10 card card-body mx-auto">
+        <div class="card-body shadow card col-lg-8 mx-auto">
+               <div class="box-header width-border d-flex justify-content-between">
+                  <h4 class="box-title ">Activar edición</h4>
+                  <div class="btn-group btn-toggle ">
+                     <div class="btn btn-sm btn-default" data-toggle="submit" aria-pressed="true" id="turnOn" onclick="encender('form1')">ON</div>
+                     <div class="btn btn-sm btn-danger" data-toggle="submit" id="turnOff" onclick="encender('form1')" aria-pressed="false">OFF</div>
+                  </div>
+               </div>
+            </div>
             <h5></h5>
-            <form action="<?= BASE_URL.'admin/consulta'?>" method="POST" enctype="multipart/form-data">
+            <form class="shadow card card-body" action="<?= BASE_URL.'admin/consulta'?>" method="POST" id="form1"  enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $ID_us ?>">
                 <input type="hidden" name="accion" value="updateUsuario">
                 <div class="row">
@@ -143,3 +152,26 @@ cardtitulo("Actualizar datos de Usuarios");
 </div>
 </div>
 </div>
+
+<script>
+  function encender(idFrm){
+      if($("#turnOn").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-default").addClass("btn-success");
+         $("#turnOff").removeClass("btn-danger").addClass("btn-default");
+      } else if($("#turnOff").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-success").addClass("btn-default");
+         $("#turnOff").removeClass("btn-default").addClass("btn-danger");
+      }
+
+      idElemen = document.getElementById(idFrm).elements;
+      $.each(idElemen,function(i,n){
+         if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
+            n.disabled =(!n.disabled);
+      });
+      enciende = !enciende;
+   }
+
+      $("input").attr("disabled","true");
+      $("select").attr("disabled","true");
+      $("textarea").attr("disabled","true");
+</script>

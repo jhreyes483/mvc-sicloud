@@ -1,19 +1,12 @@
 <?php
-
-
-
-
 cardtitulo("Acumulación de puntos de compra");
 //$objCon = new ControllerDoc();
 ?>
-<div class="card card-body text-center col-md-8 mx-auto">
+<div class="card  card-body text-center col-md-6 mx-auto">
     <!--<div class="container">-->
     <div class=" container-fluid ">
-        <div class="card card-body mb-2 shadow ">
-
-
-
-            <form action="CU006-acomulaciondepuntos.php" method="POST">
+        <div class="card  card-body mb-2 shadow ">
+            <form action="" method="POST">
                 <div class="row">
                     <div class="col-md-6">
                         <!-- derecha -->
@@ -32,23 +25,17 @@ cardtitulo("Acumulación de puntos de compra");
                             <option>Mes</option>
                             <option>Año</option>
                         </select><br>
-
                         <div class="form-group"> <input class="btn btn-primary form-control" type="submit" value="Ver Puntos Acumulados"> </div>
-
                     </div><!-- col 6 -->
                 </div><!-- row -->
         </div><!-- card -->
     </div><!-- card -->
 </div><!-- container -->
-
-
-
 <?php
-
 if ($this->datos['response_status'] == 'ok') {
 ?>
     <div class="col-md-8 mx-auto my-4">
-        <table id="puntos" style="width:100%" class=" col-lg-12 mx-auto">
+        <table id="puntos" style="width:100%" class="col-lg-12 bg-white mx-auto">
             <thead>
                 <tr>
                     <th scope="col"><i></i> ID</th>
@@ -60,9 +47,9 @@ if ($this->datos['response_status'] == 'ok') {
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($this->datos['response_msg'] as $i => $row) {
-                ?>
+<?php
+foreach ($this->datos['response_msg'] as $i => $row) {
+?>
                     <tr>
                         <td><?= $row['id_puntos']  ?></td>
                         <td><?= $row['puntos']  ?></td>
@@ -70,9 +57,10 @@ if ($this->datos['response_status'] == 'ok') {
                         <td><?= $row['nom1']  ?></td>
                         <td><?= $row['nom2']  ?></td>
                         <td><?= $row['ape1']  ?></td>
-
                     </tr>
-                <?php } ?>
+<?php
+} 
+?>
             </tbody>
         </table>
     </div>

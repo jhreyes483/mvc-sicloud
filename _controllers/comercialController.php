@@ -31,10 +31,11 @@ class comercialController extends Controller{
 
 
     public function solicitud(){
+        $this->getSeguridad('FGRJIO');
         $this->_view->setJs(['all']);
         if(isset($_SESSION['usuario'])){
-            $id_rol  = openssl_decrypt( $_SESSION['usuario']['ID_rol_n'], COD, KEY);
-            $r  =    $this->notificacion  = $this->db->verNotificaciones($id_rol, 12); 
+            //$id_rol  = openssl_decrypt( $_SESSION['usuario']['ID_rol_n'], COD, KEY);
+            $r  =    $this->notificacion  = $this->db->verNotificaciones(4, 12); 
             if( count($r) != 0 ){
                 $this->_view->datos = ['response_status'=> 'ok', 'response_msg'=> $r];
             }else{

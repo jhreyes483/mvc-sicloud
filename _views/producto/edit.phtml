@@ -30,14 +30,23 @@ if (isset($_SESSION['message'])) {
 
 <div class="card card-body text-center  col-md-10 mx-auto p-2 ">
     <div class=" container-fluid ">
-        <div class="card card-body shadow mb-5"> <br>
+    <div class="card-body shadow card col-lg-8 mx-auto">
+               <div class="box-header width-border d-flex justify-content-between">
+                  <h4 class="box-title ">Activar edición</h4>
+                  <div class="btn-group btn-toggle ">
+                     <div class="btn btn-sm btn-default" data-toggle="submit" aria-pressed="true" id="turnOn" onclick="encender('form1')">ON</div>
+                     <div class="btn btn-sm btn-danger" data-toggle="submit" id="turnOff" onclick="encender('form1')" aria-pressed="false">OFF</div>
+                  </div>
+               </div>
+            </div>
+        <div class="card card-body shadow mb-5 my-2"> <br>
             <div class="row">
                 <?php
                 foreach ($producto as $row) {
                 ?>
                     <div class="col-md-4">
                         <!-- inicio de divicion 1 -->
-                        <form action="<?= BASE_URL.'producto' ?>" method="POST">
+                        <form action="<?= BASE_URL.'producto' ?>" id="form1"  method="POST">
                             <!-- derecha -->
                             <div class="form-group"><label >ID Producto</label><input class="form-control" value="<?= $row['ID_prod'] ?>" type="text" placeholder="ID producto" value="<?php $row['ID_prod']  ?> " ; name="ID_prod"></div>
                             <div class="form-group"><label >Nombre Producto</label><input class="form-control" value="<?= $row['nom_prod']  ?>" type="text" class="form-control" placeholder="Nombre producto" name="nom_prod"></div>
@@ -106,3 +115,26 @@ if (isset($_SESSION['message'])) {
         </div><!-- fin card body interno -->
     </div><!-- fin de container fluid -->
 </div><!-- Card externo -->
+
+<script>
+  function encender(idFrm){
+      if($("#turnOn").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-default").addClass("btn-success");
+         $("#turnOff").removeClass("btn-danger").addClass("btn-default");
+      } else if($("#turnOff").hasClass("btn-default")){
+         $("#turnOn").removeClass("btn-success").addClass("btn-default");
+         $("#turnOff").removeClass("btn-default").addClass("btn-danger");
+      }
+
+      idElemen = document.getElementById(idFrm).elements;
+      $.each(idElemen,function(i,n){
+         if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
+            n.disabled =(!n.disabled);
+      });
+      enciende = !enciende;
+   }
+      $("input").attr("disabled","true");
+      $("select").attr("disabled","true");
+      $("textarea").attr("disabled","true");
+</script>
+</script>
