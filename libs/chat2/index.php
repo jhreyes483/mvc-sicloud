@@ -1,5 +1,11 @@
 <?php
+@session_start();
 include_once '../../application/Config.php';
+if( !isset($_SESSION['usuario']) ){
+header('location:' . BASE_URL . 'index');
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,15 +21,11 @@ include_once '../../application/Config.php';
 
     <link href="<?= RUTAS_APP['ruta_css'] ?>chat.css" rel="stylesheet" type="text/css" />
     <script src="<?= RUTAS_APP['ruta_js'] ?>fontawasome-ico.js"></script>
+</thead>
 
-    </thead>
-
-    <?php
-
-    @session_start();
-
-    if (isset($_SESSION['s_menu'])) echo $_SESSION['s_menu'];
-    ?>
+<?php
+if (isset($_SESSION['s_menu'])) echo $_SESSION['s_menu'];
+?>
     <script type="text/javascript">
         // Creacion de funcion
         function ventanachat() {
@@ -61,48 +63,7 @@ include_once '../../application/Config.php';
             setTimeout('ventanachat()', 1000);
         }
     </script>
-
-
 <body>
-
-    <!-- 
-
-    <div class="menu">
-        <div class="back"><i class="fa fa-chevron-left"></i> <img src="https://i.imgur.com/DY6gND0.png" draggable="false" /></div>
-        <div class="name">Alex</div>
-        <div class="last">18:09</div>
-    </div>
-    <ol class="chat">
-        <li class="other">
-            <div class="avatar"><img src="https://i.imgur.com/DY6gND0.png" draggable="false" /></div>
-            <div class="msg">
-                <p>Hola!</p>
-                <p>Te vienes a cenar al centro?
-                    <emoji class="pizza" />
-                </p>
-                <time>20:17</time>
-            </div>
-        </li>
-        <li class="self">
-            <div class="avatar"><img src="https://i.imgur.com/HYcn9xO.png" draggable="false" /></div>
-            <div class="msg">
-                <p>Puff...</p>
-                <p>Aún estoy haciendo el contexto de Góngora...
-                    <emoji class="books" />
-                </p>
-                <p>Mejor otro día</p>
-                <time>20:18</time>
-            </div>
-        </li>
-
-    </ol>
-    <input class="textarea" type="text" placeholder="Type here!" />
-    <div class="emojis"></div>
- -->
-
-
-
-
     <div class="row">
         <div class=" card-body col-lg-3 col-md-3 ">
             <form class="form-group" action="controllers/mensajeController.php" method="GET">
@@ -121,8 +82,6 @@ include_once '../../application/Config.php';
             </div>
         </div>
     </div>
-
-
 </body>
 
 <script src="<?= RUTAS_APP['ruta_js'] ?>jquery-1.9.0.js"></script>
