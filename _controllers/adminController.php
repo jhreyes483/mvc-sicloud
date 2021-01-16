@@ -218,7 +218,6 @@ class adminController extends Controller{
             }
         }
         $r = $this->db->consNotificacionesT();
-        Controller::ver($r);
         if (count($r) == 0) {
             $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay notificaciones'];
         } else {
@@ -250,7 +249,7 @@ class adminController extends Controller{
                         //
                          $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
                         break;
-                     
+                        //
                     default:
                         $a[] = [$d[0], $d[1], $d[2], $d[3], $d[4] ]; 
                         break;
