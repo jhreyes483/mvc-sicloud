@@ -1,6 +1,6 @@
 <?php
 include_once 'class.conexion.php';
-// include_once '../controlador/controladorsession.php';
+include_once '../controlador/controladorsession.php';
 
 class SQL extends Conexion{
    public $db;
@@ -48,11 +48,11 @@ class SQL extends Conexion{
       return $result;  
    }
    // METODO INSERT USUARIO PDO MVC ---------------------------------------------------------------------
-   public function InsertUsuario($d){ 
+   public function InsertUsuario($a){ 
       $sql = "INSERT INTO usuario (ID_us, nom1, nom2, ape1, ape2, fecha, pass, foto, correo, FK_tipo_doc)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $insertar = $this->db->prepare($sql);
-    ///  foreach( $a as $i => $d   ){
+      foreach( $a as $i => $d   ){
       $pass_cifrado = password_hash($d[6], PASSWORD_DEFAULT);
       $insertar->bindValue(1, $d[0] );
       $insertar->bindValue(2, $d[1] );
@@ -64,11 +64,15 @@ class SQL extends Conexion{
       $insertar->bindValue(8, $d[7] );
       $insertar->bindValue(9, $d[8] );
       $insertar->bindValue(10, $d[9] );
-    //  }
+      }
      // echo $pass_cifrado; die();
-      return $insertar->execute();
+      $bool =    $insertar->execute();
+      if($bool){
+         return true;
+      }else{
+         return $a;
+      }
    }
-
    //-------------------------------------------------------------------------------------------------------
    //METODO SELECT USUARIO PDO MVC----------------(FALTA METODO API)-------------------------------------
    public function readUsuarioModel(){
@@ -137,8 +141,7 @@ class SQL extends Conexion{
 */
 
 
-public function loginUsuarioModel($d){
-   //Controller::ver($d[0], 1,1,'modelo');
+public function loginUsuarioModel($datosModel){
    $sql ="SELECT U.* , TD.ID_acronimo , 
    RU.estado , 
    R.ID_rol_n , R.nom_rol 
@@ -149,13 +152,13 @@ public function loginUsuarioModel($d){
    WHERE U.ID_us        = :ID_us  
    AND TD.ID_acronimo   = :ID_acronimo";
    $consulta = $this->db->prepare($sql);
-//   foreach($datosModel as $i =>  $d ){
+   foreach($datosModel as $i =>  $d ){
      // $pass_cifrado = password_hash($d[1], PASSWORD_DEFAULT);
       $consulta->bindValue( ':ID_us',       $d[0] , PDO::PARAM_STR );
    // $consulta->bindValue( ':pass',        $d[1] , PDO::PARAM_STR );
       $consulta->bindValue(':ID_acronimo',  $d[2], PDO::PARAM_STR  );
       $pass = $d[1];
-  // }
+   }
   // echo $pass; die();
 
    $consulta->execute();
@@ -405,22 +408,17 @@ public function loginUsuarioModel($d){
    }
 
         //busqueda por ID
-  public function selectIdUsuario($us){
+  public function selectIdUsuario($id){
    $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo, 
       R.nom_rol,  R.nom_rol,
       R_U.estado, U.fecha
       FROM usuario U 
       JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
       JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
-      WHERE 
-      U.ID_us = '$us'  
-      OR
-      U.nom1 LIKE '%$us%'
-      OR
-      U.nom2 LIKE '%$us%'
-      ";
+      WHERE ID_us = :id
+       ";
    $c = $this->db->prepare($sql);
-  // $c->bindValue(":id", $id);
+   $c->bindValue(":id", $id);
    $c->execute();
    $r = $c->fetchAll();
 
@@ -451,8 +449,8 @@ public function loginUsuarioModel($d){
            
     //  $c->bindParam(":id",$id);
       if ($bool) {
-         $_SESSION['message'] = "Activo cuenta de usuario";
-         $_SESSION['color'] = "success";
+         $_SESSION['message'] = "Desactivo cuenta de usuario";
+         $_SESSION['color'] = "danger";
          return true;
       } else {
          $_SESSION['message'] = "Error al descativar cuenta";
@@ -1180,7 +1178,7 @@ public function insertModificacion($a){
 //------------------------------------------
 //Muestra todas las notificaciones
 public function consNotificacionesT(){
-   $sql = 'SELECT N.ID_not , N.estado , N.descript , R.nom_rol, T.nom_tipo, N.FK_not
+   $sql = 'SELECT N.ID_not , N.estado , N.descript , R.nom_rol, T.nom_tipo
    FROM notificacion N 
    JOIN rol R ON N.FK_rol = R.ID_rol_n
    JOIN tipo_not T ON T.ID_tipo_noT = N.FK_not ';
@@ -1194,8 +1192,17 @@ public function delteNotificacion($id){
    $sql = 'DELETE FROM notificacion  WHERE ID_not = :id';
    $stm = $this->db->prepare($sql);
    $stm->bindValue(":id",   $id, PDO::PARAM_STR);
-   return $stm->execute();
+   $delete = $stm->execute();
+   if ($delete) {
+      return true;
+   } else {
+      return false;
+   }
 }
+
+
+
+
 
 //------------------------------------------
 //ver join de modificaciones
@@ -1230,28 +1237,8 @@ public function delteNotificacion($id){
          return true;
       }// fin de insrtar datos
    }
-   //===========================================
-   //CMENSAJE
-      //Insertar mensaje--------------------------------------------------------------
-      public function insertMensaje(array $d){
-         $sql = 'INSERT into mensaje( estado, descript, FK_rol , FK_ms ) 
-         VALUES (?, ?, ?, ?)';
-         $insert = $this->db->prepare($sql);
-         $insert->bindValue(1, $d[0] );
-         $insert->bindValue(2, $d[1] );
-         $insert->bindValue(3, $d[2] );
-         $insert->bindValue(4, $d[3] );
-         return $insert->execute();
-      }
-
-      public function verMensaje1(){
-         $sql = 'SELECT * FROM mensaje';
-         $c   = $this->db->prepare($sql);
-         $c->execute();
-         $r   = $c->fetchAll();
-         return $r;
-      }
-   //===========================================
+//===========================================
+//===========================================
 //CPAGO
    public function verPago(){
       $sql = "SELECT *  FROM tipo_pago";
@@ -1264,11 +1251,10 @@ public function delteNotificacion($id){
 //CPRODUCTO
    //query insertar producto                                     C
    public function insertarProducto($a){
-     // Controller::ver($a,1);
       $sql = "INSERT INTO producto (ID_prod, nom_prod, 
       val_prod, stok_prod, estado_prod, 
-      CF_categoria, CF_tipo_medida, img, descript )
-      VALUES(?, ? ,? , ? ,? ,? ,?,?,?)";
+      CF_categoria, CF_tipo_medida)
+      VALUES(?, ? ,? , ? ,? ,? ,?)";
       $stm = $this->db->prepare($sql);
       $stm->bindValue(1, $a[0]);
       $stm->bindValue(2, $a[1]);
@@ -1277,10 +1263,12 @@ public function delteNotificacion($id){
       $stm->bindValue(5, $a[4]);
       $stm->bindValue(6, $a[5]);
       $stm->bindValue(7, $a[6]);
-      $stm->bindValue(8, $a[7]);
-      $stm->bindValue(9, $a[9]);
-      return $stm->execute();
-      
+      $ejecucion = $stm->execute();
+      if ($ejecucion) {
+          return true;
+      } else {
+          return false;
+      }
    } // fin de javaScript
 
 
@@ -1360,6 +1348,7 @@ public function delteNotificacion($id){
    }
 
 
+
    //EDITAR PRODUCTO                                             U
    public function editarProducto($a){
     //  ControllerDoc::ver($a, 1);
@@ -1412,14 +1401,14 @@ public function delteNotificacion($id){
    }
 
 //$cant, $stock, $id
-   public function inserCantidadProducto($a){
+   public function inserCatidadProducto($a){
          // ControllerDoc::ver($a[1], 1);
 
       // UPDATE sicloud.producto SET stok_prod = '8' WHERE ID_prod = '0529063441';
       $sql = "UPDATE producto SET stok_prod = :stok_prod WHERE ID_prod = :ID_prod ";
       $stm = $this->db->prepare($sql);
       $stm->bindValue(":stok_prod", $a[0], PDO::PARAM_INT );
-      $stm->bindValue(":ID_prod", $a[1],    PDO::PARAM_STR );
+      $stm->bindValue(":ID_prod", $a[1],  PDO::PARAM_STR );
       $result = $stm->execute();
       if ($result) {
          return true;
@@ -1428,7 +1417,7 @@ public function delteNotificacion($id){
       }
    }
 
-   public function verProductosAlfa(){
+   public function verProductosAlfa($id){
       $sql = "SELECT nom_prod , stok_prod , nom_categoria  from producto sp
          JOIN categoria sc on sp.CF_categoria = sc.ID_categoria 
          WHERE sc.ID_categoria = :ID_categoria
@@ -1515,7 +1504,8 @@ public function delteNotificacion($id){
        $consulta = $this->db->prepare($sql);
        $consulta->bindValue( 1 ,  $foto, PDO::PARAM_STR );
        $consulta->bindValue( 2 ,  $id_us, PDO::PARAM_STR );
-       return  $consulta->execute();
+       $consulta = $consulta->execute();
+       return true;
    }
 
    public function inserTfotoProd( $foto,  $ID_prod){
@@ -1558,66 +1548,6 @@ public function delteNotificacion($id){
       return $r;
    }
 //===================================================
-//CANUNCIO
-public function insertAnuncio(array $a ){
-   $sql = "INSERT INTO `anuncio` ( `nombre`, `descript`, `fecha`, `FK_tipoA`) 
-   VALUES ( :nombre, :descript, :fecha ,:FK_tipoA )";
-   $stm = $this->db->prepare($sql);
-   $stm->bindValue(":nombre",   $a[0], PDO::PARAM_STR );
-   $stm->bindValue(":descript", $a[1], PDO::PARAM_STR );
-   $stm->bindValue(":fecha",    $a[2], PDO::PARAM_STR );
-   $stm->bindValue(":FK_tipoA", $a[3], PDO::PARAM_INT );
-   return $stm->execute();
-}
-
-public function updateAnuncio(array $a ){
-   $sql = "UPDATE `anuncio` 
-   SET `nombre` = ':nombre', `descript` = ':descript' , `fecha` = ':fecha' , `FK_tipoA` = ':FK_tipoA'
-   WHERE `anuncio`.`ID_a` = :ID_a";
-   $stm = $this->db->prepare($sql);
-   $stm->bindValue(":nombre",   $a[0], PDO::PARAM_STR );
-   $stm->bindValue(":descript", $a[1], PDO::PARAM_STR );
-   $stm->bindValue(":fecha",    $a[2], PDO::PARAM_STR );
-   $stm->bindValue(":FK_tipoA", $a[3], PDO::PARAM_INT );
-   $stm->bindValue(":ID_a",     $a[4], PDO::PARAM_INT );
-   return $stm->execute();
-}
-
-public function verAnuciosIndex( $tipo ){
-
-   switch ($tipo) {
-      case 1:
-         $sql = 
-         'SELECT * FROM 
-         `anuncio`
-         WHERE ID_a IN ( 1, 2, 3) 
-         ';
-         break;
-      
-      default:
-
-         break;
-   }
-
-   $stm = $this->db->prepare($sql);   
-   $stm->execute();
-   $result = $stm->fetchAll();
-   return $result;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //===================================================
 //CPUNTOS
 public function insertPuntos( $a ){
@@ -1629,8 +1559,12 @@ public function insertPuntos( $a ){
    $stm->bindValue(":fecha",       $a[1], PDO::PARAM_STR );
    $stm->bindValue(":FK_us",       $a[2], PDO::PARAM_STR );
    $stm->bindValue(":FK_tipo_doc", $a[3], PDO::PARAM_STR );
-   return  $stm->execute();
-
+   $r = $stm->execute();
+   if($r){
+      return true;
+   }else{
+      return false;
+   }
 
 }// fin de insert punto
 //=============================================
@@ -1639,21 +1573,26 @@ public function insertPuntos( $a ){
 
   //METODOS
 
-   public function insertrRolUs($d){
+   public function insertrRolUs($a){
       $sql = "INSERT INTO rol_usuario(FK_rol,FK_us,FK_tipo_doc,fecha_asignacion,estado)
       VALUES (?,?,?,?,?)";
       //PDO::PARAM_INT
       //PDO::PARAM_STR
       $stm = $this->db->prepare($sql);
-   //   foreach( $a as $i => $d ){
+      foreach( $a as $i => $d ){
       $stm->bindValue( 1, $d[10], PDO::PARAM_INT );
       $stm->bindValue( 2 ,$d[0] , PDO::PARAM_STR );
       $stm->bindValue( 3 ,$d[9] , PDO::PARAM_STR  );
       $stm->bindValue( 4 ,$d[11] , PDO::PARAM_STR );
       $stm->bindValue( 5 ,$d[12] ,  PDO::PARAM_STR );
       //$stm->bindValue( 5 , 1 ,  PDO::PARAM_STR );
-    //  }
-      return $stm->execute();
+      }
+      $bool = $stm->execute();
+      if($bool){
+        return true;
+      }else{
+        return $a;
+      }
    }
    
 
@@ -1768,7 +1707,16 @@ public function eliminarRoldeUsuario($id){
       $stm = $this->db->prepare($sql);
       $stm -> bindValue (":tel",  $a[0], PDO::PARAM_STR  );
       $stm -> bindValue (":CF_us",$a[1], PDO::PARAM_STR );
-      return $stm->execute();
+      $insert = $stm->execute();
+      if($insert){   
+         $_SESSION['message'] =  'A registrado telefono para su cuenta, si desea ingresa otro telefono, favor digite';
+         $_SESSION['color']   = 'success'; 
+         return true;
+       }else{
+         $_SESSION['message'] =  'No registro telefono';
+         $_SESSION['color'] = 'danger'; 
+         return false;
+      }
    }// fin de insert telefono usuario
 
 // muestra los datos por id------------------------------------------------------------
@@ -1909,19 +1857,6 @@ public function verTelefonosEmpresa(){
          return false;
       }
    } // Fin de leer notificacion----------------------------------------------------
-   public function verNotificacionId($ID_not){
-      $sql = 'SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
-      T.nom_tipo
-         FROM notificacion N 
-         JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
-         JOIN rol R ON N.FK_rol = ID_rol_n
-      WHERE N.ID_not = ? ';
-      $stm = $this->db->prepare($sql);
-      $stm->bindValue( 1, $ID_not, PDO::PARAM_INT );
-      $stm->execute();
-      return  $stm->fetchAll();
-   }
-
 
     // Ver notificacion------------------------------------------------------------------
    public function verNotificacion($id_rol){
@@ -1937,51 +1872,23 @@ public function verTelefonosEmpresa(){
    } // fin de ver notificaiones por rol------------------------------------------------
 
     // Conteo de mensajes------------------------------------------------------------------
-   public function verNotificaciones($id_rol, $Fk_not = null) {
-      if (!isset($Fk_not)){ 
-      $sql = 
-      "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
+   public function verNotificaciones($id_rol) {
+      //$this->ver($id_rol, 1);
+      $sql = "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
       T.nom_tipo
          FROM notificacion N 
          JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
          JOIN rol R ON N.FK_rol = ID_rol_n
-      WHERE R.ID_rol_n = ? and  N.estado = '0'"; 
-      }else{
-         $sql = 
-         "SELECT N.ID_not , N.estado , N.descript , N.FK_rol , N.FK_not,
-         T.nom_tipo
-            FROM notificacion N 
-            JOIN tipo_not T ON N.FK_not = T.ID_tipo_not
-            JOIN rol R ON N.FK_rol = ID_rol_n
-         WHERE R.ID_rol_n = ? 
-         AND  N.estado = '0'
-         AND  N.FK_not = ?"; 
-      } 
+      WHERE R.ID_rol_n = ? and  N.estado = '0'";
       $stm = $this->db->prepare($sql);
       $stm->bindValue( 1, $id_rol, PDO::PARAM_INT );
-      if(isset($Fk_not)){
-         $stm->bindValue( 2, $Fk_not, PDO::PARAM_INT );
-      }
       $stm->execute();
       $r = $stm->fetchAll();
       return $r;
-   } // ------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
+   } // fin de conteo de notificaciones------------------------------------------------
 
     // Notificacion de nueva cuenta a admin--------------------------------------------
-    // se lamaba notInsertUsuarioAdmin
-   public function notInsertUsuario($a){
+   public function notInsertUsuarioAdmin($a){
     //  $this->ver($a, 1);
       $sql =  "INSERT INTO notificacion( estado, descript, FK_rol , FK_not ) 
       VALUES ( ?, ?, ?, ?)";
@@ -1990,18 +1897,9 @@ public function verTelefonosEmpresa(){
       $stm->bindValue( 2, $a[1], PDO::PARAM_STR );
       $stm->bindValue( 3, $a[2], PDO::PARAM_INT );
       $stm->bindValue( 4, $a[3], PDO::PARAM_INT );
-      return $stm->execute();
+      $result = $stm->execute();
+      return $result;
    } // fin de notificacion admin------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
 
    // Eliminar notificaciones de usuario ----------------------------------------------
    public function deleteNotificacionAdmin($ID_not){
