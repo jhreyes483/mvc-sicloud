@@ -36,10 +36,13 @@ class clienteController extends Controller{
 
     public function catalogo(){
         if( !isset($_POST['accion']) ){
-
             $this->_view->datos = $this->db->verProductos();
             $this->_view->setJs([ 'login'  ]);
-            $this->_view->renderizar('catalogo', 1);
+            if( isset($_SESSION['usuario'])){
+                $this->_view->renderizar('catalogo');
+            }else{
+                $this->_view->renderizar('catalogo', 1);
+            }
         }else{
             $this->busqueda();
         }
