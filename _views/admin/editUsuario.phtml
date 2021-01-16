@@ -105,11 +105,11 @@ cardtitulo("Actualizar datos de Usuarios");
 
                                  -->
 
-                        <input class="form-control" type=»number» readonly=»readonly» name="ID_us" value="<?= $ID_us  ?>" required autofocus maxlength="11">
+                        <input class="form-control my-2" type=»number» readonly=»readonly» name="ID_us" value="<?= $ID_us  ?>" required autofocus maxlength="11">
 
                     </div><br>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div class="col-md-6">
                         <h5>Primer nombre: </h5>
                         <input class="form-control" type="text" name="nom1" value="<?= $nom1 ?>" required autofocus maxlength="20">
@@ -133,9 +133,6 @@ cardtitulo("Actualizar datos de Usuarios");
                 </div><br>
                 <h5>Fecha de nacimiento: </h5>
                 <input class="form-control" type="date" name="fecha" value="<?= $fecha ?>"><br>
-                <h5>Digite su contraseña: </h5>
-                <h5> Foto </h5>
-                <input class="form-control" type="text" name="foto" value="<?= $foto ?>" required autofocus maxlength="25"><br>
                 <h5> Correo </h5>
                 <input class="form-control" type="email" name="correo" value="<?= $correo  ?>" required autofocus maxlength="25"><br>
                 <input class="btn btn-primary form-control" type="submit"  value="Actualizar datos"><br><br><br>
