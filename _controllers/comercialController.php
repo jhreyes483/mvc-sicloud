@@ -1,6 +1,6 @@
 <?php
 class comercialController extends Controller{
-
+    //
     public function __construct(){
         parent::__construct();
         require_once ROOT.'_controllers/class/c_numerosLetras.php';
@@ -12,11 +12,11 @@ class comercialController extends Controller{
         $this->_view->setCss(array( 'font-Montserrat' , 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
         $this->_view->setJs(array('jquery-1.9.0','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery','tablesorter-master/jquery.tablesorter'));
     }
-
+    //
     public function index(){
         $this->_view->renderizar('index');
     }
-
+    //
     public function puntos(){
        $this->getSeguridad('S1P');
             $r = $this->db->verPuntosUs();
@@ -28,8 +28,7 @@ class comercialController extends Controller{
             $this->_view->renderizar('acomulaciondepuntos');
             $this->_view->setTable('puntos', 2, 0);
     }
-
-
+    //
     public function solicitud(){
         $this->getSeguridad('FGRJIO');
         $this->_view->setJs(['all']);
@@ -46,7 +45,7 @@ class comercialController extends Controller{
         $this->_view->renderizar('solicitud');
         $this->_view->setTable('tabla');
     }
-
+    //
     public function detalle(){
         if(isset($_GET['id'])){
             $r = $this->db->verNotificacionId($_GET['id'] );
@@ -60,14 +59,10 @@ class comercialController extends Controller{
         }
         $this->_view->renderizar('detalleSolicitud',0);
     }
-
     //*********************************************************/
     // Facturacion - interna
     //*********************************************************/
     // agrega producto de array pre venta
-
-
-
 }
 
 

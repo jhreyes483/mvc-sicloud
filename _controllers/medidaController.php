@@ -50,9 +50,8 @@ class medidaController extends Controller{
       }
       $this->_view->renderizar('editar');
    }
-
-
-//CRUD
+   //
+   //CRUD
    public function m_destroy(){
       switch ($this->tipo) {
          case 1:
@@ -90,7 +89,7 @@ class medidaController extends Controller{
          break;
       }
    }
-
+   //
    public function m_update(){
       switch ($this->tipo) {
          case 1:
@@ -121,7 +120,6 @@ class medidaController extends Controller{
              if($bA){
                 return $bB = $this->registraLog($this->getSql('id'),11);
              }
-
          break;
       }
    }

@@ -2,18 +2,18 @@
 
 
 class apiController extends Controller{
-protected $db;
-
-public function __construct(){
-   parent::__construct();
-   $this->db       = $this->loadModel('consultas.sql', 'sql');;
-   $this->getApi();
-}
-
+   protected $db;
+   //
+   public function __construct(){
+      parent::__construct();
+      $this->db       = $this->loadModel('consultas.sql', 'sql');;
+      $this->getApi();
+   }
+   //
    public function index(){
       die('Error, metodo index en api no definido');
    }
-              
+   //      
    public function isTheseParametersAvailable($params){
       $avaible = true;
       $missingparams = '';
@@ -34,35 +34,35 @@ public function __construct(){
          die();
       }
    }
-
+   //
    public function getApi(){
-         //Una matriz que muestra la respuesta de la api
+            //Una matriz que muestra la respuesta de la api
          $response = [];
-         /*
-         Si se trata de una llamada api
-         que significa que un parameetro get llamado se establece una URL
-         y con estos parametros estamos concluyendo que es una llamada api
-         */
-      if(isset($_GET['apicall'])){
-         // Aqui van todos los llamados de la api
-         switch ($_GET['apicall']) {
-            // Opcion crear usuarios
-         case 'selectUsuarioFactura':
-         $r = $this->db->selectUsuarioFac(6, 1);
-         echo json_encode($r, JSON_UNESCAPED_UNICODE);
-         die();
-         break;
-            default:
-            $response['error']      = true;
-            $response['message']    = 'ingreso a api "no esta en ningun metodo"'; 
+            /*
+            Si se trata de una llamada api
+            que significa que un parameetro get llamado se establece una URL
+            y con estos parametros estamos concluyendo que es una llamada api
+            */
+         if(isset($_GET['apicall'])){
+            // Aqui van todos los llamados de la api
+            switch ($_GET['apicall']) {
+               // Opcion crear usuarios
+            case 'selectUsuarioFactura':
+            $r = $this->db->selectUsuarioFac(6, 1);
+            echo json_encode($r, JSON_UNESCAPED_UNICODE);
+            die();
             break;
+               default:
+               $response['error']      = true;
+               $response['message']    = 'ingreso a api "no esta en ningun metodo"'; 
+               break;
+            }
+         }else{
+            // Si no es un api el que se estaq invocando
+            // Empujar los valores apropiados en la consulta json
+            if( !isset($_POST['apicalp'])){
+            $response['message'] = 'Llamado invalido del api';
          }
-      }else{
-         // Si no es un api el que se estaq invocando
-         // Empujar los valores apropiados en la consulta json
-         if( !isset($_POST['apicalp'])){
-         $response['message'] = 'Llamado invalido del api';
-      }
       }
       if(isset($_POST['apicalp'])){
          switch ($_POST['apicalp']) {
@@ -134,13 +134,11 @@ public function __construct(){
                $response['contenido']  = $r;
                $_SESSION['color']      = "success";
             }else{
-            
                $response['error']      = true;
                $response['menssage']   = $_SESSION['message'] = 'Error, no creo empresa';
                $response['contenido']  = $r;
                $_SESSION['color']      = "danger";
             }
-         
          header( 'location:  ../vista/formEmpresa.php');
          break;
          case 'insertMedida':
@@ -187,13 +185,13 @@ public function __construct(){
          case'updateProducto':
          //  extract($_POST);
             $a = [
-               $this->getSql('ID_prod'), // 0
-               $this->getSql('nom_prod'), // 1
-               $this->getSql('val_prod'), // 2
-               $this->getSql('stok_prod'), // 3
-               $this->getSql('estado_prod'), // 4
-               $this->getSql('CF_categoria'), // 5
-               $this->getSql('CF_tipo_medida') // 6
+                  $this->getSql('ID_prod'), // 0
+                  $this->getSql('nom_prod'), // 1
+                  $this->getSql('val_prod'), // 2
+                  $this->getSql('stok_prod'), // 3
+                  $this->getSql('estado_prod'), // 4
+                  $this->getSql('CF_categoria'), // 5
+                  $this->getSql('CF_tipo_medida') // 6
                ];     
             $r = $this->db->editarProducto($a);
             if($r){
@@ -214,8 +212,8 @@ public function __construct(){
                   $this->getSql('acron')
                ];
             
-                $r = $this->db->actualizarDatosMedida($a);
-                if($r){
+               $r = $this->db->actualizarDatosMedida($a);
+               if($r){
                   $response['error']      = false;
                   $response['menssage']   = $_SESSION['message'] = 'Actualizar medida';
                   $response['contenido']  = $r;
@@ -236,8 +234,5 @@ public function __construct(){
       }
       echo json_encode($response);
    }
-  
 }
-
-
 $obj = new apiController();

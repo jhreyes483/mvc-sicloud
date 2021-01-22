@@ -1,10 +1,12 @@
 
 
 
-$(".form").hide(300);
+
 formFiltro = false;
 
 $(document).ready(function() {
+
+  //$(".form").hide(300);
   var ocultar = $("#ocultar");
   var mostrar = $("#mostrar");
   var toggle = $(".toggle");
@@ -24,12 +26,12 @@ $(document).ready(function() {
    
     if( formFiltro == false  ){
       elemento.toggle(1000);
-      t.text("Ocultar filtro")
+      t.text("Por letra")
       formFiltro = true;
     }else{
     
       elemento.toggle(1000);
-      t.text("Buscar Usuario")
+      t.text("Fitros")
       formFiltro =false;
      // filtro = true;
     }

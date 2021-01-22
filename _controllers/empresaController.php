@@ -39,13 +39,12 @@ class empresaController extends Controller{
       $this->_view->renderizar('index');
       $this->_view->setTable('empresa', 0, 2 );
    }
-
+   //
    public function edit(){
       $this->getSeguridad('S1CE');
       $this->_view->datos = $this->db->verDatoEmpresaPorId($_POST['id']);
       $this->_view->renderizar('editar');
    }
-
 // CRUD
    public function m_store(){
       switch ($this->tipo) {
@@ -75,7 +74,7 @@ class empresaController extends Controller{
          break;
       }
    }
-
+   //
    public function m_destroy(){
       switch ($this->tipo) {
          case 1:
@@ -105,14 +104,13 @@ class empresaController extends Controller{
             }else{
                return false;
             }  
-            
          break;
          default:
          die('no definio el tipo de objeto');
          break;
       }
    }
-
+   //
    public function m_update(){
       switch ($this->tipo) {
          case 1:

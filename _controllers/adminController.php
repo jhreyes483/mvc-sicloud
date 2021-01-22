@@ -2,7 +2,7 @@
 class adminController extends Controller{
     private $db;
     private $param;
-
+    //
     public function __construct(){
         $this->db = $this->loadModel('consultas.sql', 'sql');
         parent::__construct();
@@ -10,14 +10,14 @@ class adminController extends Controller{
         $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'));
         $this->param = $this->getParam();
     }
-
+    //
     public function index(){
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
         $this->datosFijos();
         $this->_view->renderizar('index');
     }
-
+    //
     public function a(){
         // desactiva cuenta de usuario
         $this->db->activarCuenta($this->param[0]);
@@ -25,7 +25,7 @@ class adminController extends Controller{
         $this->registraLog($this->param[0], 15);
         $this->_view->renderizar('controlUsuarios');
     }
-
+    //
     public function d(){
         // desactiva cuenta de usuario
         $this->db->desactivarCuenta($this->param[0]);
@@ -33,10 +33,23 @@ class adminController extends Controller{
         $this->registraLog($this->param[0], 3);
         $this->_view->renderizar('controlUsuarios');
     }
-
+    //
     public function consulta(){
         //
         $this->datosFijos();
+        if(( isset( $_POST['parametro'])) &&  $_POST['parametro'] != '*'){
+            $r  = $this->db->usuarioLetra($this->getsql('parametro'));
+            if( count($r) != 0){
+                $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
+            }else{
+                $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'No hay registro de usuarios'];
+            }
+            
+        }else{
+            $r  = $this->db->UserAll($this->getsql('parametro'));
+            $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
+        }
+
         if (isset($_POST['accion'])) {
             switch ($_POST['accion']) {
                 case 'bId':
@@ -47,7 +60,7 @@ class adminController extends Controller{
 
                             $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
                             $_SESSION['color'] = 'info';
-                            $_SESSION['message'] = 'Filtro por documento';
+                            $_SESSION['message'] = 'Filtro por usuario';
                         } else {
                             $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'Usuario no existe'];
                             if ($this->param[0] == 'api') {
@@ -116,14 +129,14 @@ class adminController extends Controller{
                         $_SESSION['color']    = "danger";
                     }
                 break; 
-
             }
         } else {
+
         }
         $this->_view->renderizar('controlUsuarios');
         $this->_view->setTable('lis', 3, 0);
     }
-
+    //
     public function controlUsuarios(){
         $this->datosFijos();
         // vista
@@ -132,14 +145,12 @@ class adminController extends Controller{
         $this->_view->renderizar('controlUsuarios');
         $this->_view->setTable('lis', 3, 0);
     }
-
+    //
     public function datosFijos(){
         $this->db               = $this->loadModel('consultas.sql', 'sql');
         $rols                    = $this->db->verRol();
         foreach( $rols as $d ) $rl[$d[0]] = $d[1] ; 
         $est                     = [ 'Pendiente', 'Aprobados' ];
-
-
         $c1                      = $this->db->conteoUsuariosActivos();
         $c2                      = $this->db->conteoUsuariosInactivos();
         $t                       = ($c1 + $c2);
@@ -151,7 +162,7 @@ class adminController extends Controller{
             $est??0
         ];
     }
-
+    //
     public function logError(){
         // vista
         // pendinte crear metodo eliminar log
@@ -165,7 +176,7 @@ class adminController extends Controller{
         $this->_view->renderizar('logError');
         $this->_view->setTable('log', 2);
     }
-
+    //
     public function logActividad(){
         //vista
         $this->getSeguridad('S1LA');
@@ -175,7 +186,7 @@ class adminController extends Controller{
         } else {
             $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay log de actividad'];
         }
-
+        //
         if (isset($_POST['accion']) && $_POST['accion'] == 'deleteLog') {
             $b = $this->db->deleteLog($_POST['id']);
             if ($b) {
@@ -186,16 +197,14 @@ class adminController extends Controller{
                 $_SESSION['color'] = 'danger';
             }
         }
-
-
-
+        //
         $this->_view->renderizar('logActividad');
         $this->_view->setTable('actividad', 2, 4);
     }
-
+    //
     public function logNotificacion(){
         $this->getSeguridad('S1LN');
-
+        //
         if (isset($_POST['accion'])) {
             switch ($_POST['accion']) {
                 case 'deleteNotific':
@@ -226,10 +235,10 @@ class adminController extends Controller{
                     case 1:
                         $a[] = [$d[0], $d[1], '<strong>Id de usuario: </strong>'.$d[2], $d[3], $d[4] ]; 
                         break;
-
+                        //
                     case 11: // pedido de producto
                         $tmp = explode('@@@', $d[2]  );
-                     
+                        //
                         $descipt = 'Datos de usuario que solicta producto<br>'
                         .'<strong>Nombre de usuario: </strong>'. ($tmp[1]??'')
                         .'<br><strong>Apellido: </strong>'.($tmp[2]??'')
@@ -253,21 +262,19 @@ class adminController extends Controller{
                         //
                          $a[] = [ $d[0], $d[1], $descipt, $d[3] , $d[4]]; 
                         break;
-                     
                     default:
                     $descript = ( $d[2] == '' )?'No aplica': $d[2];
                         $a[] = [$d[0], $d[1], $descript, $d[3], $d[4] ]; 
                         break;
                 }
             }
-
-
+            //
             $this->_view->datos = ['response_status' => 'ok', 'response_msg' => $a];
         }
         $this->_view->renderizar('logNotificacion');
         $this->_view->setTable('notificacion', 4, 5);
     }
-
+    //
     public function edit(){
         $this->getSeguridad('S1CCSM');
         $r      = $this->db->verRol();
@@ -286,8 +293,4 @@ class adminController extends Controller{
         }
         $this->_view->renderizar('editUsuario');
     }
-
-
-
-
 }

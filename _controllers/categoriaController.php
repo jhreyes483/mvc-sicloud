@@ -2,11 +2,11 @@
 
 class categoriaController extends Controller{
    private $tipo;
-
+   //
    public function __construct($tipo = 1 ){
       //  $this obj =  1 - return array response
       //  obj de api = 2 - return bool
-
+      //
       $this->tipo = $tipo;
       parent::__construct();
       $this->db = $this->loadModel('consultas.sql', 'sql');
@@ -16,32 +16,32 @@ class categoriaController extends Controller{
 //VISTA
    //
    public function index(){
-         $this->issetSession();
-         $this->getSeguridad('S1CC');
-         // Eliminar
-         if(isset($_GET['d'])){
-            $this->m_destroy();
+      $this->issetSession();
+      $this->getSeguridad('S1CC');
+      // Eliminar
+      if(isset($_GET['d'])){
+         $this->m_destroy();
+      }
+      if(isset($_POST['accion'])){ 
+         switch ($_POST['accion']) {
+            // Insertar
+            case 'insertcategoria':
+               $this->m_store();
+            break; 
+            // Actualiza
+            case 'updatecategoria';
+               $this->m_update();
+            break;
          }
-         if(isset($_POST['accion'])){ 
-            switch ($_POST['accion']) {
-               // Insertar
-               case 'insertcategoria':
-                  $this->m_store();
-               break; 
-               // Actualiza
-               case 'updatecategoria';
-                  $this->m_update();
-               break;
-            }
-         }
-         $r = $this->db->verCategoria();
-         if( count($r) != 0){
-            $this->_view->datos = ['response_status' => 'ok','response_msg'=> $r];
-         }else{
-            $this->_view->datos = ['response_stutas' => 'error', 'response_msg' => 'No hay registro de categorias'];
-         }
-         $this->_view->renderizar('index');
-         $this->_view->setTable( 'categorias', 1  );
+      }
+      $r = $this->db->verCategoria();
+      if( count($r) != 0){
+         $this->_view->datos = ['response_status' => 'ok','response_msg'=> $r];
+      }else{
+         $this->_view->datos = ['response_stutas' => 'error', 'response_msg' => 'No hay registro de categorias'];
+      }
+      $this->_view->renderizar('index');
+      $this->_view->setTable( 'categorias', 1  );
    }
    //
    public function editar(){
@@ -50,7 +50,6 @@ class categoriaController extends Controller{
       $this->_view->datos =  $this->db->verCategoriaId($_POST['id']);
       $this->_view->renderizar('editar');
    }
-
 // CRUD
    public function m_store(){
       switch ($this->tipo) {
@@ -104,13 +103,12 @@ class categoriaController extends Controller{
             ];
             $bA = $this->db->eliminarCategoria($a);
             if($bA){
-              return $this->registraLog($_GET['id']  , 6 );
+               return $this->registraLog($_GET['id']  , 6 );
             }else{ 
                return false;
             }
          break;
-      }   
-         
+      }     
    }
    //
    public function m_update(){
@@ -146,10 +144,6 @@ class categoriaController extends Controller{
          break;
       }
    }
-
-
-
-
 }
 
 

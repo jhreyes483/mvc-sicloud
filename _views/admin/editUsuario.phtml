@@ -151,23 +151,24 @@ cardtitulo("Actualizar datos de Usuarios");
 </div>
 
 <script>
-  function encender(idFrm){
-      if($("#turnOn").hasClass("btn-default")){
-         $("#turnOn").removeClass("btn-default").addClass("btn-success");
-         $("#turnOff").removeClass("btn-danger").addClass("btn-default");
-      } else if($("#turnOff").hasClass("btn-default")){
-         $("#turnOn").removeClass("btn-success").addClass("btn-default");
-         $("#turnOff").removeClass("btn-default").addClass("btn-danger");
-      }
-
-      idElemen = document.getElementById(idFrm).elements;
-      $.each(idElemen,function(i,n){
-         if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
-            n.disabled =(!n.disabled);
-      });
-      enciende = !enciende;
-   }
-
+    function encender(idFrm){
+        enciende = false
+        if($("#turnOn").hasClass("btn-default")){
+           $("#turnOn").removeClass("btn-default").addClass("btn-success");
+           $("#turnOff").removeClass("btn-danger").addClass("btn-default");
+        } else if($("#turnOff").hasClass("btn-default")){
+           $("#turnOn").removeClass("btn-success").addClass("btn-default");
+           $("#turnOff").removeClass("btn-default").addClass("btn-danger");
+        }
+        idElemen = document.getElementById(idFrm).elements;
+        
+        $.each(idElemen,function(i,n){
+            console.log(n.type);
+           if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
+              n.disabled =(!n.disabled);
+        });
+        enciende = !enciende;
+    }
       $("input").attr("disabled","true");
       $("select").attr("disabled","true");
       $("textarea").attr("disabled","true");

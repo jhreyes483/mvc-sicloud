@@ -9,7 +9,7 @@ class productoController extends Controller{
       $this->_view->setCss(array('font-Montserrat', 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
       $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'tablesorter-master/jquery.tablesorter'));
    }
-
+   //
    public function index(){
       $this->getSeguridad('S1SDF');
       if( isset($_POST['accion']) ){
@@ -36,9 +36,8 @@ class productoController extends Controller{
       $this->_view->renderizar('index');
       $this->_view->setTable('stock', 2, 0);
    }
-
 // VISTA
-
+   //
    public function ingreso(){
       $this->issetSession();
       $this->getSeguridad('S1PL');
@@ -59,10 +58,7 @@ class productoController extends Controller{
       }else{
          $r = $this->db->verJoin($_POST['p']??'1557972591');
       }
-
-
-
-      
+      //
       $p =  $this->db->verProductos();
       $this->_view->datosF = [ $p  ];
 
@@ -73,8 +69,7 @@ class productoController extends Controller{
       }  
       $this->_view->renderizar('ingresoProducto');
    }
-
-
+   //
    public function create(){
      $this->getSeguridad('S1PCL');
       $c =  $this->db->verCategorias();
@@ -84,7 +79,7 @@ class productoController extends Controller{
       $this->_view->datos = [$c, $m, $e, $p];
       $this->_view->renderizar('create');
    }
-
+   //
    public function edit(){
       $producto   =  $this->db->verProductosId($_POST['id']);
       $categorias =  $this->db->verCategorias();
@@ -98,7 +93,6 @@ class productoController extends Controller{
       $this->_view->datos =  [ 'response_status' => 'ok', 'response_msg' =>  [$categorias , $medida, $provedor, $producto , $estado] ];
       $this->_view->renderizar('edit');
    }
-
    // Agrega camtidad de un producto existente
    public function m_add(){
       $a =[
@@ -110,9 +104,7 @@ class productoController extends Controller{
          $_SESSION['message'] = 'Registro entrega'; $_SESSION['color'] = 'success';
       } 
       $this->redireccionar('producto/ingreso');
-
    }
-
 // CRUD   
    public function m_destroy(){
       switch ($this->tipo) {
@@ -140,7 +132,7 @@ class productoController extends Controller{
          break;
       }
    }
-
+   //
    public function m_store(){
       switch ($this->tipo) {
          case 1:
@@ -193,7 +185,7 @@ class productoController extends Controller{
          break;
       }
    }
-
+   //
    public function m_update(){
       switch ($this->tipo) {
          case 1:
@@ -235,14 +227,10 @@ class productoController extends Controller{
                  return $this->registraLog($this->getSql('ID_prod'), 5);
             }else{
                return false;
-            }
-           
+            }       
          break;
       }
    }
-
-
-
 }
 
 ?>

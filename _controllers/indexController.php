@@ -2,7 +2,7 @@
 
 class indexController extends Controller {
 // Guarda notificaicones en varible $this->_view->notificacion 
-
+   //
 	public function __construct(){
       parent::__construct(1);
       $this->db            = $this->loadModel('consultas.sql', 'sql');
@@ -10,7 +10,7 @@ class indexController extends Controller {
    
       $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter', 'login'] );
    }
-   
+   //
 	public function index(){
       $this->_view->setJs(['icon-index']);
       $this->_view->setCss(['fuenteIndexMonstserrat', 'fuenteIndexDroid','fuenteIndexRobot']);
@@ -20,17 +20,16 @@ class indexController extends Controller {
       $this->_view->setCSS([ 'stylesindex','animate' ]);
      $this->_view->setJs(['scriptsindex']);
      $r = $this->db->verAnuciosIndex( 1 );
-      $ico1 = [ 'fa-shopping-cart',  'fa-laptop',  'fa-lock'  ];
-
+      $ico1 = ['fa-shopping-cart', 'fa-laptop', 'fa-lock'];
+      //
       foreach($r as $i =>  $d){
-         $this->_view->datos1[]  =  [ $d[0] , $d[1], $d[2] ,  $ico1[$i]  ];
+         $this->_view->datos1[]=[ $d[0], $d[1], $d[2], $ico1[$i] ];
       }
-
       //
       if(isset( $_POST['accion'] )){
          switch ($_POST['accion']) {
             case 'createusuario':
-              $this->verficaParametros(  [ 'ID_us','nom1','nom2', 'ape1', 'ape2','fecha', 'pass', 'correo','FK_tipo_doc' ]  );
+              $this->verficaParametros( ['ID_us','nom1','nom2', 'ape1', 'ape2','fecha', 'pass', 'correo','FK_tipo_doc'] );
                   $u = [
                      $this->getSql('ID_us'),  //0 
                      $this->getSql('nom1'),   //1
@@ -122,40 +121,40 @@ class indexController extends Controller {
       //
 		$this->_view->renderizar('index', 3,0,1); // 1 con js de ur - 2 sin js url 
    }	
-
+   //
    public function entidad(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
-
+      //
       if( isset($_SESSION['usuario'])){
          $this->_view->renderizar('entidad');
-     }else{
-         $this->_view->renderizar('entidad', 1);
-     }
+      }else{
+          $this->_view->renderizar('entidad', 1);
+      }
    }
-
+   //
    public function inicieSesion(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs( ['login']  );
+      $this->_view->setJs( ['login'] );
       $this->_view->renderizar('inicieSesion', 1); 
    }
-
+   //
    public function datos(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs( ['login']  );
+      $this->_view->setJs( ['login'] );
       $this->_view->renderizar('datos', 1);
    }
-
+   //
    public function mision(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs( ['login']  );
+      $this->_view->setJs( ['login'] );
       if( isset($_SESSION['usuario'])){
          $this->_view->renderizar('mision');
      }else{
          $this->_view->renderizar('mision', 1);
      }
    }
-
+   //
    public function promocion(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $this->_view->setJs( ['login']  );
@@ -166,50 +165,50 @@ class indexController extends Controller {
          $this->_view->renderizar('promocion', 1);
      }
    }
-
+   //
    public function login(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon','reset.min','login'));
-      $this->_view->setJs(array('registrar' ));
+      $this->_view->setCss( ['font-Montserrat', 'google', 'animate', 'fontawasome-icon','reset.min','login'] );
+      $this->_view->setJs( ['registrar'] );
 		$this->_view->renderizar('login', 0);
    }	
-
+   //
    public function informes(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setCss(array( 'font-Montserrat', 'google', 'animate', 'fontawasome-icon'));
+      $this->_view->setCss( ['font-Montserrat', 'google', 'animate', 'fontawasome-icon'] );
       if( isset($_SESSION['usuario'])){
       $this->_view->renderizar('contact');
       }else{
           $this->_view->renderizar('contact', 1);
       }
    }	
-   
+   //
    public function logOut(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
       $s = new Session;
       $s->destroy();
       $this->redireccionar('index');
    }
-   
+   //
    public function ingreso(){
       $b = $this->validaCredenciales();
       if(!$b){
          $this->_view->login = ['response_status' => 'error', 'response_msg' => 'Credenciales no validas'];
-         $this->_view->setCSS([ 'stylesindex','animate' ]);
-         $this->_view->setJs(['scriptsindex']);
+         $this->_view->setCSS( [ 'stylesindex','animate' ] );
+         $this->_view->setJs( ['scriptsindex'] );
          $this->_view->renderizar('index', 3,0,1); // 1 con js de ur - 2 sin js url 
       }
    }
-   
+   //
    public function registro(){
       $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-      $this->_view->setJs(array( 'jquery-1.9.0','login' ));
+      $this->_view->setJs( ['jquery-1.9.0','login'] );
       $d =  $this->db->verDocumeto();
       $r =  $this->db->verRol();
       $this->_view->datos = [ $d, $r ];
       $this->_view->renderizar('registro', 1);
    }
-   
+   //
    private function validaCredenciales(){    
       //if(isset($_POST['empresa']) && isset($_POST['usuario']) && isset($_POST['clave'])){
          //extract($_POST);
@@ -234,7 +233,7 @@ class indexController extends Controller {
             $this->session        =  $this->objSession->desencriptaSesion();
             // GENERA VARIBLE DE SESSION CON EL CODIGO DEL MENU
             $_SESSION['s_menu']    = $this->generaMenu();
-                                     $this->verificarAcceso();
+                                    $this->verificarAcceso();
          }else{
             //$response['menssage']  = $_SESSION['message'] = 'Credenciales no validas';
             //$_SESSION['color']     = "danger";
@@ -257,7 +256,4 @@ class indexController extends Controller {
       }
      // return $this->validaUser([$r->row[0], $usuario, $clave]);
    }
-
-
-
 ?>

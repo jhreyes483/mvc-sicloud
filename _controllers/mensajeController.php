@@ -1,15 +1,14 @@
 <?php
 
 class mensajeController extends Controller{
-
+   //
    public function __construct(){
       parent::__construct();
       $this->db = $this->loadModel('consultas.sql', 'sql');
       $this->_view->setCss(array('font-Montserrat', 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
       $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'tablesorter-master/jquery.tablesorter'));
    }
-
-
+   //
    public function index(){
       $datos = $this->db->verMensaje1();
       echo'<table bg-primary class=" mx-auto col-lg-10 col-md-10 table table-bordered  table-striped bg-white table-sm mx-auto text-center  text-center">';
@@ -27,8 +26,7 @@ class mensajeController extends Controller{
       echo '</tbody>';
       echo '</table>';
    }
-
-
+   //
    public function nuevoMensaje(){
       $db      = $this->loadModel('consultas.sql', 'sql');  // Carga modelo
       $estado = 0;
@@ -40,5 +38,4 @@ class mensajeController extends Controller{
       include_once APP_LIBS.'chat2/index.php';
      // echo '<meta http-equiv="REFRESH" content="0;url="mensaje">';
    }
-
 }

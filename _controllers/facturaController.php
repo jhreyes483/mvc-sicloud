@@ -1,15 +1,13 @@
 <?php
 class facturaController extends Controller{
-
-
     public function __construct(){
-       parent::__construct();
-       $this->objSession  = new Session;
-       $this->session     = $this->objSession->desencriptaSesion();
-       $this->o_numeroLetras = new c_numerosLetras;
-       $this->db       = $this->loadModel('consultas.sql', 'sql');
-       $this->_view->setCss(array( 'font-Montserrat' , 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
-       $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+        parent::__construct();
+        $this->objSession  = new Session;
+        $this->session     = $this->objSession->desencriptaSesion();
+        $this->o_numeroLetras = new c_numerosLetras;
+        $this->db       = $this->loadModel('consultas.sql', 'sql');
+        $this->_view->setCss(array( 'font-Montserrat' , 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
+        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
     }
     //
     public function index(){
@@ -65,52 +63,47 @@ class facturaController extends Controller{
                     ];  
         $this->_view->renderizar('index');
     }
-
-
-
-
-// Preventa interna 
-   public function m_deleteProductoPreventa(){
-      unset($_SESSION['venta'][$_REQUEST['id'] ]);
-      $_SESSION['message'] ='Elimino producto de Pre venta';
-      $_SESSION['color'] = 'success';
-      $this->redireccionar('factura');
-   }
-
-   public function  m_addProductoPreventa(){
-      // Agraga producto a factura
-      if (! isset($_SESSION['venta'])){ $_SESSION['venta'] = [];}
-      if(  !in_array(  $this->getSql('ID_prod')   ,   array_column($_SESSION['venta'] , 0 ) )  ){ 
-         $subTotal = ($this->getSql('cantidad')  *  $this->getSql('val_prod') );
-         $_SESSION['venta'][] = [
-             $this->getSql('ID_prod') ,
-             $this->getSql('nom_prod') ,
-             $this->getSql('stok_prod') ,
-             $this->getSql('stok_prod'),
-             $this->getSql('val_prod'),
-             $this->getSql('Cat'),
-             $subTotal
-         ];  
-         $_SESSION['message'] = 'Agrego producto';
-         $_SESSION['color']   = 'success'; 
-         $total =  array_sum(  array_column($_SESSION['venta'] , 6 ) ) ;
-         $letras =  $this->o_numeroLetras->convertirEurosEnLetras($total );
-         //
-         if( $total > 0 ){
-             $this->_view->total = ['response_status' => 'ok' , 'response_msg' => [ $total, $letras ] ];
-         }else{
-             $this->_view->total = ['response_status' => 'error', 'response_msg' => 'No hay datos'];
-         }
-         //
-         $this->redireccionar('factura');
-      }else{
-         $_SESSION['message'] = 'Error, Producto ya existe';
-         $_SESSION['color']   = 'danger'; 
-         $this->redireccionar('factura');
-      }
-   }
-
-
+    // Preventa interna 
+    public function m_deleteProductoPreventa(){
+       unset($_SESSION['venta'][$_REQUEST['id'] ]);
+       $_SESSION['message'] ='Elimino producto de Pre venta';
+       $_SESSION['color'] = 'success';
+       $this->redireccionar('factura');
+    }
+    //
+    public function  m_addProductoPreventa(){
+        // Agraga producto a factura
+        if (! isset($_SESSION['venta'])){ $_SESSION['venta'] = [];}
+        if(  !in_array(  $this->getSql('ID_prod')   ,   array_column($_SESSION['venta'] , 0 ) )  ){ 
+           $subTotal = ($this->getSql('cantidad')  *  $this->getSql('val_prod') );
+           $_SESSION['venta'][] = [
+               $this->getSql('ID_prod') ,
+               $this->getSql('nom_prod') ,
+               $this->getSql('stok_prod') ,
+               $this->getSql('stok_prod'),
+               $this->getSql('val_prod'),
+               $this->getSql('Cat'),
+               $subTotal
+           ];  
+           $_SESSION['message'] = 'Agrego producto';
+           $_SESSION['color']   = 'success'; 
+           $total =  array_sum(  array_column($_SESSION['venta'] , 6 ) ) ;
+           $letras =  $this->o_numeroLetras->convertirEurosEnLetras($total );
+           //
+           if( $total > 0 ){
+               $this->_view->total = ['response_status' => 'ok' , 'response_msg' => [ $total, $letras ] ];
+           }else{
+               $this->_view->total = ['response_status' => 'error', 'response_msg' => 'No hay datos'];
+           }
+           //
+           $this->redireccionar('factura');
+        }else{
+           $_SESSION['message'] = 'Error, Producto ya existe';
+           $_SESSION['color']   = 'danger'; 
+           $this->redireccionar('factura');
+        }
+    }
+    //
     // Preventa web
     public function generaPreVenta(){
         //rutFromIni();
@@ -209,9 +202,6 @@ class facturaController extends Controller{
         }
         $this->redireccionar('cliente/catalogo');
     }
-
-
-
     // Factucion
     public function m_facturar($a , $tipo = 1){
         switch ($tipo) {

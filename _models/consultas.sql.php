@@ -427,6 +427,42 @@ public function loginUsuarioModel($d){
    return $r;
  } // fin de busqueda por ID
 
+
+
+
+
+// Busqueda por letra
+ public function usuarioLetra($us){
+   $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo, 
+      R.nom_rol,  R.nom_rol,
+      R_U.estado, U.fecha
+      FROM usuario U 
+      JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
+      JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
+      WHERE 
+      U.nom1 LIKE '$us%'
+      ";
+   $c = $this->db->prepare($sql);
+   $c->execute();
+   return $c->fetchAll();
+ } 
+
+ public function UserAll(){
+   $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo, 
+      R.nom_rol,  R.nom_rol,
+      R_U.estado, U.fecha
+      FROM usuario U 
+      JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
+      JOIN rol  R ON R_U.FK_rol = R.ID_rol_n";
+   $c = $this->db->prepare($sql);
+   $c->execute();
+   return $c->fetchAll();
+ } 
+
+
+
+
+
  public function selectUsuariosPendientes($est){
    $sql = "SELECT U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo,  
       R.nom_rol, 

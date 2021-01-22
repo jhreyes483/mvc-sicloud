@@ -55,5 +55,4 @@ class logisticaController extends Controller
       $this->getSeguridad('DFERA');
       $this->_view->renderizar('logistica-solicitud');
    }   
-
 }

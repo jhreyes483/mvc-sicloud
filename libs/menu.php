@@ -71,14 +71,14 @@
     $aMenu['V'][1]         = [ 'CONSTITUCION'];
     $aMenu['V'][1][1]      = [ 'QUIENES SOMOS',''.BASE_URL.'index/entidad'];
     $aMenu['V'][1][2]      = [ 'MISION Y VISION', ''.BASE_URL.'index/mision'];
-    $aMenu['V'][2]         = [ 'PROMOCIONES',''.BASE_URL.'promocion'];
+    $aMenu['V'][2]         = [ 'PROMOCIONES',''.BASE_URL.'index/promocion'];
     $aMenu['V'][3]         = [ 'PRODUCTOS'];
     $aMenu['V'][3][1]      = [ 'CATALOGO',''.BASE_URL.'cliente/catalogo','S1C'];
     $aMenu['V'][3][2]      = [ 'CATEGORIAS', ''.BASE_URL. 'categoria', 'S1CC'];
     $aMenu['V'][3][3]      = [ 'CANTIDAD',''.BASE_URL.'logistica/categoria','S1CG'];
     $aMenu['V'][3][5]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
     $aMenu['V'][4]         = [ 'USUARIOS'];
-    $aMenu['V'][4][1]      = [ 'CUENTAS', ''.BASE_URL.'admin/ControlUsuarios', 'S1SCSD'];
+    $aMenu['V'][4][1]      = [ 'CUNENTAS', ''.BASE_URL.'admin/ControlUsuarios', 'S1S'];
     $aMenu['V'][4][2]      = [ 'PUNTOS',''.BASE_URL.'comercial/puntos', 'S1P'];
     $aMenu['V'][4][3]      = [ 'FACTURACION',''.BASE_URL.'factura', 'S1F'];
     $aMenu['V'][4][4]      = [ 'CONSULTA FACTURA',''.BASE_URL.'supervisor/consFactura', 'S1CF'];
