@@ -78,7 +78,7 @@
     $aMenu['V'][3][3]      = [ 'CANTIDAD',''.BASE_URL.'logistica/categoria','S1CG'];
     $aMenu['V'][3][5]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
     $aMenu['V'][4]         = [ 'USUARIOS'];
-    $aMenu['V'][4][1]      = [ 'CUNENTAS', ''.BASE_URL.'admin/ControlUsuarios', 'S1S'];
+    $aMenu['V'][4][1]      = [ 'CUENTAS', ''.BASE_URL.'admin/ControlUsuarios', 'S1S'];
     $aMenu['V'][4][2]      = [ 'PUNTOS',''.BASE_URL.'comercial/puntos', 'S1P'];
     $aMenu['V'][4][3]      = [ 'FACTURACION',''.BASE_URL.'factura', 'S1F'];
     $aMenu['V'][4][4]      = [ 'CONSULTA FACTURA',''.BASE_URL.'supervisor/consFactura', 'S1CF'];
