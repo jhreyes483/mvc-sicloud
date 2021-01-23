@@ -1,7 +1,6 @@
 <?php
 class c_notificacion extends Controller {
 
-
    public function __construct(){
       if(isset($_GET['mensaje'])) $this->m_nuevoMensaje();
    }
@@ -9,6 +8,88 @@ class c_notificacion extends Controller {
 
    public function index()
    {
+
+   }
+
+   public function notificacionPorRolLogin(){
+      $db   = $this->loadModel('consultas.sql', 'sql');  // Carga modelo
+      $objs = new Session;
+      $s    = $objs->desencriptaSesion();
+      $r    = $db->verNotificaciones($s['usuario']['ID_rol_n']);
+      if (isset($_SESSION['usuario'])) {
+         foreach ($r as $row) {
+            switch ($row[4]) { // id_notificacion
+               case 1: // Activar cuenta admin
+                 $ruta = 'admin/consulta';
+                 $m    =  $row['nom_tipo'].' Id usuario: '. $row['descript'];
+                 $id   =  $row['descript'];
+                 $ac   =  'bId';
+                 break;
+               case 3: // producto agitado - logistica
+                 $ruta = '/producto';
+                 $m    =  $row[5];
+                 break;
+               case 4:// informe mensual - supervisor
+                 $ruta = 'supervisor/infvrango';
+                 $m    = $row[5]; 
+                 break;
+               case 5: // Reporte de venta pendiente dar permisos en menu usuario 
+                 if( $s['usuario']['ID_rol_n'] == 4 ){ // si es ventas
+                   $ruta = 'supervisor/facturas';
+                   $us   = $s['usuario']['ID_us'];
+                   $m    = $row[5];
+                 }
+                 $ruta = 'supervisor/facturas';
+                 $m    = $row[5];
+                 break;
+               case 8:
+                 $ruta = 'admin/logActividad';
+                 $m    =  $row[5];
+                 $id   = '';
+                 break; 
+               case 10:
+                 $ruta =  'index/promocion';
+                 $m    =  $row[5];
+                 break;
+               case 11: // pedido  - proveedor
+                 $ruta = 'proveedor/pedidos';
+                 $m    =  $row[5];
+                 break;
+               case 12:
+                 $ruta = 'comercial/solicitud';
+                 $m    = $row[5];
+                 break;
+            }
+            $a[] = [ $m, $ruta, ($ac??''), ($id??''), ($us??'') ];
+         }
+      
+         if( count($a) !=0 ){
+            return [ 'response_status'=>'ok', 'response_msg'=>$a ];
+         }else{
+            return [ 'response_status' => 'error', 'response_msg' => 'No hay notificaciones'];
+         }
+      }
+            
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    }
 

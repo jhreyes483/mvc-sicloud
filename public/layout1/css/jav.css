@@ -10,6 +10,61 @@ body {
 
 
 /*---------------------------------------------- 
+          S T A R T  -  C O L O R E S
+------------------------------------------------*/
+.color-bg-mod {background-color: var(--naranja-sicloud);}
+.verde {background-color: #35CB9C;}
+.verdedown {background-color: #16a085;}
+.verde2 {background-color: #27C260;}
+.greenlight {background-color: #00ff83;}
+.greenitt {background-color: #99ff33;}
+.border-greenitt {border: 4px solid #99ff33 !important;}
+.border-cot {border: 12px solid var(--verde-Rh) !important;}
+.violeta {background-color: var(--violetacm);}
+.violetadown {background-color: var(--violcm-hover);}
+.azul {background-color: #0898f1 !important;}
+.azuldown {background-color: #2980b9;}
+.azuldark{background: #0056b2;}
+.bg-azulight {background-color: #bbdefb;}
+.bg-light {background-color:#f0f0f0 !important;}
+.amarillo {background-color: #f1b80f;}
+.amarillodown {background-color: var(--naranja-s);}
+.naranja {background-color: #f97e22;}
+.amarillo-light {background-color: #fff9c4;}
+.rojo {background-color: var(--naranja-sicloud);}
+.rojolight {background-color: #ff1744;}
+.rlight {background-color: #ffa6a6;}
+.rojodownd {background-color: #c0392b;}
+.gris {background-color: #7f8c8d;}
+.gristotalv {background-color: #2c3e50 !important;}
+.grislight {background-color: #dadbdb;}
+.grismedium {background-color: #2a4c63;}
+.text-red {color: var(--naranja-sicloud);}
+.text-com {color: var(--violetacm)}
+.text-prod {color: var(--colorProd);}
+.text-cot {color: var(--naranja-s);}
+.text-log {color: var(--blue);}
+.text-inv {color: var(--azul-Invt);}
+.text-redd {color: #c0392b;}
+.text-orange {color: #f97e22;}
+.text-amarillo {color: var(--naranja-s);}
+.text-yellow {color: #f4dc1a;}
+.text-blue {color: #0898f1;}
+.text-green {color: #68c000}
+.text-greenlight {color: #00ff83;}
+.text-rh {color: #00bfa5;}
+.text-cyan{color: var(--azul-Log2)}
+.text-magenta{color: var(--violcm-hover)}
+.f10 {font-size: .95em}
+.pinkpastel{background-color: rgba(233, 30, 99, 0.3);}
+/* Color */
+/*---------------------------------------------- 
+          E N D - C O L O R E S
+------------------------------------------------*/
+
+
+
+/*---------------------------------------------- 
                 BOTONES
 ------------------------------------------------*/
 .btn-default {
@@ -176,22 +231,10 @@ body {
     box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
   }
   
-
-  
-
-
-
-
-
-
-
-
-
 nav {
-
    display: block;
-border-bottom: 2px #FADB0C solid;
-border-top: 2px #FADB0C  solid;
+border-bottom: 2px var(--naranja-sicloud) solid;  
+border-top: 2px var(--naranja-sicloud) solid; 
 text-transform: capitalize;
 
 
@@ -564,4 +607,221 @@ border: 1px black solid;
 a.bg-inverse:focus, a.bg-inverse:hover {
   background-color: #101112 !important;
 }
+
+
+/*****************************
+      borde de card
+/****************************/
+@font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; src: url("../fonts/Roboto-Regular-webfont.woff");}
+@font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 700; src: url("../fonts/RobotoCondensed-Regular-webfont.woff");}
+@font-face { font-family: 'Roboto Light'; src: url("../fonts/Roboto-Light-webfont.woff");}
+@font-face { font-family: 'Roboto Bold'; src: url("../fonts/Roboto-Bold-webfont.woff");}
+
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  }
+  @font-face { font-family: 'Roboto'; font-style: normal; font-weight: 400; src: url("../fonts/Roboto-Regular-webfont.woff");}
+  @font-face { font-family: 'Roboto Condensed'; font-style: normal; font-weight: 700; src: url("../fonts/RobotoCondensed-Regular-webfont.woff");}
+  @font-face { font-family: 'Roboto Light'; src: url("../fonts/Roboto-Light-webfont.woff");}
+  @font-face { font-family: 'Roboto Bold'; src: url("../fonts/Roboto-Bold-webfont.woff");}
+
+:root {
+  --violetacm: #6a1b9a;
+  --violcm-hover: #d500f9;
+  --naranja-sicloud: #d5e03b;
+  --naranja-sicloud2: #dc3545;
+  --naranja-s: #f7951e;
+  --naranja-s2: #f25d00;
+  --azul-Invt: #304ffe;
+  --azul-Invt2: #4a148c;
+  --azul-Log: #0d47a1;
+  --azul-Log2: #18ffff;
+  --azul-Log3: #106cf7;
+  --verde-Rh: #70F570;
+  --verde-Rh2: #00bfa5;
+  --verde-Rh3: #64dd17;
+  --verde-Equip: #2aaf5d;
+  --verde-Equip2: #49d844;
+  --colorProd: #01579b;
+  --gris90: #212836;
+  --gris0: rgba(92, 92, 92, 0.5);
+  --sombradark: rgba(3, 3, 3, 0.774);
+  --violcm-hover: #d500f9;
+  --textDark: #8492a1;
+}
+
+
+/*---------------------------------------------- 
+          C A J A S - B O X
+------------------------------------------------*/
+
+/* Box Cajas */
+.box-section {
+  border-radius: 4px;
+  background-color: #fff;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* SELECTOR CAJAS */
+[class^="caja-"] {
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+}
+.card-header>.box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+.box-card{
+  background-color: #fff;
+  border-top: 3px solid var(--naranja-sicloud);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
+  width: 100%;
+}
+
+.box.box-azul {border-top-color: #0898f1;}
+.card-header {
+  color: #444;
+  display: block;
+  padding: 5px;
+  position: relative;
+}
+/* .box-mod {
+  display: flex;
+  margin-bottom: 10px;
+}
+.box-mod>h3 {
+  margin-left: 15px;
+  margin-bottom: 0px;
+  font-size: 2em;
+  line-height: 1.8em;
+}
+.box-mod>h3>small {
+  font-size: 0.4em;
+  line-height: 1.8em;
+}
+.box-mod>h3>small ul {
+  display: flex;
+  list-style: none;
+} */
+.card-header.border-jav {
+  border-bottom: 1px solid #f4f4f4;
+  padding: 5px 20px;
+}
+.box-title {
+  display: inline-block;
+  font-size: 1.6em;
+  font-family: 'Roboto Condensed',Helvetica,Arial,sans-serif;
+  margin: 0;
+}
+
+.box-factura {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: 700;
+  border-radius: 12px;
+  border: 1px solid #000;
+  margin: 5px;
+  line-height: 1;
+}
+.box-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 5px 20px;
+}
+.box-body-form {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 10px;}
+.box-table {
+  font-size: 1.2em;
+}
+.fa-3x {
+  font-size: 2.5em}
+.barra {
+  position: relative;
+  background-color: bisque;
+  display: flex;
+  padding: 15px 15px 0px 15px;
+}
+/*---------------------------------------------- 
+          C A J A S - B O X
+------------------------------------------------*/
+
+/*---------------------------------------------- 
+               M E N U 
+------------------------------------------------*/
+.menu-right {
+  float: right;
+  background-color: aqua;
+}
+
+.menu-right ul {
+  display: flex;
+  flex-flow: row nowrap;
+  list-style: none;
+  margin: 0 auto;
+}
+
+.menu-right ul li {
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+.menu-right ul li a {
+  text-decoration: none;
+}
+
+option {
+  font-size: 1.2em;
+}
+/*---------------------------------------------- 
+               M E N U 
+------------------------------------------------*/
+
+
+
+
+
+
+#return-to-top .svg-inline--fa {
+  color: #fff;
+  margin: 0;
+  position: relative;
+  left: 13px;
+  top: 10px;
+  transition: all 0.3s ease;
+}
+#return-to-top:hover {
+  background-color: var(--naranja-sicloud2);
+  color: #fff;
+
+}
+#return-to-top:hover .svg-inline--fa {
+  color: #fff;
+  top: 5px;
+}
+
+/*---------------------------------------------- 
+          E N  D - B O T O N - U P
+------------------------------------------------*/
+
+
+
+
+
  
