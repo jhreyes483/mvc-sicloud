@@ -40,6 +40,15 @@ class supervisorController extends Controller{
         $this->_view->renderizar('factura',0);
     }
 
+
+
+
+    public function infFactura(){
+        $this->_view->renderizar('generadorInfFactura');
+    }
+
+
+
     // PENDINTE CIFRAS A LETRAS
     public function facturas(){
 
