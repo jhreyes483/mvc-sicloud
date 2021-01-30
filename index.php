@@ -16,10 +16,6 @@ try{
    
     require_once APP_LIBS. 'funciones.php';
     require_once APP_PATH. 'Config.php';
-    @session_start();
-    if(!isset($_SESSION['usuario'])){
-        require_once APP_LIBS. 'modal-login.phtml';
-    }   
     require_once APP_PATH. 'Request.php';
     require_once APP_PATH. 'Bootstrap.php';
     require_once APP_PATH. 'Controller.php';
