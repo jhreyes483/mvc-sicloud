@@ -1,42 +1,5 @@
 <?php
-/*
 
-
-$objSession =new Session();
-$u = $objSession->desencriptaSesion();
-
-//comprobacion de rol
-$in = false;
-switch ($u['usuario']['ID_rol_n']) {
-    case 1:
-        $in = true;
-    break;
-    case 2:
-        $in = true;
-    break;
-    case 0:
-        $in = true;
-    break;
-    default:
-        echo "<script>alert('No tiene permiso para ingresar a este modulo');</script>";
-        echo "<script>window.location.replace('index.php');</script>";
-    break;
-}
-if ($in == false) {
-    echo "<script>alert('No tiene permiso para ingresar a este modulo');</script>";
-    echo "<script>window.location.replace('index.php');</script>";
-
-    */
-//} else {
-
-
-
-
-// $objCon = new ControllerDoc();
-
-
-
-//$objCon = new ControllerDoc();
 
 
 cardtitulo("Ingreso de producto-Bodega");
@@ -82,7 +45,7 @@ if (isset($_SESSION['message'])) {
     setMessage();
 }
 ?>
-<div class="card col-md-4 mx-auto">
+<div class="card box-card col-md-4 mx-auto">
     <div class="card-body shadow p-3 mb-5 bg-white">
         <h5 class="card-title text-center ">Seleccione producto</h5>
         <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
@@ -115,7 +78,7 @@ if (isset($_SESSION['message'])) {
 
 if ($formulario == true) {  ?>
 
-    <div class="card card-body text-center  col-md-10 mx-auto my-4 ">
+    <div class="card box-card card-body text-center  col-md-10 mx-auto my-4 ">
         <div class=" container-fluid ">
             <div class="card card-body shadow mb-2 ">
                 <div class="mx-auto text-center ">

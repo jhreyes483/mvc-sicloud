@@ -1,14 +1,12 @@
 <?php
 $o = new Session;
 $s =  $o->desencriptaSesion();
+$_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
 $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 'Consulta de usuarios';
 ?>
 <div class="col-md-8 mx-auto card card-body text-center bk-rgb my-2">
     <h5><?= $title ?></h5>
 </div><br>
-
-
-
 <script>
     function enviar(valor) {
         var r = document.getElementById('parametro').value = valor;
@@ -40,14 +38,34 @@ $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 
         }
     }
 </script>
-<div class="card card-body col-lg-2 mx-auto">
+<div class="card card-body col-sm-4 col-md-2 col-lg-3 mx-auto border-abajo">
  <button class="btn btn-primary toggle" id="">Filtros</button>
 </div>
 
 
 <form action="<?= BASE_URL ?>admin/consulta" method="post" id="form_buscar">
-        <div class="col-md-9 mx-auto card  card-body form my-2">
-            <div class="form-inline  justify-content-between align-items-center mb-2 mx-auto">
+
+        <div class=" text-center col-md-10 mx-auto card box-card card-body form-inline my-2 form ">
+<div class="col-lg-12  ">
+<?php
+
+
+foreach(['Inactivo','Activo','Retirado'] as $i=> $d  ){
+   $enviar =  ( isset($_POST['parametro']) && isset($_POST['estado'])) ? $_POST['parametro'] : '*';
+?>
+                        <div id="estado" class="my-2 custom-checkbox custom-control-inline ">
+                           <input name="estado[]" type="checkbox" class="custom-control-input" id="customCheckd<?=$i?>"
+                           onchange="submit(this)"
+                              value="<?= $i ?>" <?=  ( isset($_POST['estado']) &&  in_array($i, $_POST['estado'] ))? 'checked': ''?>  >
+                           <label class="custom-control-label mr-2" for="customCheckd<?=$i?>"><?= $d ?></label>
+                        </div>
+<?php
+}
+echo ( ( isset($this->rol))? '<strong>  Rol: </strong>'.$this->rol:'' );
+?>
+</div>
+
+            <div id="letras" class="form-inline  justify-content-between align-items-center mb-2 mx-auto">
                 <?php
                 for ($i = 65; $i < 91; $i++) {
                     $t = null;
@@ -61,18 +79,18 @@ $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 
                 }
                 ?>
                 <a id="todos" onClick="enviar('*')" ; class="btn btn-dark text-white  <?= (isset($t)) ? 'btn-primary' : '' ?> ml-2 text-white">TODOS</a>
-                <input name="parametro" type="hidden" id="parametro" value="">
+                <input name="parametro" type="hidden" id="parametro" value="<?= ($_POST['parametro'] ?? '' )   ?>">
             </div>
         </div>
     </form>
 
 <div class="form" style="display: none">
-    <div class="card card-body col-md-8 mx-auto my-2 text-center ">
+    <div class="card card-body col-md-8 mx-auto my-2 text-center border-arriba">
 
         <div class="row">
             <!-- Primera fila  4 de 12 col-->
             <div class="card card-body col-md-4 shadow ">
-                <h6>Busqueda por Usuario</h6>
+                <h6>Usuario</h6>
                 <div class="card card-body mx-auto col-10 my-2 shadow border">
                     <!-- form por id -->
                     <form action="<?= BASE_URL ?>admin/consulta" method="POST">
@@ -86,28 +104,30 @@ $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 
 
             <!-- Segunda fila 8 de  12 col-->
             <div class="card card-body col-md-4 shadow">
-                <h6>Busqueda por Estado de cuenta</h6>
-                <div class="card card-body mx-auto col-10 my-2 shadow border">
-                    <form action="<?= BASE_URL ?>admin/consulta" method="POST">
-                        <div class="form-group">
-                            <select name="estado" class="form-control " onChange="submit(this)">
-                                <?php
-                                echo '<option ' . ((!isset($_POST['estado'])) ? ' selected' : '') . 'disable=""  value=""> -- Seleccione -- </option>';
-                                foreach ($this->datosFijos[4]  as $i => $d) {
-                                    echo '<option ' . (($_POST['estado'] != '' &&  $_POST['estado']  == $i) ? ' selected' : '') . ' value="' . $i . '">' . $d . '</option>';
-                                }
-                                ?>
-                            </select>
+                <h6>Estado de cuenta</h6>
+                <form action="" method="post">
+                
+<?php
+foreach(['Inactivo','Activo','Retirado'] as $i=> $d  ){
+   $enviar =  ( isset($_POST['parametro']) && isset($_POST['estado'])) ? $_POST['parametro'] : '*';
+?>
+                        <div id="estado" class="col-md-12 custom-checkbox custom-control-inline">
+                           <input name="estado[]" type="checkbox" class="custom-control-input" id="customCheck<?=$i?>"
+                           onchange="submit(this)"
+                              value="<?= $i ?>" <?=  ( isset($_POST['estado']) &&  in_array($i, $_POST['estado'] ))? 'checked': ''?>  >
+                           <label class="custom-control-label mr-2" for="customCheck<?=$i?>"><?= $d ?></label>
                         </div>
+<?php
+}
 
-                        <input type="hidden" value="estado" name="accion">
-                    </form><!-- fin de form estado filtro estado de cuenta -->
-                </div><!-- fin de card -->
+?>
+
+
             </div><!-- fin de segundsa divicion -->
             <!-- -------------------------------------------------------------- -->
             <!-- Tercera fila 12 de 12 col bootstrap-->
             <div class="card card-body col-md-4 shadow">
-                <h6>Busqueda por rol</h6>
+                <h6>Rol</h6>
                 <div class="card card-body mx-auto col-10 my-2 shadow border">
                     <!-- formulario de filtro por rol -->
                     <form action="<?= BASE_URL ?>admin/consulta" method="POST">
@@ -123,9 +143,13 @@ $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 
                             </select>
                         </div>
                         <input type="hidden" name="accion" value="consRol">
+                        <!-- 
+                        <input type="hidden" name="parametro" value="<?= ($_POST['parametro']??'')  ?>"  >
+                         -->
                     </form><!-- fin form ver por rol -->
                 </div><!-- fin de card -->
             </div><!-- fin de tercera divicion -->
+            </form>
             <!-- -------------------------------------------------------------- -->
         </div><!-- fin de row -->
     </div>
@@ -224,7 +248,7 @@ if($s ['usuario']['ID_rol_n'] == 1 ){
     </div><!-- div de tablas -->
     </div>
     </div><!-- fin de primera divicion -->
-    <div class="card card-body col-lg-11 mx-auto my-4 text-center ">
+    <div class="card box-card card-body col-lg-11 mx-auto my-4 text-center ">
         <h5 class="my-2">Usuarios</h5>
         <div class="row col-lg-10 mx-auto">
             <!-- -------------------------------------------------------------- -->

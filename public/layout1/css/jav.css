@@ -1,11 +1,10 @@
 
 
 body {
-  background-color: #dfdfdf;
-  font-size: 12px;
-  font-family: 'Roboto',Helvetica,Arial,sans-serif;
-  overflow-x: hidden;
-  transition: .3s ease all;
+
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #dbe3eb, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #dfe7ee, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
 
@@ -385,26 +384,27 @@ clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70
   clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);
 }
 
-
-
-
 .texto-video{
   color: white; text-shadow: black 0.1em 0.1em 0.2em;
   font-size: 40px;
   line-height: 56px;
   font-weight:  700;
-
-  
 }
 
+.border-abajo{
+  border-bottom: 2px var(--naranja-sicloud) solid;
+}
+.border-arriba{
+  border-top: 2px var(--naranja-sicloud) solid;
+}
 
 .bk-rgb
 {
- background: #DFDDDD;
+  border-top: 5px solid var(black solid)  !important;
+  background: #DFDDDD  ;
  /* margin: 1em auto; */  
-border: 1px black solid;
- opacity: 0.67;
-    
+  border: 1px black solid;
+  opacity: 0.67;
 }
 
 /* css portal */
@@ -631,7 +631,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 :root {
   --violetacm: #6a1b9a;
   --violcm-hover: #d500f9;
-  --naranja-sicloud: #d5e03b;
+  --naranja-sicloud:  #99ff33;
   --naranja-sicloud2: #dc3545;
   --naranja-s: #f7951e;
   --naranja-s2: #f25d00;

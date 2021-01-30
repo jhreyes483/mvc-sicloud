@@ -11,13 +11,17 @@ $(document).ready(function() {
   var mostrar = $("#mostrar");
   var toggle = $(".toggle");
   var elemento = $(".form");
+  var letras = $("#letras");
+
 
   ocultar.click(function() {
-    elemento.hide(1000);
+    //elemento.hide(1000);
+    //letras.toggle(1200);
   });
 
   mostrar.click(function() {
-    elemento.show(1000);
+   // elemento.show(1000);
+    //letras.toggle(1200);
   });
 
   toggle.click(function() {
@@ -25,16 +29,20 @@ $(document).ready(function() {
     
    
     if( formFiltro == false  ){
-      elemento.toggle(1000);
+      // letras.toggle(1200);
+      
+      
       t.text("Por letra")
       formFiltro = true;
     }else{
-    
-      elemento.toggle(1000);
+     // letras.toggle(1200);
+     // elemento.toggle(1000);
       t.text("Fitros")
       formFiltro =false;
      // filtro = true;
     }
+    letras.toggle(1000);
+    elemento.toggle(1000);
   });
 
 

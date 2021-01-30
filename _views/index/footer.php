@@ -21,6 +21,12 @@
                     </div>
                 </div>
             </div>
+            <script>
+     //   $('table thead tr th ').addClass('color-bg-mod text-white table-bordered px-2');
+        //$('.card').addClass('box-card');
+    </script>
+
+
         </footer>
 
 

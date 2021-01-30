@@ -5,7 +5,7 @@
 
 function cardAviso(){echo'
     <div class="row">
-        <div class="card mb-5 p-4 col-sm-12 col-lg-6 mx-auto  ">
+        <div class="card mb-5 p-4 col-sm-12 col-lg-6 mx-auto border-abajo ">
             <div class="col-md-10 col-12 mx-auto mt-6 ">
                 <div class="row">
                     <div class="col-md-12  mx-auto text-center text-white ">

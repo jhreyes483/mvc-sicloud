@@ -310,7 +310,8 @@ public function loginUsuarioModel($d){
 
  */
 
-   public function  selectUsuarioRol($id,  $tipo = 0){
+   public function  selectUsuarioRol($id,  $tipo = 0, $estado=null ){
+      $sqlEstado = ( isset($estado) && $estado != '')? " AND R_U.estado IN ($estado)" : "";
        $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, 
        U.ape1, U.ape2, U.pass, U.foto, U.correo, 
        R.nom_rol,  R.nom_rol,
@@ -318,7 +319,7 @@ public function loginUsuarioModel($d){
        FROM usuario U 
        JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
        JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
-       WHERE R.ID_rol_n IN ( :id )
+       WHERE R.ID_rol_n IN ( $id ) $sqlEstado
         ";
        $c = $this->db->prepare($sql);
        $c->bindValue(":id", $id);
@@ -327,14 +328,14 @@ public function loginUsuarioModel($d){
 
        switch ($tipo) {
          case 0:
-         $r = $c->fetchAll();
-         return $r;
-         break;
+            $r = $c->fetchAll();
+            return $r;
+            break;
          case 1:
          $r = $c->fetchAll(PDO::FETCH_ASSOC);
-        // print json_encode($r, JSON_UNESCAPED_UNICODE);
-         return $r;
-         break;
+            // print json_encode($r, JSON_UNESCAPED_UNICODE);
+            return $r;
+            break;
 
        }
        
@@ -432,7 +433,14 @@ public function loginUsuarioModel($d){
 
 
 // Busqueda por letra
- public function usuarioLetra($us){
+ public function usuarioLetra($us, $estado = ''){
+   if ( $estado != '' ){
+      $sqlEstado = 'AND R_U.estado IN ('.$estado.')';
+   }else{ 
+      $sqlEstado = '';
+   }
+
+
    $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo, 
       R.nom_rol,  R.nom_rol,
       R_U.estado, U.fecha
@@ -440,20 +448,21 @@ public function loginUsuarioModel($d){
       JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
       JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
       WHERE 
-      U.nom1 LIKE '$us%'
-      ";
+      U.nom1 LIKE '$us%' $sqlEstado
+       ";
    $c = $this->db->prepare($sql);
    $c->execute();
    return $c->fetchAll();
  } 
 
- public function UserAll(){
+ public function UserAll($sqlEstado=''){
+   $sqlEstado = ($sqlEstado != '') ?  " AND R_U.estado IN ( $sqlEstado ) " : "" ;
    $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, U.ape1, U.ape2, U.pass, U.foto, U.correo, 
       R.nom_rol,  R.nom_rol,
       R_U.estado, U.fecha
       FROM usuario U 
       JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
-      JOIN rol  R ON R_U.FK_rol = R.ID_rol_n";
+      JOIN rol  R ON R_U.FK_rol = R.ID_rol_n $sqlEstado";
    $c = $this->db->prepare($sql);
    $c->execute();
    return $c->fetchAll();

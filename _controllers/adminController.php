@@ -34,11 +34,23 @@ class adminController extends Controller{
         $this->_view->renderizar('controlUsuarios');
     }
     //
-    public function consulta(){
+    public function consulta(){ 
         //
         $this->datosFijos();
+        if(isset($_POST['rol'])){
+            $roles=[
+                '1'=>'Administrador',
+                '2'=>'Bodega',
+                '3'=>'Supervisor',
+                '4'=>'Ventas',
+                '5'=>'Provedor',
+                '6'=>'Cliente'
+            ];    
+            $this->_view->rol = $roles[$_POST['rol']];
+        }
+       // $_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
         if(( isset( $_POST['parametro'])) &&  $_POST['parametro'] != '*'){
-            $r  = $this->db->usuarioLetra($this->getsql('parametro'));
+            $r  = $this->db->usuarioLetra( $this->getsql('parametro'), ((implode( ',',$_POST['estado']) )??'')  );
             if( count($r) != 0){
                 $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
             }else{
@@ -46,7 +58,8 @@ class adminController extends Controller{
             }
             
         }else{
-            $r  = $this->db->UserAll($this->getsql('parametro'));
+            $estado= ( isset($_POST['estado']) )? implode( ',', $_POST['estado'] ) : '';
+            $r  = $this->db->UserAll($estado);
             $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
         }
 
@@ -90,13 +103,18 @@ class adminController extends Controller{
                     break;
                 case 'consRol':
                     // filtro por rol
-                    $r = $this->db->selectUsuarioRol($this->getInt('rol'));
+                    if( isset($_POST['parametro'] )){
+                        
+                    }else{
+                        $estado= ( isset($_POST['estado'])? implode(',', $_POST['estado']) : '');
+                        $r = $this->db->selectUsuarioRol($this->getInt('rol'), 1 , $estado);
+                    }
                     if (count($r) != 0) {
                         $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
                         $_SESSION['color'] = 'info';
                         $_SESSION['message'] = 'filtro por rol';
                     } else {
-                        $this->_view->tabla = ['response_status' => 'error', 'response_msg ' => 'No hay usuarios'];
+                        $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'No hay usuarios'];
                         $_SESSION['color'] = 'danger';
                     }
                 break;

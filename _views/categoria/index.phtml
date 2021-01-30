@@ -31,7 +31,7 @@ setMessage();
 ?>
 
             <div class="card">
-                <div class="card-header shadow">Registro Categoria</div>
+                <div class="box-card card-header shadow">Registro Categoria</div>
                 <div class="card-body">
                     <form action="" method="POST">
                         <div class="form-group"><input class="form-control" type="text" name="nom_categoria" placeholder="Categoria" required autofocus maxlength="30"></div>
@@ -45,8 +45,8 @@ setMessage();
 <?php
 if($this->datos['response_status']  == 'ok' ){
 ?>
-        <div class="col-md-auto p-2">
-            <table id="categorias" class="mx-auto bg-white text-center">
+        <div class="col-md-auto p-2 ">
+            <table id="categorias" class="box-card mx-auto bg-white text-center">
                 <thead>
                     <tr>
                          <th><i></i>ID categoria</th>
