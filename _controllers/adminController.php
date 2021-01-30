@@ -76,14 +76,14 @@ class adminController extends Controller{
                             $_SESSION['message'] = 'Filtro por usuario';
                         } else {
                             $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'Usuario no existe'];
-                            if ($this->param[0] == 'api') {
+                            if ((isset($this->param[0])) && $this->param[0] == 'api') {
                                 $this->getJson($this->_view->tabla);
                             }
                             $_SESSION['color'] = 'danger';
                         }
                     } else {
                         $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'Error al leer el id'];
-                        if ($this->param[0] == 'api') {
+                        if ((isset($this->param[0])) && $this->param[0] == 'api') {
                             $this->getJson($this->_view->tabla);
                         }
                         $_SESSION['color'] = 'danger';
