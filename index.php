@@ -9,18 +9,13 @@ define('APP_PATH', ROOT . 'application/' );
 define('APP_LIBS', ROOT . 'libs/' );
 define('APP_CLASS',ROOT.'_controllers/class/');
 
-
-
-
 try{
-   
     require_once APP_LIBS. 'funciones.php';
     require_once APP_PATH. 'Config.php';
     require_once APP_PATH. 'Request.php';
     require_once APP_PATH. 'Bootstrap.php';
     require_once APP_PATH. 'Controller.php';
-  
-  // Controller::ver($_SESSION['usuario'],1);
+    @session_start();
     if(isset($_SESSION['usuario'])){
      require_once APP_CLASS.'c_notificacion.php';
      require_once APP_CLASS.'c_numerosLetras.php';
@@ -32,7 +27,6 @@ try{
     require_once APP_PATH. 'Session.php';
     Session::init();
     c_navegacion::run(new Request);
-
 }
 catch (Exception $e){
     echo $e->getMessage();
