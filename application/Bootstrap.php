@@ -40,7 +40,7 @@ class c_navegacion {
                <div class="col-md-12 ">
                <div class="col-lg-4 col-md-6 col-12 col-sm-6 shadow-lg mx-auto text-center my-4 card-body  fade show alert-danger alert-dismissible" role="alert">
                <h1 class="alert-100" >404</h1> 
-               <p>No encuentra la ruta que resulve</p>
+               <p>No encuentra la ruta que resuelve</p>
                '.$controller.'/'.$metodo.'<br>
             </div>
             <div class="col-md-3"></div>
