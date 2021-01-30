@@ -19,12 +19,28 @@ class indexController extends Controller {
       }
       $this->_view->setCSS([ 'stylesindex','animate' ]);
      $this->_view->setJs(['scriptsindex']);
-     $r = $this->db->verAnuciosIndex( 1 );
-      $ico1 = ['fa-shopping-cart', 'fa-laptop', 'fa-lock'];
-      //
-      foreach($r as $i =>  $d){
-         $this->_view->datos1[]=[ $d[0], $d[1], $d[2], $ico1[$i] ];
-      }
+     //$r = $this->db->verAnuciosIndex( 1 );
+      //$ico1 = ['fa-shopping-cart', 'fa-laptop', 'fa-lock'];
+
+      $this->_view->datos1=[
+         ['1',
+         'Herramientas Manuales',
+         'Alicates Universales, Alicates de Corte, Alicates de Puntas, Atornilladores, Picotas Chuzos, Escaleras y Carretillas, Espitulas, Espítulas, Formones, Juegos de Llaves, Llaves Ajustables, Llaves Francesas, Llaves Punta Corona, Martillos, Mazos',
+         'fa-shopping-cart'
+         ],
+         [
+         '2',
+         'Herramientas Electricas.',
+         'Taladros sin cable, Taladros con cable, Sierras, Herramientas elétricas . Destornilladores eléctricos Martillos perforadores Amoladoras eléctrica, Lijadoras eléctricas, Sierras circulares Cepillos eléctricos, Fresadoras eléctricas, Pistolas para pintar.',
+         'fa-laptop'
+         ],
+         [
+         '3',
+         'Materiales construccion.',
+         'Productos manufacturados que son necesarios en las labores de construcción de edificaciones o en las obras de ingeniería civi',
+         'fa-lock'
+         ]
+         ];
       //
       if(isset( $_POST['accion'] )){
          switch ($_POST['accion']) {
