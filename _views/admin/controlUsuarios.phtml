@@ -209,8 +209,6 @@ if($s ['usuario']['ID_rol_n'] == 1 ){
                                     <button class="btn btn-circle btn-dark" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar usuario">
                                         <i class="fas fa-marker"></i>
                                     </button>
-                                </form>
-
                                 <?php //if ($u['usuario']['ID_rol_n'] == 1) {     
                                 ?>
                                 <a onclick="activarCuenta( <?= $d['ID_us']   ?> )" href="#" class="btn btn-circle btn-success" data-bs-toggle="tooltip" data-bs-placement="right" title="Activar cuenta">
@@ -219,6 +217,7 @@ if($s ['usuario']['ID_rol_n'] == 1 ){
                                 <a onclick="desactivarCuenta( <?= $d['ID_us']   ?> )" href="#" class="btn btn-circle btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Desactivar cuenta">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
+                                </form>
                             </td>
 <?php
 }
