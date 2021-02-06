@@ -295,7 +295,9 @@ protected $_tipo;
     $objSession = new Session;
     $uN = $objSession->desencriptaSesion();
 
-    $txt = '<nav class="navbar-fixed-top navbar navbar-expand-lg navbar-dark bg-dark navbar navbar-expand-lg  sticky-top">
+    $txt = '
+    <script src="'. RUTAS_APP['ruta_js'] .'reloj01.js"></script>
+    <nav class="navbar-fixed-top navbar navbar-expand-lg navbar-dark bg-dark navbar navbar-expand-lg  sticky-top">
     <a class="navbar-brand ml-4" href="#">
       <img src="' . RUTAS_APP['ruta_img'] . 'logoportal.png" width="250" height="65" alt="">
     </a>
@@ -364,6 +366,10 @@ protected $_tipo;
       $txt .= '
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+      <div class="text-dark ml-4">'. date("Y-m-d").'
+     
+        <div  id="reloj"></div></div>
+
           <a class="dropdown-item" href="#">
               Hola ';
       if (isset($_SESSION['usuario'])) {

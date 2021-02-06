@@ -47,6 +47,14 @@ class supervisorController extends Controller{
         $this->_view->renderizar('generadorInfFactura');
     }
 
+    public function facturasPdf(){
+        require_once(ROOT . 'libs/pdf/mpdf.php');
+        $mpdf = new mPDF('c','A4');
+        Controller::ver($mpdf ,1);
+        $mpdf->writeHTML('<div>HOLA..</div>');
+        $mpdf->Output('repote.pdf','I');
+    }
+
 
 
     // PENDINTE CIFRAS A LETRAS

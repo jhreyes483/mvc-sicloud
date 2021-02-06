@@ -1,4 +1,6 @@
 <!-- nav -->
+<script src="<?= RUTAS_APP['ruta_js'] ?>reloj01.js"></script>
+
 <?php
 @session_start();
 if(!isset($_SESSION['usuario'])){
@@ -35,6 +37,11 @@ function menuIndex($js = 1, $login = 1){
             <li class="nav-item active">
                 <a class="nav-link pl-3 pr-5" href="<?= BASE_URL.'index/informes' ?>">CONTACTO<span class="sr-only">(current)</span></a>
             </li>
+           <li>
+             <div id="reloj" class="ml-5 mt-2 text-white"></div> 
+           </li>
+       
+           
 
         </ul>
 
