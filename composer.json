@@ -15,7 +15,6 @@
        "laravel/framework": "^8.12",
        "laravel/tinker": "^2.5",
        "yajra/laravel-datatables-oracle": "^9.15",
-       "php_mbstring": true 
    },
    "require-dev": {
        "facade/ignition": "^2.5",
