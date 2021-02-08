@@ -5,7 +5,8 @@ class supervisorController extends Controller{
         parent::__construct();
         $this->db       = $this->loadModel('consultas.sql', 'sql');
         $this->_view->setCss(array( 'font-Montserrat' , 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+        //$this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+        //$this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
     }
     //
     public function index(){
@@ -40,19 +41,16 @@ class supervisorController extends Controller{
         $this->_view->renderizar('factura',0);
     }
 
-
-
-
     public function infFactura(){
         $this->_view->renderizar('generadorInfFactura');
     }
 
     public function facturasPdf(){
-        require_once(ROOT . 'libs/pdf/mpdf.php');
-        $mpdf = new mPDF('c','A4');
-        Controller::ver($mpdf ,1);
-        $mpdf->writeHTML('<div>HOLA..</div>');
-        $mpdf->Output('repote.pdf','I');
+        require_once(ROOT . 'libs/mpdf/repo.php');
+        //$mpdf = new mPDF('c','A4');
+        //Controller::ver($mpdf ,1);
+        //$mpdf->writeHTML('<div>HOLA..</div>');
+        //$mpdf->Output('repote.pdf','I');
     }
 
 
@@ -61,8 +59,12 @@ class supervisorController extends Controller{
     public function facturas(){
 
         $this->getSeguridad('S1FF');
-        $this->_view->setJs(['all']);
-        if (isset($_POST['consulta'])) {
+       // $this->_view->setJs(['all']);
+      // $this->_view->setJs(['all']);
+      $this->_view->setCss(['datatables/datatables.min','datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min', 'fontawesome-all']);
+      $this->_view->setJs(['jquery/jquery-3.3.1.min','popper/popper.min','bootstrap.min','datatables/datatables.min','datatables/Buttons-1.5.6/js/dataTables.buttons.min','datatables/JSZip-2.5.0/jszip.min','datatables/pdfmake-0.1.36/pdfmake.min','datatables/pdfmake-0.1.36/vfs_fonts','datatables/Buttons-1.5.6/js/buttons.html5.min','mainDatable', 'all', 'fontawasome-ico'  ] );
+
+      if (isset($_POST['consulta'])) {
             extract($_POST);
             $r           = $this->db->verIntervaloFecha($f1, $f2);
             //$v            = new CifrasEnLetras();

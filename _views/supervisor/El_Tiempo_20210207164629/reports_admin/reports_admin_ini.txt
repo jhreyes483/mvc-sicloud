@@ -1,7 +1,0 @@
-index.php
-El_Tiempo
-reports_admin
-NAO
-cons
-reports_admin
-LigMd5
