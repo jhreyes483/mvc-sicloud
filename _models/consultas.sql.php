@@ -319,10 +319,12 @@ public function loginUsuarioModel($d){
        FROM usuario U 
        JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
        JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
-       WHERE R.ID_rol_n IN ( $id ) $sqlEstado
+       WHERE R.ID_rol_n =  $id  $sqlEstado
         ";
        $c = $this->db->prepare($sql);
-       $c->bindValue(":id", $id);
+      // if(isset ($id)){
+      // $c->bindValue(":id", $id);
+      //}
        $c->execute();
 
 
