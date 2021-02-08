@@ -107,7 +107,7 @@ class adminController extends Controller{
                         
                     }else{
                         $estado= ( isset($_POST['estado'])? implode(',', $_POST['estado']) : '');
-                        $r = $this->db->selectUsuarioRol($this->getInt('rol'), 1 , $estado);
+                        $r = $this->db->selectUsuarioRol($this->getSql('rol'), 1 , $estado);
                     }
                     if (count($r) != 0) {
                         $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
