@@ -1,8 +1,6 @@
 <?php
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
-
-
 $objSesion = new Session;
 $u = $objSesion->desencriptaSesion();
 
@@ -330,7 +328,7 @@ if ($this->datos['response_status'] == 'ok') {
                     ],
 
                     "ajax": {
-                        "url": "<?= BASE_URL ?>api/api.php?apicall=selectUsuarioFactura",
+                        "url": "<?= BASE_URL ?>api/?apicall=selectUsuarioFactura";
                         "dataSrc": ""
                     },
                     "columns": [{
