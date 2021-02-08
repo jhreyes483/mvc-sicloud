@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+
 $o = new Session;
 $s =  $o->desencriptaSesion();
 $_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
