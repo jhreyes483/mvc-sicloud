@@ -23,19 +23,19 @@ $(document).ready(function() {
 				extend:    'excelHtml5',
 				text:      '<i class="far fa-file-excel" ></i> ',
 				titleAttr: 'Exportar a Excel',
-				className: 'btn btn-success mr-3 col-sm-1 rounded-circle'
+				className: 'btn btn-success mr-3 col-sm-1 col-md-4 rounded-circle'
 			},
 			{
 				extend:    'pdfHtml5',
 				text:      '<i class="fas fa-file-pdf" ></i> ',
 				titleAttr: 'Exportar a PDF',
-				className: 'btn btn-danger mr-3 col-sm-1 rounded-circle'
+				className: 'btn btn-danger mr-3 col-sm-1 col-md-4 rounded-circle'
 			},
 			{
 				extend:    'print',
 				text:      '<i class="fa fa-print "></i> ',
 				titleAttr: 'Imprimir',
-				className: 'btn btn-info col-sm-1 rounded-circle'
+				className: 'btn btn-info col-sm-1 col-md-4 rounded-circle'
 			},
 		]	        
     });     
