@@ -74,7 +74,7 @@ echo ( ( isset($this->rol))? '<strong>  Rol: </strong>'.$this->rol:'' );
                         else $t = true;
                     }
                 ?>
-                    <a href="javascript:;" class="  <?php if (!$_POST['buscarT'] &&  $letraSel == $i) echo "btn-primary" ?> btn btn-circle btn-dark text-white" onClick="enviar('<?= chr($i) ?>')"><strong><?= chr($i) ?></strong> </a>
+                    <a href="javascript:;" class="  <?php if ( isset($letraSel) &&  !$_POST['buscarT'] &&  $letraSel == $i) echo "btn-primary" ?> btn btn-circle btn-dark text-white" onClick="enviar('<?= chr($i) ?>')"><strong><?= chr($i) ?></strong> </a>
                 <?php
                 }
                 ?>
