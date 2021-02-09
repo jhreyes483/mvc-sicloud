@@ -145,37 +145,37 @@ class View{
 
    public function setTable( $idTabla , $ordenPorDefecto = null , $filaSinOrden = null){
     
-      echo "
-      <script>
-    $(document).ready(function() {
-         $('table th i').addClass( 'fas fa-arrows-alt-v')
-        $('table').addClass('tablesorte table-hover bg-white table-sm table-bordered table-striped')
-        $('table thead').addClass('shadow-sm')
-        $('#$idTabla').tablesorter({
-            widgets: ['zebra']";
-           // echo 'ordenDefect ->'. $ordenPorDefecto;
-            if( isset($ordenPorDefecto)) {echo"
-            ,
-            sortList: [
-                [$ordenPorDefecto , 1]
-            ]";
-            }
-            if( isset($filaSinOrden) ){
-            echo "
-            ,
-            headers: {
-               $filaSinOrden: {
-                    sorter: false
-                }
-            }
-            ";
-         }
+  //    echo "
+  //    <script>
+  //  $(document).ready(function() {
+  //       $('table th i').addClass( 'fas fa-arrows-alt-v')
+  //      $('table').addClass('tablesorte table-hover bg-white table-sm table-bordered table-striped')
+  //      $('table thead').addClass('shadow-sm')
+  //      $('#$idTabla').tablesorter({
+  //          widgets: ['zebra']";
+  //         // echo 'ordenDefect ->'. $ordenPorDefecto;
+  //          if( isset($ordenPorDefecto)) {echo"
+  //          ,
+  //          sortList: [
+  //              [$ordenPorDefecto , 1]
+  //          ]";
+  //          }
+  //          if( isset($filaSinOrden) ){
+  //          echo "
+  //          ,
+  //          headers: {
+  //             $filaSinOrden: {
+  //                  sorter: false
+  //              }
+  //          }
+  //          ";
+  //       }
 
-         echo "
-        });
-    });
-</script>
-      ";
+   //      echo "
+   //     });
+   // });
+   //</script>
+   //   ";
 
 
    }

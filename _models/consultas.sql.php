@@ -327,7 +327,6 @@ public function loginUsuarioModel($d){
       //}
        $c->execute();
 
-
        switch ($tipo) {
          case 0:
             $r = $c->fetchAll();
@@ -348,7 +347,7 @@ public function loginUsuarioModel($d){
 
 
    
-   public function  selectUsuarioFac($id,  $tipo = 0){
+   public function  selectUsuarioFac($id=1,  $tipo = 0){
       $sql = "SELECT distinct U.FK_tipo_doc, U.ID_us, U.nom1, U.nom2, 
       U.ape1, U.ape2, U.pass, U.foto, U.correo, 
       R.nom_rol,  R.nom_rol,
@@ -357,9 +356,11 @@ public function loginUsuarioModel($d){
       JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
       JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
        ";
+       echo $sql;
       $c = $this->db->prepare($sql);
-      $c->bindValue(":id", $id);
+     // $c->bindValue(":id", $id);
       $c->execute();
+      
 
 
       switch ($tipo) {
@@ -1842,9 +1843,8 @@ public function verTelefonosUsuario(){
    join usuario U on R_U.FK_us = U.ID_us
    join telefono T on  U.ID_us = T.CF_us";
    $consulta= $this->db->prepare($sql);
-   $result = $consulta->execute();
-   $result = $consulta->fetchAll();
-   return $result;
+   $consulta->execute();
+   return  $consulta->fetchAll();
 }
    // Fin de mostrar datos por id
    //------------------------------------------------------------------------------------------

@@ -16,7 +16,7 @@ class supervisorController extends Controller{
     }
     //
     public function consFactura(){
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+      //  $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
         $this->getSeguridad('S1CF');
         $this->_view->setJs(['all']);
         $this->_view->renderizar('consFactura');
@@ -46,12 +46,12 @@ class supervisorController extends Controller{
 
     public function infFactura(){
         $this->_view->renderizar('generadorInfFactura');
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+      //  $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
     }
 
     public function facturasPdf(){
         require_once(ROOT . 'libs/mpdf/repo.php');
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+       // $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
         //$mpdf = new mPDF('c','A4');
         //Controller::ver($mpdf ,1);
         //$mpdf->writeHTML('<div>HOLA..</div>');
@@ -66,8 +66,8 @@ class supervisorController extends Controller{
         $this->getSeguridad('S1FF');
        // $this->_view->setJs(['all']);
       // $this->_view->setJs(['all']);
-      $this->_view->setCss(['datatables/datatables.min','datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min', 'fontawesome-all']);
-      $this->_view->setJs(['jquery/jquery-3.3.1.min','popper/popper.min','bootstrap.min','datatables/datatables.min','datatables/Buttons-1.5.6/js/dataTables.buttons.min','datatables/JSZip-2.5.0/jszip.min','datatables/pdfmake-0.1.36/pdfmake.min','datatables/pdfmake-0.1.36/vfs_fonts','datatables/Buttons-1.5.6/js/buttons.html5.min','mainDatable', 'all', 'fontawasome-ico'] );
+     // $this->_view->setCss(['datatables/datatables.min','datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min', 'fontawesome-all']);
+     // $this->_view->setJs(['jquery/jquery-3.3.1.min','popper/popper.min','bootstrap.min','datatables/datatables.min','datatables/Buttons-1.5.6/js/dataTables.buttons.min','datatables/JSZip-2.5.0/jszip.min','datatables/pdfmake-0.1.36/pdfmake.min','datatables/pdfmake-0.1.36/vfs_fonts','datatables/Buttons-1.5.6/js/buttons.html5.min','mainDatable', 'all', 'fontawasome-ico'] );
 
       if (isset($_POST['consulta'])) {
             extract($_POST);
@@ -87,7 +87,7 @@ class supervisorController extends Controller{
     }
     // INFORMES
     public function infvrango(){
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+      //  $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
         $dia           = $this->db->verDia();
         //Controller::ver($dia);
         $totalD         = array_sum(array_column($dia, 1 ));
@@ -120,8 +120,8 @@ class supervisorController extends Controller{
                 $t3 = 'Total';
                 if ($_POST['ventas'] == 'busDia')  $t1 = 'Cantidad ventas';               $t2 = 'Dia';
                 if ($_POST['ventas'] == 'dia')     $t1 = 'Cantidad';                      $t2 = 'Dia';
-                if ($_POST['ventas'] == 'semana')  $t1 = 'Cantidad de ventas por semana'; $t2 = 'Dia cierre ventas';
-                if ($_POST['ventas'] == 'mes')     $t1 = 'Cantidad de ventas por Mes';    $t2 = 'Dia cierre ventas';
+                if ($_POST['ventas'] == 'semana')  $t1 = 'Ventas por semana'; $t2 = 'Dia cierre ventas';
+                if ($_POST['ventas'] == 'mes')     $t1 = 'Ventas por Mes';    $t2 = 'Dia cierre ventas';
                 $this->_view->title = [ $t1, $t2 , $t3 ];
 
        

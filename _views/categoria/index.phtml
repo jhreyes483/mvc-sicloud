@@ -29,7 +29,7 @@ if (isset($_SESSION['message'])) {
 setMessage();
 } 
 ?>
-
+<br><br><br><br>
             <div class="card">
                 <div class="box-card card-header shadow">Registro Categoria</div>
                 <div class="card-body">
@@ -46,11 +46,11 @@ setMessage();
 if($this->datos['response_status']  == 'ok' ){
 ?>
         <div class="col-md-auto p-2 ">
-            <table id="categorias" class="box-card mx-auto bg-white text-center">
+            <table id="example" class="box-card mx-auto bg-white text-center">
                 <thead>
                     <tr>
-                         <th><i></i>ID categoria</th>
-                         <th><i></i>Categoria</th>
+                         <th>ID categoria</th>
+                         <th>Categoria</th>
                          <th>Accion</th>
                     </tr>
                 </thead>

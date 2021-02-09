@@ -7,7 +7,7 @@ class facturaController extends Controller{
         $this->o_numeroLetras = new c_numerosLetras;
         $this->db       = $this->loadModel('consultas.sql', 'sql');
         $this->_view->setCss(array( 'font-Montserrat' , 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+        // $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
     }
     //
     public function index(){

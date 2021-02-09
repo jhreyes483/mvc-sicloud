@@ -8,7 +8,8 @@ class indexController extends Controller {
       $this->db            = $this->loadModel('consultas.sql', 'sql');
       $this->objSession    = new Session();
    
-      $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter', 'login'] );
+      $this->_view->setJs( ['bootstrap.min', 'popper.min', 'cUsuariosJquery',  'login'] );
+   
    }
    //
 	public function index(){

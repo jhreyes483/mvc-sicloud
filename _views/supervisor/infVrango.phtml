@@ -71,7 +71,7 @@ foreach(['dia', 'semana', 'mes'] as $b){
         </form>
         <a href="javascript:;" onclick="mostrar_div('fecha'); mostrar_div('rango')">Busqueda por fecha</a>
       </div>
-      <div class="card-body" id = "fecha">
+      <div class="card-body" id = "fecha" style="display:none">
         <i class="fas fa-calendar fa-2x text-gray-300"></i>
         <h5 class="card-title text-center ">Informe por fecha</h5>
         <!-- INI--FORM PRODUCTO--------------------------------------------------------------------------------- -->
@@ -90,7 +90,7 @@ if( isset($_POST['ventas'])){
   if( $this->datos['response_status'] == 'ok' ){
 ?>
 <div class="container-fluid">
-    <table class="text-center col-lg-9 mx-auto">
+    <table id="example" class="text-center col-lg-9 mx-auto">
       <thead>
         <tr>
 <?php
@@ -135,29 +135,9 @@ echo'
 ?>
 
 <script>
-    $(document).ready(function() {
-        $('#fecha').hide();
-        //$('#rango').hide();
-        $('table th i').addClass( 'fas fa-arrows-alt-v')
-        $('table').addClass('tablesorte table-hover bg-white table-sm table-bordered table-striped')
-        $('table thead').addClass('shadow-sm')
-        $('table').tablesorter({
-            widgets: ['zebra']
-            ,
-            headers: {
-               0: {
-                    sorter: false
-                }
-            }
-            
-        });
-    });
-
-
     function mostrar_div(id, clase){
 	    var main = ("#"+id);
 	    if (clase>0)	main =("."+id)
 	    $(main).toggle('normal');
     }
-
 </script>

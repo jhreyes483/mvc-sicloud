@@ -11,10 +11,13 @@ abstract class Controller
 protected $_view;
 protected $_request;
 protected $_tipo;
+
   public function __construct($public =null){
       date_default_timezone_set("America/Bogota");
       $this->_view          = new View(new Request);
       $this->_request       = new Request;
+      $this->_view->setCss(['datatables/datatables.min','datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min', 'fontawesome-all']);
+      $this->_view->setJs(['jquery/jquery-3.3.1.min','popper/popper.min','bootstrap.min','datatables/datatables.min','datatables/Buttons-1.5.6/js/dataTables.buttons.min','datatables/JSZip-2.5.0/jszip.min','datatables/pdfmake-0.1.36/pdfmake.min','datatables/pdfmake-0.1.36/vfs_fonts','datatables/Buttons-1.5.6/js/buttons.html5.min','mainDatable', 'all', 'fontawasome-ico'] );
       if(!isset($public)){
         $this->issetSession();
       }
@@ -27,6 +30,15 @@ protected $_tipo;
 
 
   abstract public function index();
+
+  protected function verificaResul( $r){
+    if( isset($r) && count($r) >0 ){
+      $this->_view->datos = ['response_status' => 'ok', 'response_msg' => $r];
+  }else{
+      $this->_view->datos = ['response_status' => 'error', 'response_msg' => 'No hay datos'];
+  }
+
+  }
 
   protected function loadModel($file, $clase = false, $param = ''){
     $clase = $clase !== false ? $clase : $file;

@@ -7,7 +7,8 @@ class adminController extends Controller{
         $this->db = $this->loadModel('consultas.sql', 'sql');
         parent::__construct();
         $this->_view->setCss(array('font-Montserrat', 'google', 'bootstrap.min', 'jav', 'animate', 'fontawesome-all'));
-        $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'));
+     //   $this->_view->setJs(array('jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'));
+        $this->_view->setJs(['cUsuariosJquery']);
         $this->param = $this->getParam();
     }
     //
@@ -152,7 +153,7 @@ class adminController extends Controller{
 
         }
         $this->_view->renderizar('controlUsuarios');
-        $this->_view->setTable('lis', 3, 0);
+      //  $this->_view->setTable('lis', 3, 0);
     }
     //
     public function controlUsuarios(){
@@ -161,7 +162,7 @@ class adminController extends Controller{
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
         $this->_view->renderizar('controlUsuarios');
-        $this->_view->setTable('lis', 3, 0);
+      //  $this->_view->setTable('lis', 3, 0);
     }
     //
     public function datosFijos(){
@@ -181,6 +182,18 @@ class adminController extends Controller{
         ];
     }
     //
+    public function directorioTelefonico(){
+
+        if(!isset($_POST['usuario'])){
+            $r = $this->db->verTelefonosUsuario();
+            $this->verificaResul($r);
+        }
+        
+
+        
+        $this->_view->renderizar('directorioTelefonico');
+    }
+
     public function logError(){
         // vista
         // pendinte crear metodo eliminar log
