@@ -31,7 +31,7 @@
     $aMenu['A'][4][2]      = [ 'Empresas',''.BASE_URL. 'empresa', 'S1CE'];
     $aMenu['A'][4][3]      = [ 'Unid medida',''.BASE_URL. 'medida', 'S1CM'];
     $aMenu['A'][4][4]      = [ 'Productos', ''.BASE_URL.'producto?edit','S1PLE'];  
-    $aMenu['A'][4][5]      = [ 'Telefonos', 'formTelefono.php'];
+    $aMenu['A'][4][5]      = [ 'Telefonos',''.BASE_URL.'admin/directorioTelefonico','SFASD'];
     $aMenu['A'][4][6]      = [ 'Cuentas', ''.BASE_URL.'user', 'S1CCSM' ];// OJO  NO CAMBIAR EL TOKEN, ES EL DE EDITAR USARIO
     $aMenu['A'][5]         = [ 'INICIO',''.BASE_URL.'admin/index', 'S1AAFRT'];
 

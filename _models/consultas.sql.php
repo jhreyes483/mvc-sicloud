@@ -1878,42 +1878,48 @@ public function verTelefonosEmpresa(){
 }
    // Fin de ver telefonos empresas
    //------------------------------------------------------------------------------------------
- 
-   
-   // Filtro por id
- 
+public function eliminarTelefono($idg){
+   $sql1 = "SET FOREIGN_KEY_CHECKS = 0 ";
+   $consulta2 = $this->db->prepare($sql1);
+        $rest1 =  $consulta2->execute();   
+   if ($rest1) {
+      $sql2 = "DELETE FROM telefono WHERE CF_us =:CF_us ";   
+      $consulta3 = $this->db->prepare($sql2);
+      $consulta3->bindValue(":CF_us",$idg, PDO::PARAM_STR);
+      $res2 = $consulta3->execute();  
+   }   
+   if ($res2) {
+      $sql3 = "SET FOREIGN_KEY_CHECKS = 1";
+      $consulta4 = $this->db->prepare($sql3);
+      $res3 = $consulta4->execute();
+   }
+   if ($res3) {
+      $_SESSION['message'] = $_SESSION['usuario']['nom1'] . 'Elimino telefono';
+      $_SESSION['color'] = 'success';
+      return true;
+   } else {
+      $_SESSION['message'] = 'No elimino telefono';
+      $_SESSION['color'] = 'danger';
+      return false;
+   }
+}
 
-   public function eliminarTelefono($idg){
-      $sql1 = "SET FOREIGN_KEY_CHECKS = 0 ";
-      $consulta2 = $this->db->prepare($sql1);
-           $rest1 =  $consulta2->execute();   
-      if ($rest1) {
-         $sql2 = "DELETE FROM telefono WHERE CF_us =:CF_us ";   
-         $consulta3 = $this->db->prepare($sql2);
-         $consulta3->bindValue(":CF_us",$idg, PDO::PARAM_STR);
-         $res2 = $consulta3->execute();  
-      }   
-      if ($res2) {
-         $sql3 = "SET FOREIGN_KEY_CHECKS = 1";
-         $consulta4 = $this->db->prepare($sql3);
-         $res3 = $consulta4->execute();
-      }
-      if ($res3) {
-         $_SESSION['message'] = $_SESSION['usuario']['nom1'] . 'Elimino telefono';
-         $_SESSION['color'] = 'success';
-         return true;
-      } else {
-         $_SESSION['message'] = 'No elimino telefono';
-         $_SESSION['color'] = 'danger';
-         return false;
-      }
+   //CDIRECCION
+   public function verDirecciones($consdicion = ''){
+      $sql = 'SELECT U.ID_us , U.nom1 , U.ape1 , R.nom_rol , D.dir
+      from rol R join rol_usuario R_U on R.ID_rol_n = R_U.FK_rol
+      join usuario U on R_U.FK_us = U.ID_us
+      join direccion D on  U.ID_us = D.CF_us '.$consdicion.' ';
+      $consulta= $this->db->prepare($sql);
+      $consulta->execute();
+      return  $consulta->fetchAll();
    }
 
    //CTIENDA
    public function listaProductos(){
       $sql = "SELECT * from productos";
       $consulta= $this->db->prepare($sql);
-      $result = $consulta->execute();
+      $consulta->execute();
       $result = $consulta->fetchAll();
       return $result;
       foreach ($result as $row) {

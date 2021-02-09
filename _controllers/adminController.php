@@ -1,4 +1,7 @@
 <?php
+
+use Mpdf\Tag\Section;
+
 class adminController extends Controller{
     private $db;
     private $param;
@@ -50,6 +53,7 @@ class adminController extends Controller{
             if(isset($roles[$_POST['rol']])) $this->_view->rol = $roles[$_POST['rol']];
         }
        // $_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
+      
         if(( isset( $_POST['parametro'])) &&  $_POST['parametro'] != '*'){
             $r  = $this->db->usuarioLetra( $this->getsql('parametro'), ((implode( ',',$_POST['estado']) )??'')  );
             if( count($r) != 0){
@@ -158,6 +162,7 @@ class adminController extends Controller{
     //
     public function controlUsuarios(){
         $this->datosFijos();
+        $this->consulta();
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
@@ -183,16 +188,22 @@ class adminController extends Controller{
     }
     //
     public function directorioTelefonico(){
-
         if(!isset($_POST['usuario'])){
+            $s = new Session(); $p = $s->desencriptaSesion();
+            $this->_view->elimina = ( $p['usuario']['ID_rol_n'] == 1 ) ? 1 : 0; 
             $r = $this->db->verTelefonosUsuario();
             $this->verificaResul($r);
-        }
-        
-
-        
+        }   
         $this->_view->renderizar('directorioTelefonico');
     }
+
+    public function directorioDirecciones(){
+        $this->verificaResul( $this->db->verDirecciones());
+        $this->_view->renderizar('directorioDirecciones');
+    }
+
+    
+
 
     public function logError(){
         // vista
