@@ -7,7 +7,7 @@
 
    if (isset($_SESSION['message'])) {
    ?>
-      <div class="mx-auto col-lg-4 text-center alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+      <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
          <?php
          echo  $_SESSION['message']  ?>
          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -23,7 +23,7 @@
    if ($this->datos['response_status'] != 'ok') {
    ?>
       <div class="container-fluid ">
-         <div class="mx-auto col-lg-4 text-center alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+         <div class="mx-auto col-lg-4 text-center alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
             <?= $this->datos['response_msg']  ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                <span aria-hidden="true">&times;</span>
@@ -34,7 +34,7 @@
       ?>
 
       <!-- inicia segunda divicion -->
-      <div class="col-md-11 p-2 mx-auto  box-card">
+      <div class="col-md-11 p-2 mx-auto  ">
          <table id="example" class="tablesorter bg-white text-center">
             <thead>
                <tr>
