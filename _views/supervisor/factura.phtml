@@ -1,5 +1,5 @@
 <?php
-Controller::ver($_POST);
+
 if ($this->factura['response_status'] == 'OK') {
     $aU = $this->factura['response_msg'][0];
     $aP = $this->factura['response_msg'][1];
@@ -93,25 +93,13 @@ $txt.='
                             <h4>$'. number_format($aU[0][11], 0, ',', '.') .' </h3>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                    <a class="btn btn-success" href='. BASE_URL .'/libs/mpdf/repo.php?exp=1">Exportar a pdf</a>
-                    </div>
-                </div>';   
+                </div>';
+                
 }   
 echo $txt;    
 $_SESSION['doc']= $txt;
 echo '
-<form  method="post">
-<div class="row">
-    <div class="col-md-6">
-        <input type="submit" class="btn btn-success">
-        <input type="hidden" name="accion"  value="expPDT">
-    </div>
-</div>
-</form>
-<form id="exporta" action="'. BASE_URL .'/libs/mpdf/repo.php?exp=1" method="post"></form
+
 
 '
 
