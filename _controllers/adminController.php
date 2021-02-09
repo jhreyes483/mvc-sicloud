@@ -21,6 +21,13 @@ class adminController extends Controller{
         $this->datosFijos();
         $this->_view->renderizar('index');
     }
+
+    public function controlSistema(){
+        $this->getSeguridad('S1S');
+        $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
+        $this->datosFijos();
+        $this->_view->renderizar('controlSistema');
+    }
     //
     public function a(){
         // desactiva cuenta de usuario
