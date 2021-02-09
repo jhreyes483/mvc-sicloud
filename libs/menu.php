@@ -17,11 +17,11 @@
     $aMenu['A'][2][3]      = [ 'Ingresar producto', ''.BASE_URL.'producto/ingreso','S1PL'];
     $aMenu['A'][2][4]      = [ 'Editar producto', ''.BASE_URL.'producto?edit=1','SwebS1PLE'];  // logistica/productos/?edit=1
     $aMenu['A'][2][5]      = [ 'Solicitar producto', ''.BASE_URL.'proveedor/pedido','DFERA' ];
-    $aMenu['A'][2][6]      = [ 'Sistema de alertas', 'CU0014-alertas.php','S1A'];
-    $aMenu['A'][2][7]      = [ 'Stock', ''.BASE_URL.'producto','S1SDF']; 
-    $aMenu['A'][2][8]      = [ 'Cantidad',''.BASE_URL.'logistica/cantidad', 'S1CT'];
-    $aMenu['A'][2][9]      = [ 'Categoria',''.BASE_URL.'logistica/categoria','S1CG'];
-    $aMenu['A'][2][10]     = [ 'Inf Bodega', 'CU0012-informebodega.php','S1B'];
+   // $aMenu['A'][2][6]      = [ 'Sistema de alertas', 'CU0014-alertas.php','S1A'];
+    $aMenu['A'][2][6]      = [ 'Stock', ''.BASE_URL.'producto','S1SDF']; 
+    $aMenu['A'][2][7]      = [ 'Cantidad',''.BASE_URL.'logistica/cantidad', 'S1CT'];
+    $aMenu['A'][2][8]      = [ 'Categoria',''.BASE_URL.'logistica/categoria','S1CG'];
+   // $aMenu['A'][2][9]     = [ 'Inf Bodega', 'CU0012-informebodega.php','S1B'];
     $aMenu['A'][3]         = [ 'ADMIN SISTEMA'];
     $aMenu['A'][3][1]      = [ 'log errores',''.BASE_URL.'admin/logError','S1LE'];  // admin/logError
     $aMenu['A'][3][2]      = [ 'log actividades',''.BASE_URL. 'admin/logActividad', 'S1LA'];
@@ -41,11 +41,11 @@
     $aMenu['B'][2]         = [ 'PROMOCIONES',''.BASE_URL.'index/promocion'];
     $aMenu['B'][3]         = [ 'PRODUCTOS'];
     $aMenu['B'][3][1]      = [ 'CATALOGO',''.BASE_URL.'cliente/catalogo','S1C'];
-    $aMenu['B'][3][2]      = [ 'INF BODEGA','CU0012-informebodega.php'];
-    $aMenu['B'][3][3]      = [ 'CATEGORIAS',''.BASE_URL.'logistica/categoria','S1CG'];
-    $aMenu['B'][3][4]      = [ 'CANTIDAD',''.BASE_URL.'logistica/cantidad', 'S1CT' ];
-    $aMenu['B'][3][5]      = [ 'SISTEMA ALERTAS', 'CU0014-alertas.php'];
-    $aMenu['B'][3][6]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
+   //$aMenu['B'][3][2]      = [ 'INF BODEGA','CU0012-informebodega.php'];
+    $aMenu['B'][3][2]      = [ 'CATEGORIAS',''.BASE_URL.'logistica/categoria','S1CG'];
+    $aMenu['B'][3][3]      = [ 'CANTIDAD',''.BASE_URL.'logistica/cantidad', 'S1CT' ];
+//    $aMenu['B'][3][5]      = [ 'SISTEMA ALERTAS', 'CU0014-alertas.php'];
+    $aMenu['B'][3][4]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
     $aMenu['B'][4]         = [ 'PROCESOS', 'tablaRegistro.php'];
     $aMenu['B'][4][1]      = [ 'CREAR PRODUCTO', ''.BASE_URL.'producto/create','S1PCL'];
     $aMenu['B'][4][2]      = [ 'INGRESO PRODUCTO', ''.BASE_URL.'producto/ingreso','S1PL'];
@@ -64,7 +64,7 @@
     $aMenu['S'][4][4]      = [ 'Solicitudes "comercial"',''.BASE_URL.'comercial/solicitud', 'FGRJIO'];
     $aMenu['S'][5]         = [ 'PRODUCTOS'];
     $aMenu['S'][5][1]      = [ 'CATALOGO',''.BASE_URL.'cliente/catalogo','S1C'];
-    $aMenu['S'][5][2]      = [ 'ALERTAS','CU0014-alertas.php'];
+    $aMenu['S'][5][2]      = [ 'ALERTAS',''.BASE_URL.'logistica/cantidad','S1CT'];
     $aMenu['S'][5][3]      = [ 'STOCK',''.BASE_URL.'producto','S1SDF'];
     $aMenu['S'][6]         = [ 'INICIO',''.BASE_URL.'supervisor/index', 'S1FAHFK'];
 

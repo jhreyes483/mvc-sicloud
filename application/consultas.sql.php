@@ -356,6 +356,7 @@ public function loginUsuarioModel($d){
       JOIN  rol_usuario R_U ON R_U.FK_us = U.ID_us
       JOIN rol  R ON R_U.FK_rol = R.ID_rol_n 
        ";
+       echo $sql;
       $c = $this->db->prepare($sql);
      // $c->bindValue(":id", $id);
       $c->execute();

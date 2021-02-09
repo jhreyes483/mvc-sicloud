@@ -10,7 +10,7 @@ class supervisorController extends Controller{
     }
     //
     public function index(){
-        $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
+      //  $this->_view->setJs(array('jquery-1.9.0','tablesorter-master/jquery.tablesorter','bootstrap.min','popper.min', 'fontawasome-ico', 'cUsuariosJquery'));
         $this->_view->renderizar('index');
 
     }

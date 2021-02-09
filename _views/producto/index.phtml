@@ -14,7 +14,7 @@ cardtitulo($modulo);
 if (isset($_SESSION['message'])) {
     ?>
         <!-- alerta boostrap -->
-        <div class="col-md-4 mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
+        <div class="col-md-4 mx-auto alert alert-<?= $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
             <?= $_SESSION['message']  ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -35,6 +35,7 @@ if ($this->datos['response_status']  == 'ok') {
                 <th><i></i>Valor Producto</th>
                 <th><i></i>Stock </th>
                 <th><i></i>Estado del producto</th>
+                <th><i></i>Existencia</th>
                 <th><i></i>categoria</th>
                 <th>Imagen</th>
                 <th><i class="fas fa-arrows-alt-v"></i>Medida</th>
@@ -53,22 +54,23 @@ if ($this->datos['response_status']  == 'ok') {
                 $p  =  $d['stok_prod'];
                 $c = "text";
                 if ($p < 2) {
-                    $c = "danger";
+                    $c = "danger"; $m = "Producto agotado";
                 } elseif ($p <= 6) {
-                    $c = "warning";
+                    $c = "warning"; $m = "Existencia baja";
                 } elseif ($p >= 7) {
-                    $c = "success";
+                    $c = "success"; $m = "Suficiente";
                 }
                 $c = "bg-" . $c;
             ?>
                 <tr>
-                    <td><?php echo $d['nom_prod'] ?></td>
-                    <td><?php echo "$" . number_format(($d['val_prod']), 0, ',', '.'); ?></td>
-                    <td class=" <?php echo  $c  ?>"><?php echo $d['stok_prod'] ?></td>
-                    <td><?php echo $d['estado_prod'] ?></td>
-                    <td><?php echo $d['nom_categoria'] ?></td>
+                    <td><?= $d['nom_prod'] ?></td>
+                    <td><?= "$" . number_format(($d['val_prod']), 0, ',', '.'); ?></td>
+                    <td class=" <?= 'text-white '.  $c  ?>"><strong><?= $d['stok_prod'] ?></strong></td>
+                    <td><?= $d['estado_prod'] ?></td>
+                    <td><?= $m ?></td>
+                    <td><?= $d['nom_categoria'] ?></td>
                     <td><img class="card card-body  mx-auto" src="<?= RUTAS_APP['ruta_img'] . 'prod/' . (($d['img'] != '') ?  $d['img'] : imgProducto); ?>" alt="Card image cap" height="130px" width="150px"></td>
-                    <td><?php echo $d['nom_medida'] ?></td>
+                    <td><?= $d['nom_medida'] ?></td>
 
                     <td>
                         <form action="<?= BASE_URL . 'producto/ingreso' ?>" method="post">
@@ -121,7 +123,7 @@ if ($this->datos['response_status']  == 'ok') {
         <!-- Project Card -->
         <div class="card shadow mb-4">
             <div class="card-header py-3 shadow p-3 mb-5 bg-white">
-                <h6 class="m-0 font-weight-bold text-primary"><?php echo "Producos" ?></h6>
+                <h6 class="m-0 font-weight-bold text-primary"><?= "Producos" ?></h6>
             </div>
             <div class="card-body">
                 <?php

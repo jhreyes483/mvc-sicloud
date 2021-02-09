@@ -30,17 +30,32 @@
                 <tr>
                     <th>Producto</th>
                     <th>Stok</th>
+                    <th>Estado</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
 
                 foreach ($this->datos[0] as $i => $row) {
+                    $p  =  $row[1];
+                    $c = "text";
+                    if ($p < 2) {
+                        $c = "danger"; $m = "Producto agotado";
+                    } elseif ($p <= 6) {
+                        $c = "warning"; $m = "Existencia baja";
+                    } elseif ($p >= 7) {
+                        $c = "success"; $m = "Suficiente";
+                    }
+                    $c = "bg-" . $c;
                 ?>
                     <tr>
                         <td> <?= $row['nom_prod']  ?></td>
-                        <td> <?= $row['total']  ?></td>
+                        <td title="<?= $m ?>" class="<?='text-white '.$c ?>"><strong> <?= $row['total']  ?> </strong> </td>
+                        <td><?= $m ?></td>
                     </tr>
+                 
+                   
+               
 
                 <?php    }  ?>
             </tbody>
