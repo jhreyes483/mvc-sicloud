@@ -69,7 +69,7 @@ endif;
                     <form class="form-inline" method="post">
                         <em class="ml-5"> <a class="text-secondary" href="catalogo.php">Seleccione categoria</a></em>
                         <div class="form-group">
-                            <select name="cat" class="form-control">
+                            <select name="cat" class="form-control" onchange="submit(this)">
 <?php
 foreach ($this->c as $row) {
 ?>
@@ -80,16 +80,16 @@ foreach ($this->c as $row) {
                             </select>
                         </div>
                         <input type="hidden" name="accion" value="categoria" >
-                        <button class="btn btn-outline-success " type="submit">Buscar</button>
+
+                        <a class="btn btn-outline-success "   href="<?= BASE_URL. 'cliente/catalogo?t'?>">Todos</a>
+                    </form>
+
+                    <form action="" method="post">
+                  
                     </form>
                 </div><!-- fin de Segunda divicion -->
             </div><!-- fin de row -->
         </div><!-- fin de card de busqda -->
-
-
-        <?php
-        print_r($_POST);
-        ?>
 
         <div class="container">
         <?php alerta(); ?>

@@ -1,4 +1,5 @@
 <?php
+// Controller::ver($_SESSION['venta']);
 // ini_set('display_errors', 0);
 // ini_set('display_startup_errors', 0);
 $objSesion = new Session;
@@ -40,7 +41,7 @@ if ($this->datos['response_status'] == 'ok') {
                 <div class="card box-card card-body">
 
                     <form action="" method="post">
-                        <i class="fas fa-user-plus mr-2"></i>
+                        <a href="<?= BASE_URL .'index/registro' ?>"><i class="fas fa-user-plus mr-2"></i></a>
                         <button type="submit" class="btn btn-outline-success col-md-1 my-1 btn-sm">Buscar</button>
 
                         <div class="card card-body shadow">
@@ -50,7 +51,6 @@ if ($this->datos['response_status'] == 'ok') {
                                 </div><!-- fin de primera divicion de 3 -->
                     </form>
                     <?php
-
                     if (isset($aU) &&  count($aU) != 0) {
                     ?>
                         <div class="col-md-4">
@@ -64,7 +64,8 @@ if ($this->datos['response_status'] == 'ok') {
 
                     <div class="col-md-12">
                         <label for="" class="text center mx-auto">Direccion</label>
-                        <input class="form-control" type=»text» readonly=»readonly» value="<?= $aU[0][14] ?>"></div>
+                        <input class="form-control" type=»text» readonly=»readonly» value="<?= $aU[0][14] ?>">
+                    </div>
                 </div>
             <?php
                     }
@@ -72,11 +73,7 @@ if ($this->datos['response_status'] == 'ok') {
             </div>
         </div>
     </div><br><br>
-
     <p class="e">Productos disponibles</p>
-
-
-
     <table class="table table-striped bg-bordered bg-white table-sm col-md-12 col-sm-4 col-xs-12 mx-auto">
         <thead class="bg-dark text-white text-center">
             <tr>
@@ -119,10 +116,8 @@ if ($this->datos['response_status'] == 'ok') {
             }
             ?>
         </tbody>
-       
     </table>
     </div>
-    
     <?php
     if (isset($_SESSION['venta'])) {
     ?>
@@ -163,14 +158,13 @@ if ($this->datos['response_status'] == 'ok') {
                     </tr>
                 <?php
                 }
-
                 if (isset($_SESSION['venta'])  && count($_SESSION['venta']) != 0) {
                     $total =  array_sum(array_column($_SESSION['venta'], 6));
                     $o = new c_numerosLetras;
                     $letras = $o->convertirCifrasEnLetras($total)
                 ?>
                     <tr>
-                        <td colspan="4"> <em><?= $letras ?></em></td>
+                        <td colspan="4"> <em><?= ucfirst($letras) ?></em></td>
                         <div class="col-md-2">
                             <td colspan="1" class="mt-2" align="right"> <label for="total" class="lead">Total:</label> </td>
                         </div>
@@ -190,7 +184,7 @@ if ($this->datos['response_status'] == 'ok') {
 
         <!-- Datos venta---------------------------------------------------------------------------------------------- -->
         <div class="col-md-8 mx-auto">
-        
+
             <p class="e">Datos de venta</p>
             <div class="card card-body border-arriba">
                 <div class="card card-body  shadow">
@@ -203,7 +197,8 @@ if ($this->datos['response_status'] == 'ok') {
                                         foreach ($aPgo as $i => $row) {
                                         ?>
                                             <option value="<?= $row[0] ?>"><?= $row[1] ?></option>
-                                        <?php }
+                                        <?php
+                                        }
                                         ?>
                                     </select>
                                 </div>
@@ -277,7 +272,7 @@ if ($this->datos['response_status'] == 'ok') {
                                 <th>Correo</th>
                                 <th>Rol</th>
                                 <th>Estado</th>
-                                <th>Acciones</th>
+                                <!--  <th>Acciones</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -321,6 +316,7 @@ if ($this->datos['response_status'] == 'ok') {
                             sortDescending: ": active para ordenar la columna en orden descendente"
                         }
                     },
+
                     scrollY: 400,
                     lengthMenu: [
                         [10, 25, -1],
@@ -328,7 +324,7 @@ if ($this->datos['response_status'] == 'ok') {
                     ],
 
                     "ajax": {
-                        "url": "<?= BASE_URL ?>api/?apicall=selectUsuarioFactura";
+                        "url": "<?= BASE_URL ?>api/?apicall=selectUsuarioFactura",
                         "dataSrc": ""
                     },
                     "columns": [{
@@ -349,9 +345,10 @@ if ($this->datos['response_status'] == 'ok') {
                         {
                             "data": "estado"
                         },
-                        {
-                            "defaultContent": "<button class='btn btn-primary'>Detalles</button>"
-                        }
+
+                        //    {
+                        //        "defaultContent": "<button class='btn btn-primary'>Detalles</button>"
+                        //    }
                     ]
                 });
             });

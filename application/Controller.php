@@ -5,6 +5,8 @@
 *   $tipo 0 = controlador que requere validacion de session activa para renderizar 
 *   $tipo 1 = controlador de vista publica
 +   **********************************************************************/
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
 
 abstract class Controller
 {
@@ -114,7 +116,8 @@ protected $_tipo;
   }
 
   protected function getParam(){
-    if(  count($this->_request->_parametros) != 0){
+
+    if(   count($this->_request->_parametros) != 0){
     return  explode(',', $this->_request->_parametros);
     }
   }
@@ -395,11 +398,11 @@ protected $_tipo;
       }
       $txt .= '
           </a>
-          <a class="dropdown-item" href="misdatos.php">
+          <a class="dropdown-item" href="'.BASE_URL.'user/misdatos">
               <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i>
               Mis datos
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="'.BASE_URL.'cliente/compras">
               <i class="fas fa-list fa-sm fa-fw mr-2 "></i>
               Compras
           </a>

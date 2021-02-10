@@ -80,7 +80,7 @@ class facturaController extends Controller{
                $this->getSql('ID_prod') ,
                $this->getSql('nom_prod') ,
                $this->getSql('stok_prod') ,
-               $this->getSql('stok_prod'),
+               $this->getSql('cantidad'),
                $this->getSql('val_prod'),
                $this->getSql('Cat'),
                $subTotal

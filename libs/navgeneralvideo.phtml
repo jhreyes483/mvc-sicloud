@@ -18,7 +18,9 @@ function menuIndex($js = 1, $login = 1){
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-5">
             <li class="nav-item active">
-                <a class="nav-link ml-5" href="index">INICIO<span class="sr-only">(current)</span></a>
+<?php
+  if(isset($_SESSION['usuario'])) echo '<a class="nav-link ml-5" href="index">INICIO<span class="sr-only">(current)</span></a>';
+?>
             </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle px-3 " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

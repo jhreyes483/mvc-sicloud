@@ -1654,17 +1654,6 @@ public function verAnuciosIndex( $tipo ){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 //===================================================
 //CPUNTOS
 public function insertPuntos( $a ){

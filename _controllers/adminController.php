@@ -34,6 +34,7 @@ class adminController extends Controller{
         $this->db->activarCuenta($this->param[0]);
         $this->datosFijos();
         $this->registraLog($this->param[0], 15);
+        $this->param = [];
         $this->_view->renderizar('controlUsuarios');
     }
     //
@@ -42,6 +43,7 @@ class adminController extends Controller{
         $this->db->desactivarCuenta($this->param[0]);
         $this->datosFijos();
         $this->registraLog($this->param[0], 3);
+        $this->param = [];
         $this->_view->renderizar('controlUsuarios');
     }
     //
@@ -169,7 +171,10 @@ class adminController extends Controller{
     //
     public function controlUsuarios(){
         $this->datosFijos();
-        $this->consulta();
+        if( isset($_POST) && count($_POST) != 0){
+            $this->consulta();
+        }
+        
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));

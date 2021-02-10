@@ -16,8 +16,7 @@ class clienteController extends Controller{
             $this->_view->datos = $this->db->buscarPorNombreProducto( $this->getTexto('producto'));
             $_SESSION['message'] = 'filtro por producto';
             $_SESSION['color']   = 'info';
-            $this->_view->renderizar('catalogo');
-            
+            $this->_view->renderizar('catalogo');    
             break;
             case 'categoria':
                ///$this->getInt('cat'), 1,1);
@@ -34,6 +33,7 @@ class clienteController extends Controller{
     }
     //
     public function catalogo(){
+        if(isset($_GET['t'])) $this->_view->datos = $this->db->verProductos();
         if( !isset($_POST['accion']) ){
             $this->_view->datos = $this->db->verProductos();
             $this->_view->setJs([ 'login'  ]);

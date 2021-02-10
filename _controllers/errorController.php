@@ -8,12 +8,13 @@ class errorController extends Controller {
          $this->db            = $this->loadModel('consultas.sql', 'sql');
          $this->objSession    = new Session();
          $this->_view->setCss( ['jav','bootstrap.min', 'fontawesome-all.css'] );
-         $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'] );
+        // $this->_view->setJs( ['jquery-1.9.0', 'bootstrap.min', 'popper.min', 'fontawasome-ico', 'cUsuariosJquery', 'tablesorter-master/jquery.tablesorter'] );
       }
       //
 	   public function index(){
          if(isset($_SESSION['usuario'])){
             session_destroy();
+            $this->redireccionar('index');
          }
       }	   
       //
