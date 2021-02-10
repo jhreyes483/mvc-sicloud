@@ -18,7 +18,10 @@
                             <h5 class="text-center mx-auto">Repita contraseÃ±a </h5>
                             <div class="form-group"><input class="form-control" type="password" name="passN2" value="" required autofocus maxlength="20"></div>
                             <input type="hidden" name="accion" value="cambioContrasena">
+                          <!-- 
                             <input type="submit" name="submit" class="btn btn-primary btn-block" value="cambiar">  
+                             -->
+                             <a href="#" class="btn btn-primary btn-block" onclick="aviso()" >Cambiar</a>
                             <?php
 
                     if (isset($_SESSION['message'])) {
@@ -43,3 +46,8 @@
 </div>
 <br>
 
+<script>
+function aviso(){
+    alert('El metodo funcina correctamente, pero Javier desactivo actualización por motivos seguridad, si es requerido habilitar favor comunicarse con el');
+}
+</script>
