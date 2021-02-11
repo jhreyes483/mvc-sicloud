@@ -1,4 +1,6 @@
 <?php
+
+if(isset($_POST['enviar'])){
 require 'PHPMailer.php';
 require 'SMTP.php';
 require 'Exception.php';
@@ -34,5 +36,6 @@ if (!$mail->send())
 else
 {
 	echo "E-Mail enviado";
+}
 }
 ?>
