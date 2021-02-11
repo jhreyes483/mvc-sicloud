@@ -58,7 +58,8 @@ class adminController extends Controller{
                 '4'=>'Ventas',
                 '5'=>'Provedor',
                 '6'=>'Cliente'
-            ];    
+            ]; 
+            
             if(isset($roles[$_POST['rol']])) $this->_view->rol = $roles[$_POST['rol']];
         }
        // $_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
