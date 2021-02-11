@@ -11,10 +11,10 @@ try{
  $fromeail     = 'eventos.banquetes.dcache@gmail.com';
  $fromname     = 'sicloud web';
  $host         = 'smtp.gmail.com';
- $port         = '587'; // 465 para SSL y 587 
- $SMTPSecure   ='ssl';
+ $port         = '465'; // 465 para (tls  587 ) (ssl 465)
+ $SMTPSecure    ='ssl';
  $password     = '@1030607384';
- $emailTo      = 'angelalejandro920@gmail.com'; // correos de envio
+ $emailTo      = 'jhreyes483@misena.edu.co'; // correos de envio
  $sujeto       = 'sujeto';
  $bodyEmail    = '<h1>Hola este es correo de prueba </h1>';
  
@@ -36,7 +36,7 @@ try{
  $mail->Body = $bodyEmail;
  
 // corregir en la linea 1809 no encuentra la clase SMTP
-$mail->SMTPSecure = 'tls';
+$mail->SMTPSecure =  $SMTPSecure; // or we ca use TLS
  if(!$mail->send()){
    error_log("No se envio el correo"); die();
  }
