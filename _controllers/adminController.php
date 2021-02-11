@@ -1,6 +1,6 @@
 <?php
 
-use Mpdf\Tag\Section;
+// use Mpdf\Tag\Section;
 
 class adminController extends Controller{
     private $db;
@@ -162,9 +162,7 @@ class adminController extends Controller{
                     }
                 break; 
             }
-        } else {
-
-        }
+        } 
         $this->_view->renderizar('controlUsuarios');
       //  $this->_view->setTable('lis', 3, 0);
     }
@@ -178,7 +176,7 @@ class adminController extends Controller{
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
-        $this->_view->renderizar('controlUsuarios');
+       // $this->_view->renderizar('controlUsuarios');
       //  $this->_view->setTable('lis', 3, 0);
     }
     //

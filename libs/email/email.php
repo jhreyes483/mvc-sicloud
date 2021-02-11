@@ -8,25 +8,26 @@ include('Mailer/src/Exception.php');
 
 $mail = new PHPMailer(true);
 try{
- $fromeail     = "eventos.banquetes.dcache@gmail.com";
- $fromname     = "sicloud web";
+ $fromeail     = 'eventos.banquetes.dcache@gmail.com';
+ $fromname     = 'sicloud web';
  $host         = 'smtp.gmail.com';
- $port         = "587"; // 465 para SSL y 587 
+ $port         = '587'; // 465 para SSL y 587 
  $SMTPSecure   ='ssl';
- $password     = "@1030607384";
- $emailTo      = "angelalejandro920@gmail.com"; // correos de envio
- $sujeto       = "sujeto";
- $bodyEmail    = "<h1>Hola este es correo de prueba </h1>";
+ $password     = '@1030607384';
+ $emailTo      = 'angelalejandro920@gmail.com'; // correos de envio
+ $sujeto       = 'sujeto';
+ $bodyEmail    = '<h1>Hola este es correo de prueba </h1>';
  
- // $mail = new PHPMailer/PHPMailer/PHPMailer();
+ //$mail = new PHPMailer/PHPMailer/PHPMailer();
  $mail->isSMTP();
- $mail->SMTPDebug   = 1;
+ $mail->SMTPDebug   = 2;
  $mail->Host        = $host;
  $mail->Port        = $port;
  $mail->SMTPAuth    = true;
  $mail->SMTPSecure  = $fromeail;
  $mail->password    = $password;
- 
+ $mail->Username    = 'eventos.banquetes.dcache@gmail.com';
+ $mail->msgHTML("Message");
  
  $mail->setFrom($fromeail, $fromname);
  $mail->addAddress($emailTo); // direccion a la que se va a enviar correo

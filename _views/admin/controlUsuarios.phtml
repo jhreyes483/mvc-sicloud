@@ -48,7 +48,6 @@ $title = ($s ['usuario']['ID_rol_n'] == 1 ) ? 'Administrador de solicitiudes' : 
 
 
 <form action="" method="post" id="form_buscar">
-
         <div class=" text-center col-md-10 mx-auto card box-card card-body form-inline my-2 form ">
 <div class="col-lg-12  ">
 <?php
@@ -208,7 +207,7 @@ if (isset($this->tabla) &&  $this->tabla['response_status'] == 'ok') {
 if($s ['usuario']['ID_rol_n'] == 1 ){
 ?>
                             <td>
-                                <form action="" method="post">
+                                <form action="<?= BASE_URL.'admin/edit' ?>" method="post">
                                     <input type="hidden" name="id" value="<?= $d['ID_us'] ?>">
                                     <button class="btn btn-circle btn-dark" type="submit" data-bs-toggle="tooltip" data-bs-placement="right" title="Editar usuario">
                                         <i class="fas fa-marker"></i>

@@ -40,24 +40,24 @@ if ($this->datos['response_status'] == 'ok') {
                 <p class="e">Datos de cliente</p>
                 <div class="card box-card card-body">
 
-                    <form action="" method="post">
+                    <form action=""  name="form1" method="post" >
                         <a href="<?= BASE_URL .'index/registro' ?>"><i class="fas fa-user-plus mr-2"></i></a>
                         <button type="submit" class="btn btn-outline-success col-md-1 my-1 btn-sm">Buscar</button>
 
                         <div class="card card-body shadow">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group"><label for="">Cedula Cliente</label><input type="text" class="form-control" value="<?= $aU[0][1] ?? '' ?>" name="ID" id="nit_cliente" /></div>
+                                    <div class="form-group"><label for="">Cedula Cliente</label><input type="text" class="form-control" value="<?= $aU[0][1] ?? '' ?>" name="ID"  /></div>
                                 </div><!-- fin de primera divicion de 3 -->
                     </form>
                     <?php
                     if (isset($aU) &&  count($aU) != 0) {
                     ?>
                         <div class="col-md-4">
-                            <div class="form-group"><label for="">Nombre</label><input type=»text» readonly=»readonly» value="<?= $aU[0][2]  ?>" class="form-control" name="nom1" id="nit_cliente" /></div>
+                            <div class="form-group"><label for="">Nombre</label><input type=»text» readonly=»readonly» value="<?= $aU[0][2]  ?>" class="form-control" name="nom1"  /></div>
                         </div><!-- fin de primera divicion de 3 -->
                         <div class="col-md-4">
-                            <div class="form-group"><label for="">Telefono</label><input type=»text» readonly=»readonly» value="<?= $aU[0][13]  ?>" class="form-control" name="tel" id="nit_cliente" /></div>
+                            <div class="form-group"><label for="">Telefono</label><input type=»text» readonly=»readonly» value="<?= $aU[0][13]  ?>" class="form-control" name="tel" /></div>
                         </div><!-- fin de primera divicion de 3 -->
                 </div>
                 <div class="row">
@@ -189,7 +189,7 @@ if ($this->datos['response_status'] == 'ok') {
             <div class="card card-body border-arriba">
                 <div class="card card-body  shadow">
                     <div class="row">
-                        <form action="" method="post">
+                        <form action="" method="post" onsubmit="return valida();" >
                             <div class="row">
                                 <div class="col-lg-6">
                                     <select class="form-control" name="pago">
@@ -292,6 +292,13 @@ if ($this->datos['response_status'] == 'ok') {
  -->
 
         <script>
+
+function valida(){
+        if (document.form1.ID.value==""){
+            alert ("Debe digitar cliente");
+            return false;
+        }
+    }
             $(document).ready(function() {
                 $('#tablaUsuarios').DataTable({
                     language: {
@@ -352,4 +359,6 @@ if ($this->datos['response_status'] == 'ok') {
                     ]
                 });
             });
+
+
         </script>
