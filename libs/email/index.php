@@ -24,7 +24,7 @@ $mail->Username = "eventos.banquetes.dcache@gmail.com";
 $mail->Password = "@1030607384";
 $mail->setFrom('eventos.banquetes.dcache@gmail.com', 'NSicloud');
 $mail->addAddress('jhreyes483@misena.edu.co', 'Pruba de correo');
-$mail->Subject = 'Sicloud imail';
+$mail->Subject = 'Sicloudf sfsd imail';
 $mail->Body = "Hola este es el correo de prueba";
 $mail->CharSet = 'UTF-8'; // Con esto ya funcionan los acentos
 $mail->IsHTML(true);
