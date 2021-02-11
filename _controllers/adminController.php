@@ -176,7 +176,7 @@ class adminController extends Controller{
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
-       // $this->_view->renderizar('controlUsuarios');
+        $this->_view->renderizar('controlUsuarios');
       //  $this->_view->setTable('lis', 3, 0);
     }
     //
