@@ -57,7 +57,12 @@
 
 
                     <hr>
-                    <p class="text-center "> <a class=" text-dark forms_buttons-forgot" href="forgot_password/dist/index.php">¿Olvidó la contraseña?</a>
+                    <form action="<?=BASE_URL.'libs/email/index.php'?>" method="post">
+
+                    
+                    <p class="text-center "> <button type="submit" class=" text-dark btn forms_buttons-forgot">¿Olvidó la contraseña?</button>
+                    <input type="hidden" name="enviar">
+                    </form>
 
                     </p>
                   </div><!-- /.side-a -->
