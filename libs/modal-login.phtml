@@ -1,4 +1,8 @@
   <!-- SIGN IN MODAL -->
+  <?php
+require_once(ROOT . 'libs/email/index.php');
+  ?>
+  
   <div class="modal fade agol-signin" id="signin" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -57,9 +61,9 @@
 
 
                     <hr>
-                    <form action="<?=BASE_URL.'libs/email/index.php'?>" method="post">
+                    <form action="" method="post">
 
-                    
+
                     <p class="text-center "> <button type="submit" class=" text-dark btn forms_buttons-forgot">¿Olvidó la contraseña?</button>
                     <input type="hidden" name="enviar">
                     </form>
