@@ -37,17 +37,17 @@
  */
 
     static function conexionPDO(){
-        $DB_HOST = 'bzsvpsfy9oknkorinigg-mysql.services.clever-cloud.com';
-        $DB_USER = 'uu1ftcn3edrvx0se';
-        $DB_PASS = 'YTZ9rXNKvoAIDwOwvvFj';
-        $DB_NAME = 'bzsvpsfy9oknkorinigg';
+        $DB_HOST = 'bt7yjhxozyhmylcvdwag-mysql.services.clever-cloud.com';
+        $DB_USER = 'uudupl2y688c1evuv';
+        $DB_PASS = 'WEJgIwWvcoG63wWX7IWs';
+        $DB_NAME = 'bt7yjhxozyhmylcvdwag';
         try {
             $dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME";
             $db = new PDO($dsn, $DB_USER,  $DB_PASS);
         } catch (PDOException $e) {
             echo 'Error al conectarnos al; ' . $e->getMessage();
         }
-        
+
         return $db;
     }
 
