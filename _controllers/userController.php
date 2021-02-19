@@ -12,14 +12,10 @@ class userController extends Controller{
    }
 
    public function index(){
-    
-      
       $this->_view->datos = $this->db->readUsuarioModel();
       $this->_view->renderizar('index');
       $this->_view->setTable('usuarios', 2, 6);
    }   
-
-
 
    public function validaContraseña($a){
       $passAterior =  $this->db->validarPass( $a[0], $a[1] );
@@ -40,7 +36,6 @@ class userController extends Controller{
               $_SESSION['color'] = "danger";
           }
   }
-
 
    public function misdatos(){
       $obj = new Session;
@@ -96,8 +91,6 @@ class userController extends Controller{
       }
       $this->_view->renderizar('cambiopass');
    }
-
-
 
    public function m_destroy(){
 

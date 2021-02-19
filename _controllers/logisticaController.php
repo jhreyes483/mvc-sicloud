@@ -16,7 +16,25 @@ class logisticaController extends Controller
    //
    public function cantidad(){
       $this->getSeguridad('S1CT');
-      $r = $this->db->ConteoProductosT();
+      $tmp =  $this->db->verCategorias();
+      foreach($tmp as $d ) $c[$d[0] ] = $d[1];
+      $this->_view->categoria = $c;
+      //$r = $this->db->verProductosGrafica();
+      if(isset($_POST['accion'])){
+         switch ($_POST['accion']) {
+            case 'filtroCategoria':
+               $r  = $this->db->verPorCategoria($_POST['p']);
+               break;
+            case 'todos':
+               $r  = $this->db->verProductos();
+               break;
+         }
+      }else{
+         $r  = $this->db->verProductos();
+      }
+
+
+
       $this->_view->datos = [
          $r,
          (array_sum( array_column( $r, 1  ) ))

@@ -42,10 +42,9 @@
                         </div>
                     </div>
                     <hr class="border ">
-
-                    <?php
-                    if (isset($_SESSION['message'])) {
-                    ?>
+<?php
+if (isset($_SESSION['message'])) {
+?>
                         <!-- alerta boostrap -->
                         <div class=" col-md-4 text-center mx-auto alert alert-<?php echo $_SESSION['color']   ?> alert-dismissible fade show" role="alert">
                             <?php echo  $_SESSION['message']  ?>
@@ -54,9 +53,10 @@
                             </button>
                         </div>
 
-                    <?php
-                    }
-                    setMessage() ?>
+<?php
+}
+setMessage() 
+?>
                     <div class="card card-body shadow p-3 mb-5 bg-white  my-2">
                         <h4 class="mx-auto">Informes</h4><!-- incio de card consultas -->
                         <div class="col-md-12 my-2">
@@ -67,15 +67,11 @@
                                 </div><!-- fin de col de 4 1 -->
                                 <div class="col-md-4 mx-auto">
                                     <a class="btn btn-primary  btn-block" href="<?= BASE_URL.'logistica/cantidad' ?>"> <i class="fas fa-fw fa-chart-area"></i>Cantidad de productos</a>
-
                                 </div><!-- fin de col de 4 2 -->
-
                             </div><!-- fin de row -->
                         </div><!-- fin de col-md-12 -->
                     </div><!-- fin de card consulatas -->
-
                     <!-- inicio de sesion productos ------------------------------------------------------  -->
-
                     <div class="card card-body my-2 shadow p-3 mb-5 bg-white">
                         <h4 class="mx-auto">Procesos</h4><!-- inicio de card productos -->
                         <div class="col-md-12 my-2">
@@ -97,7 +93,6 @@
                         </div><!-- fin de col-md-12 -->
                     </div><!-- fin de card producto -->
                     <!-- fin de sesion producos ------------------------------  -->
-
                 </div><!-- fin de card 2 -->
             </div><!-- fin de card 1-->
         </div><!-- fin col md -->

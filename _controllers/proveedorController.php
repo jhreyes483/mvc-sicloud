@@ -91,7 +91,6 @@ class proveedorController extends Controller{
         $this->_view->renderizar('consultaPedidos');
     }
 
-
     public function detalle(){ // detalle de pedido porducto
         if(isset($_GET['id'])){
             $r = $this->db->verNotificacionId($_GET['id'] );

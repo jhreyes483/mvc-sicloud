@@ -1,7 +1,6 @@
 <?php
 cardtitulo("Medida");
 ?>
-
 <script>
    function eliminarMed(id_med) {
       var conf = confirm('Esta seguro de eliminar medida con id' + id_med + " ?");
@@ -10,7 +9,6 @@ cardtitulo("Medida");
       }
    }
 </script>
-
 <div class="container ">
    <div class="row">
       <div class=" col-sm-6 col-md-6 col-lg-6 mx-auto ">
@@ -42,9 +40,9 @@ cardtitulo("Medida");
             </div><!-- fin de card -->
          </div>
       </div>
-      <?php
-      if ($this->datos['response_status'] == 'ok') {
-      ?>
+<?php
+if ($this->datos['response_status'] == 'ok') {
+?>
          <div class="col-sm-6 col-md-6 col-lg-6   mx-auto  p2 mt-3">
             <table id="example" class="bg-white box-card text-center col-lg-10 col-mg-10">
                <thead>
@@ -84,19 +82,15 @@ cardtitulo("Medida");
          </div>
    </div><!-- fin de row -->
 </div><!-- Fin container -->
-
-
 <?php
 }else{
 ?>
-
    <div class="alert alert-color alert-dismissible fade show" role="alert">
       <?= $this->datos['response_msg']  ?>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
          <span aria-hidden="true">&times;</span>
       </button>
    </div>
-
 <?php
 }
 ?>

@@ -1399,7 +1399,11 @@ public function delteNotificacion($id){
          LEFT JOIN tipo_medida T ON T.ID_medida = P.CF_tipo_medida
          LEFT JOIN det_producto DP ON P.ID_prod = DP.FK_prod
          LEFT JOIN empresa_provedor EP ON DP.FK_rut = EP.ID_rut 
-         WHERE  P.ID_prod = '$id' LIMIT 1";
+         WHERE  P.ID_prod = '$id' 
+         LIMIT 1
+         ";
+
+         echo $sql;
       $stm = $this->db->prepare($sql);
       $stm->execute();
       $result = $stm->fetchAll();
@@ -1507,7 +1511,7 @@ public function delteNotificacion($id){
          FROM producto P 
          JOIN categoria C ON  P.CF_categoria = C.ID_categoria
          WHERE C.ID_categoria = :id
-         order by P.nom_prod asc";
+         order by P.stok_prod desc";
       $consulta = $this->db->prepare($sql);
       $consulta->bindValue(':id', $id);
       $result = $consulta->execute();

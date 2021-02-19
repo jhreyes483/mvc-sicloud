@@ -25,14 +25,48 @@ class productoController extends Controller{
                $this->m_update();
             break;            
          }
+         $_GET['edit'] =1;
+         $r = $this->db->verProductos();
+         
       }
-      $r = $this->db->verProductos();
+      //$r = $this->db->verProductos();
+
+      if( ! isset ($_POST['accion'] ) ){
+         $r = $this->db->verProductos();
+      }
+
+       $tmp =  $this->db->verCategorias();
+       foreach($tmp as $d ) $c[$d[0] ] = $d[1];
+       $this->_view->categoria = $c;
+
+
+      foreach( $r as $d ) $this->_view->datosF[ $d[0] ] = $d[1];
+      if(isset($_POST['accion'])){
+      switch ($_POST['accion']) {
+         case 'filtroCategoria':
+            $r  = $this->db->verPorCategoria($_POST['p']);
+            break;
+         case 'todos':
+            $r  = $this->db->verProductos();
+            break;
+      }
+
+
+         
+         if( count($r)!= 0  ){
+            $this->_view->datos  = [ 'response_status' => 'ok', 'response_msg' => $r, 'response_alert' => 'filtro por ' .$this->_view->datosF[ $_POST['p']  ] ];
+         }else{
+            $this->_view->datos  = [ 'response_status' => 'error', 'response_msg' => 'No hay productos' ];
+         }
+      }
+
+
       if(isset($r)  && count($r) != 0){
          $this->_view->datos = ['response_status'=>'ok', 'response_msg'=>$r];
       }else{
          $this->_view->datos = ['response_status'=>'error', 'response_msg'=>'No hay datos'];
       }
-     
+
       $this->_view->renderizar('index');
       $this->_view->setTable('stock', 2, 0);
    }

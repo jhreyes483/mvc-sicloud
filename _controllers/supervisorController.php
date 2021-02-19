@@ -58,8 +58,6 @@ class supervisorController extends Controller{
         //$mpdf->Output('repote.pdf','I');
     }
 
-
-
     // PENDINTE CIFRAS A LETRAS
     public function facturas(){
 
@@ -167,10 +165,6 @@ class supervisorController extends Controller{
 
         $this->_view->renderizar('infVrango');
     }
-
-
-    
-
 
 }
 ?>

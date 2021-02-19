@@ -190,9 +190,9 @@ if (isset($this->tabla) &&  $this->tabla['response_status'] == 'ok') {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    foreach ($this->tabla['response_msg'] as $i  => $d) {
-                    ?>
+<?php
+foreach ($this->tabla['response_msg'] as $i  => $d) {
+?>
                         <tr>
                             <!-- Los nombres que estan en [''] son los mismos de los atributos de la base de datos de lo contrario dara un error -->
                             <td><img class="img-profile ml-3 rounded-circle mx-auto" src=" <?= RUTAS_APP['ruta_img'] . 'us/' . (($d['foto'] != '') ? $d['foto'] : imgUsuario)  ?>" alt="Card image cap" height="65" width="70"></td>

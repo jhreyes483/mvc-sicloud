@@ -6,7 +6,7 @@ $us = $objSession->desencriptaSesion();
 //
 if ($this->datos['response_status'] == 'ok') {
     foreach ($this->datos['response_msg'] as $row) {
-        $foto          = $row['foto'];
+        $foto          = ($row['foto']??imgUsuario);
         $ID_us         = $row['ID_us'];
         $nom1          = $row['nom1'];
         $nom2          = $row['nom2'];
@@ -14,7 +14,6 @@ if ($this->datos['response_status'] == 'ok') {
         $ape2          = $row['ape2'];
         $fecha         = $row['fecha'];
         //  $pass          = $row['pass'];
-        $foto          = $row['foto'];
         $correo        = $row['correo'];
         $FK_tipo_doc   = $row['FK_tipo_doc'];
         $ID_rol_n      = $row['ID_rol_n'];
@@ -164,12 +163,12 @@ cardtitulo("Actualizar datos de Usuarios");
         
         $.each(idElemen,function(i,n){
             console.log(n.type);
-           if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date')
+           if(n.type == 'text' || n.type == 'number' || n.type == 'email' || n.type == 'tel' || n.type == 'textarea' || n.type == 'submit' || n.type == 'button' || n.type == 'select-one' || n.type == 'select-multiple' || n.type == 'radio' || n.type == 'date' || n.type=='select' || n.type=='hidden' )
               n.disabled =(!n.disabled);
         });
         enciende = !enciende;
     }
       $("input").attr("disabled","true");
-      $("select").addClass("form-control");
+      $("select").addClass("form-control").attr("disabled","true");
       $("textarea").attr("disabled","true");
 </script>

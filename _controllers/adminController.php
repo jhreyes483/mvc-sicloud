@@ -35,7 +35,7 @@ class adminController extends Controller{
         $this->datosFijos();
         $this->registraLog($this->param[0], 15);
         $this->param = [];
-        $this->_view->renderizar('controlUsuarios');
+        $this->redireccionar('admin/controlUsuarios');
     }
     //
     public function d(){
@@ -44,8 +44,17 @@ class adminController extends Controller{
         $this->datosFijos();
         $this->registraLog($this->param[0], 3);
         $this->param = [];
-        $this->_view->renderizar('controlUsuarios');
+        $this->redireccionar('admin/controlUsuarios');
     }
+
+    public function verificaTabla($r){
+        if( count($r) != 0){
+            $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
+        }else{
+            $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'No hay registro de usuarios'];
+        }
+    }
+
     //
     public function consulta(){ 
         //
@@ -58,24 +67,17 @@ class adminController extends Controller{
                 '4'=>'Ventas',
                 '5'=>'Provedor',
                 '6'=>'Cliente'
-            ]; 
-            
+            ];    
             if(isset($roles[$_POST['rol']])) $this->_view->rol = $roles[$_POST['rol']];
         }
-       // $_POST['estado']  = ( !isset($_POST['estado']) ) ? [1] : $_POST['estado'];
-      
         if(( isset( $_POST['parametro'])) &&  $_POST['parametro'] != '*'){
             $r  = $this->db->usuarioLetra( $this->getsql('parametro'), ((implode( ',',$_POST['estado']) )??'')  );
-            if( count($r) != 0){
-                $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
-            }else{
-                $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'No hay registro de usuarios'];
-            }
+            $this->verificaTabla($r);
             
         }else{
             $estado= ( isset($_POST['estado']) )? implode( ',', $_POST['estado'] ) : '';
             $r  = $this->db->UserAll($estado);
-            $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
+            $this->verificaTabla($r);
         }
 
         if (isset($_POST['accion'])) {
@@ -85,22 +87,15 @@ class adminController extends Controller{
                     if (isset($_POST['documento'])) {
                         $r  = $this->db->selectIdUsuario($this->getsql('documento'));
                         if (count($r) != 0) {
-
-                            $this->_view->tabla = ['response_status' => 'ok', 'response_msg' => $r];
-                            $_SESSION['color'] = 'info';
+                            $this->_view->tabla  = ['response_status' => 'ok', 'response_msg' => $r];
+                            $_SESSION['color']   = 'info';
                             $_SESSION['message'] = 'Filtro por usuario';
                         } else {
                             $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'Usuario no existe'];
-                            if ((isset($this->param[0])) && $this->param[0] == 'api') {
-                                $this->getJson($this->_view->tabla);
-                            }
                             $_SESSION['color'] = 'danger';
                         }
                     } else {
                         $this->_view->tabla = ['response_status' => 'error', 'response_msg' => 'Error al leer el id'];
-                        if ((isset($this->param[0])) && $this->param[0] == 'api') {
-                            $this->getJson($this->_view->tabla);
-                        }
                         $_SESSION['color'] = 'danger';
                     }
                     break;
@@ -118,9 +113,7 @@ class adminController extends Controller{
                     break;
                 case 'consRol':
                     // filtro por rol
-                    if( isset($_POST['parametro'] )){
-                        
-                    }else{
+                    if( !isset($_POST['parametro'] )){
                         $estado= ( isset($_POST['estado'])? implode(',', $_POST['estado']) : '');
                         $r = $this->db->selectUsuarioRol($this->getSql('rol'), 1 , $estado);
                     }
@@ -161,11 +154,10 @@ class adminController extends Controller{
                         $_SESSION['message']  = "Error no actualizo usuario"; 
                         $_SESSION['color']    = "danger";
                     }
+                    $this->redireccionar('admin/controlUsuarios');
                 break; 
             }
         } 
-        $this->_view->renderizar('controlUsuarios');
-      //  $this->_view->setTable('lis', 3, 0);
     }
     //
     public function controlUsuarios(){
@@ -173,16 +165,14 @@ class adminController extends Controller{
         if( isset($_POST) && count($_POST) != 0){
             $this->consulta();
         }
-        
         // vista
         $this->getSeguridad('S1S');
         $this->_view->setCss(array('google', 'bootstrap.min', 'jav', 'animate', 'font-awesome'));
         $this->_view->renderizar('controlUsuarios');
-      //  $this->_view->setTable('lis', 3, 0);
     }
     //
     public function datosFijos(){
-        $this->db               = $this->loadModel('consultas.sql', 'sql');
+        $this->db                = $this->loadModel('consultas.sql', 'sql');
         $rols                    = $this->db->verRol();
         foreach( $rols as $d ) $rl[$d[0]] = $d[1] ; 
         $est                     = [ 'Pendiente', 'Aprobados' ];
@@ -212,9 +202,6 @@ class adminController extends Controller{
         $this->verificaResul( $this->db->verDirecciones());
         $this->_view->renderizar('directorioDirecciones');
     }
-
-    
-
 
     public function logError(){
         // vista
@@ -336,11 +323,8 @@ class adminController extends Controller{
         //
         if( $_POST['id'] ){
             $u      = $this->db->selectUsuarios($_POST['id']);
-            if(count($u) != 0 ){
-                $this->_view->datos = ['response_status' => 'ok' , 'response_msg' => $u ];
-            }else{
-                $this->_view->datos = ['response_status' => 'error' , 'response_msg' => 'No hay datos de usuario'];
-            }
+            $this->verificaResul($u);
+            Controller::ver($this->_view->datos);
         }else{
             $this->_view->datos = ['response_status' => 'error' , 'No ha ingresado usuario a editar'];
         }
