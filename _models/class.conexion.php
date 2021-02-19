@@ -47,7 +47,6 @@
         } catch (PDOException $e) {
             echo 'Error al conectarnos al; ' . $e->getMessage();
         }
-
         return $db;
     }
 
